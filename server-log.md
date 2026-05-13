@@ -903,3 +903,18 @@ email-to-sql-webhook  |
 email-to-sql-webhook  | Node.js v18.20.8
 ```
 Full output: [`server-runs/2026-05-13T06-15-38-app-cd-email-to-sql-docker-compose-up--d-sle-1.log`](server-runs/2026-05-13T06-15-38-app-cd-email-to-sql-docker-compose-up--d-sle-1.log)
+
+## 2026-05-13T06:16:15.728Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `83437cd` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2604ms)
+```
+cd ~/email-to-sql && ls -la dist/ 2>&1 | head -20
+```
+STDOUT:
+```
+total 8
+drwxr-xr-x  2 root     root     4096 May 13 06:15 .
+drwxrwxr-x 18 reviewer reviewer 4096 May 13 06:15 ..
+```
+Full output: [`server-runs/2026-05-13T06-16-15-app-cd-email-to-sql-ls--la-dist-2-1-head--20-1.log`](server-runs/2026-05-13T06-16-15-app-cd-email-to-sql-ls--la-dist-2-1-head--20-1.log)
