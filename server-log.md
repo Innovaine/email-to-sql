@@ -1180,3 +1180,47 @@ email-to-sql-webhook  |
 email-to-sql-webhook  | Node.js v18.20.8
 ```
 Full output: [`server-runs/2026-05-13T06-25-40-app-cd-email-to-sql-docker-compose-up--d-sle-1.log`](server-runs/2026-05-13T06-25-40-app-cd-email-to-sql-docker-compose-up--d-sle-1.log)
+
+## 2026-05-13T06:26:25.897Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `99b754c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3277ms) _(showing tail — full 2,609B stdout + 0B stderr)_
+```
+cd ~/email-to-sql && git pull --ff-only && cat package.json | grep -A 3 '"scripts"'
+```
+STDOUT:
+```
+…cat-tsconfig.json-grep-r-1.log |  14 +
+ ...-cd-email-to-sql-docker-compose-down-slee-1.log |  72 +++++
+ ...-cd-email-to-sql-docker-compose-up--d-sle-1.log |  32 ++
+ tests/web/integration.spec.ts                      | 338 +++++++++++++++++++++
+ tsconfig.json                                      |   2 +-
+ week-07/_index.md                                  |  15 +
+ week-07/pm-status.md                               |  71 +++++
+ week-07/review.md                                  | 158 ++++++++++
+ week-07/test.md                                    |  84 +++++
+ week-08/_plan.md                                   |  36 +++
+ week-08/engineering.md                             | 161 ++++++++++
+ 19 files changed, 1382 insertions(+), 4 deletions(-)
+ create mode 100644 server-runs/2026-05-13T06-16-51-app-cd-email-to-sql-git-pull---ff-only-docke-1.log
+ create mode 100644 server-runs/2026-05-13T06-17-57-app-cd-email-to-sql-git-status-docker-ps-df--1.log
+ create mode 100644 server-runs/2026-05-13T06-18-27-app-cd-email-to-sql-docker-compose-logs-emai-1.log
+ create mode 100644 server-runs/2026-05-13T06-19-12-app-cd-email-to-sql-docker-compose-logs-2-1--1.log
+ create mode 100644 server-runs/2026-05-13T06-23-23-app-cd-email-to-sql-git-status-1.log
+ create mode 100644 server-runs/2026-05-13T06-23-47-app-cd-email-to-sql-git-pull---ff-only-1.log
+ create mode 100644 server-runs/2026-05-13T06-24-17-app-cd-email-to-sql-cat-tsconfig.json-grep-r-1.log
+ create mode 100644 server-runs/2026-05-13T06-25-04-app-cd-email-to-sql-docker-compose-down-slee-1.log
+ create mode 100644 server-runs/2026-05-13T06-25-40-app-cd-email-to-sql-docker-compose-up--d-sle-1.log
+ create mode 100644 tests/web/integration.spec.ts
+ create mode 100644 week-07/_index.md
+ create mode 100644 week-07/pm-status.md
+ create mode 100644 week-07/review.md
+ create mode 100644 week-07/test.md
+ create mode 100644 week-08/_plan.md
+ create mode 100644 week-08/engineering.md
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "tsc && node dist/server.js",
+```
+Full output: [`server-runs/2026-05-13T06-26-25-app-cd-email-to-sql-git-pull---ff-only-cat-p-1.log`](server-runs/2026-05-13T06-26-25-app-cd-email-to-sql-git-pull---ff-only-cat-p-1.log)
