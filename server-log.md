@@ -980,3 +980,17 @@ tmpfs            16G     0   16G   0% /dev/shm
 tmpfs           5.0M     0  5.0M   0% /run/lock
 ```
 Full output: [`server-runs/2026-05-13T06-17-57-app-cd-email-to-sql-git-status-docker-ps-df--1.log`](server-runs/2026-05-13T06-17-57-app-cd-email-to-sql-git-status-docker-ps-df--1.log)
+
+## 2026-05-13T06:18:27.092Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bce0bfc` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2398ms)
+```
+cd ~/email-to-sql && docker compose logs email-to-sql-webhook 2>&1 | tail -40
+```
+STDOUT:
+```
+time="2026-05-13T06:18:27Z" level=warning msg="/home/tester/email-to-sql/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+no such service: email-to-sql-webhook
+```
+Full output: [`server-runs/2026-05-13T06-18-27-app-cd-email-to-sql-docker-compose-logs-emai-1.log`](server-runs/2026-05-13T06-18-27-app-cd-email-to-sql-docker-compose-logs-emai-1.log)

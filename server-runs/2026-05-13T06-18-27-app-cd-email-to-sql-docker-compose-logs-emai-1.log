@@ -1,0 +1,14 @@
+# Command 1 on app as tester
+# Run at: 2026-05-13T06:18:27.072Z
+# Exit code: 0
+# Duration: 2378ms
+
+## Command
+cd ~/email-to-sql && docker compose logs email-to-sql-webhook 2>&1 | tail -40
+
+## STDOUT (full)
+time="2026-05-13T06:18:27Z" level=warning msg="/home/tester/email-to-sql/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+no such service: email-to-sql-webhook
+
+## STDERR (full)
+(empty)
