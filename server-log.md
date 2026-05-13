@@ -1062,3 +1062,17 @@ Fast-forward
  create mode 100644 server-runs/2026-05-13T06-23-23-app-cd-email-to-sql-git-status-1.log
 ```
 Full output: [`server-runs/2026-05-13T06-23-47-app-cd-email-to-sql-git-pull---ff-only-1.log`](server-runs/2026-05-13T06-23-47-app-cd-email-to-sql-git-pull---ff-only-1.log)
+
+## 2026-05-13T06:24:17.171Z — Mehdi ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ff958f0` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2420ms)
+```
+cd ~/email-to-sql && cat tsconfig.json | grep rootDir && cat package.json | grep '"main"'
+```
+STDOUT:
+```
+    "rootDir": "./src",
+  "main": "dist/server.js",
+```
+Full output: [`server-runs/2026-05-13T06-24-17-app-cd-email-to-sql-cat-tsconfig.json-grep-r-1.log`](server-runs/2026-05-13T06-24-17-app-cd-email-to-sql-cat-tsconfig.json-grep-r-1.log)
