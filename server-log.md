@@ -851,3 +851,55 @@ STDOUT:
 /app/dist/src/pipedrive.js
 ```
 Full output: [`server-runs/2026-05-13T06-15-10-app-cd-email-to-sql-docker-run---rm-email-to-1.log`](server-runs/2026-05-13T06-15-10-app-cd-email-to-sql-docker-run---rm-email-to-1.log)
+
+## 2026-05-13T06:15:38.679Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9db3190` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 5791ms)
+```
+cd ~/email-to-sql && docker compose up -d && sleep 3 && docker compose logs --tail=40
+```
+STDOUT:
+```
+email-to-sql-webhook  |   requireStack: []
+email-to-sql-webhook  | }
+email-to-sql-webhook  | 
+email-to-sql-webhook  | Node.js v18.20.8
+email-to-sql-webhook  | 
+email-to-sql-webhook  | > email-to-sql@0.1.0 start
+email-to-sql-webhook  | > node dist/src/server.js
+email-to-sql-webhook  | 
+email-to-sql-webhook  | node:internal/modules/cjs/loader:1143
+email-to-sql-webhook  |   throw err;
+email-to-sql-webhook  |   ^
+email-to-sql-webhook  | 
+email-to-sql-webhook  | Error: Cannot find module '/app/dist/src/server.js'
+email-to-sql-webhook  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+email-to-sql-webhook  |     at Module._load (node:internal/modules/cjs/loader:981:27)
+email-to-sql-webhook  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+email-to-sql-webhook  |     at node:internal/main/run_main_module:28:49 {
+email-to-sql-webhook  |   code: 'MODULE_NOT_FOUND',
+email-to-sql-webhook  |   requireStack: []
+email-to-sql-webhook  | }
+email-to-sql-webhook  | 
+email-to-sql-webhook  | Node.js v18.20.8
+email-to-sql-webhook  | 
+email-to-sql-webhook  | > email-to-sql@0.1.0 start
+email-to-sql-webhook  | > node dist/src/server.js
+email-to-sql-webhook  | 
+email-to-sql-webhook  | node:internal/modules/cjs/loader:1143
+email-to-sql-webhook  |   throw err;
+email-to-sql-webhook  |   ^
+email-to-sql-webhook  | 
+email-to-sql-webhook  | Error: Cannot find module '/app/dist/src/server.js'
+email-to-sql-webhook  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+email-to-sql-webhook  |     at Module._load (node:internal/modules/cjs/loader:981:27)
+email-to-sql-webhook  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+email-to-sql-webhook  |     at node:internal/main/run_main_module:28:49 {
+email-to-sql-webhook  |   code: 'MODULE_NOT_FOUND',
+email-to-sql-webhook  |   requireStack: []
+email-to-sql-webhook  | }
+email-to-sql-webhook  | 
+email-to-sql-webhook  | Node.js v18.20.8
+```
+Full output: [`server-runs/2026-05-13T06-15-38-app-cd-email-to-sql-docker-compose-up--d-sle-1.log`](server-runs/2026-05-13T06-15-38-app-cd-email-to-sql-docker-compose-up--d-sle-1.log)
