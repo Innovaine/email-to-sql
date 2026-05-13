@@ -3808,3 +3808,35 @@ STDOUT:
  3 files changed, 98 insertions(+), 16 deletions(-)
 ```
 Full output: [`server-runs/2026-05-13T17-20-27-app-cd-email-to-sql-git-diff-e829ee9-..e829e-1.log`](server-runs/2026-05-13T17-20-27-app-cd-email-to-sql-git-diff-e829ee9-..e829e-1.log)
+
+## 2026-05-13T17:20:51.841Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `41d21d9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 9900ms)
+```
+cd ~/email-to-sql && docker compose down && docker compose build 2>&1 | tail -20
+```
+STDOUT:
+```
+#13 DONE 1.5s
+
+#14 [stage-1 5/5] COPY --from=builder /app/dist ./dist
+#14 DONE 0.0s
+
+#15 exporting to image
+#15 exporting layers
+#15 exporting layers 0.6s done
+#15 exporting manifest sha256:a1d9d211d2bf0d82ab96b73bcc9253b8e00f9091c33bf95170189853153cf6a6 done
+#15 exporting config sha256:12faa6e7a400046364946b892441d0e5946a730aed3a62bf988377306dd90689 done
+#15 exporting attestation manifest sha256:7d9bfdf5103a0c5957f7006b06c93b60559ff3b42775068295360f2664ba7f9c 0.0s done
+#15 exporting manifest list sha256:e0e0f363e4acba3a69c5633e744172773fc9c5b7cfd5b323a759b26c132a20d6 done
+#15 naming to docker.io/library/email-to-sql-email-to-sql:latest done
+#15 unpacking to docker.io/library/email-to-sql-email-to-sql:latest
+#15 unpacking to docker.io/library/email-to-sql-email-to-sql:latest 0.3s done
+#15 DONE 0.9s
+
+#16 resolving provenance for metadata file
+#16 DONE 0.0s
+ Image email-to-sql-email-to-sql Built
+```
+Full output: [`server-runs/2026-05-13T17-20-51-app-cd-email-to-sql-docker-compose-down-dock-1.log`](server-runs/2026-05-13T17-20-51-app-cd-email-to-sql-docker-compose-down-dock-1.log)
