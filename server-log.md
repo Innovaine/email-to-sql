@@ -1233,3 +1233,27 @@ _Pre-SSH: warehouse pushed to GitHub as commit `18f50cd` so the server's `git pu
 cd ~/email-to-sql && docker compose down && sleep 2 && timeout 180 docker compose build --progress=plain 2>&1 | tail -30
 ```
 ERROR: Connection timed out
+
+## 2026-05-13T06:27:45.433Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `dcdd52b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 8332ms)
+```
+cd ~/email-to-sql && docker compose up -d && sleep 5 && docker compose logs --tail=30
+```
+STDOUT:
+```
+email-to-sql-webhook  | 
+email-to-sql-webhook  | > email-to-sql@0.1.0 start
+email-to-sql-webhook  | > node dist/server.js
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ⚠️  PIPEDRIVE_API_TOKEN not set; Pipedrive sync will fail
+email-to-sql-webhook  | ✓ Config loaded: PORT=5000, API_KEY=dev-key-...
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ✅ Email-to-SQL webhook listening on http://localhost:5000
+email-to-sql-webhook  |    POST /webhook/email  — submit forwarded email
+email-to-sql-webhook  |    GET  /dashboard      — view extraction status
+email-to-sql-webhook  |    GET  /health         — health check
+email-to-sql-webhook  |
+```
+Full output: [`server-runs/2026-05-13T06-27-45-app-cd-email-to-sql-docker-compose-up--d-sle-1.log`](server-runs/2026-05-13T06-27-45-app-cd-email-to-sql-docker-compose-up--d-sle-1.log)
