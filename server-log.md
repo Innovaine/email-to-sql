@@ -654,3 +654,75 @@ Fast-forward
  week-06/risks.md                                   |  78 +++++
 ```
 Full output: [`server-runs/2026-05-13T06-10-05-app-cd-email-to-sql-git-pull---ff-only-2-1-h-1.log`](server-runs/2026-05-13T06-10-05-app-cd-email-to-sql-git-pull---ff-only-2-1-h-1.log)
+
+## 2026-05-13T06:11:02.685Z — Mehdi ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c6a4a3f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 6635ms)
+```
+cd ~/email-to-sql && timeout 180 docker compose build --progress=plain 2>&1 | tail -60
+```
+STDOUT:
+```
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:18-alpine
+#3 DONE 0.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#5 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.0s done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 17.49kB done
+#6 DONE 0.0s
+
+#7 [builder 4/7] RUN npm ci --omit=dev || npm install
+#7 CACHED
+
+#8 [builder 2/7] WORKDIR /app
+#8 CACHED
+
+#9 [builder 3/7] COPY package.json package-lock.json* yarn.lock* pnpm-lock.yaml* ./
+#9 CACHED
+
+#10 [builder 5/7] COPY tsconfig.json ./
+#10 CACHED
+
+#11 [stage-1 4/5] RUN npm ci --omit=dev || npm install --only=production
+#11 CACHED
+
+#12 [builder 6/7] COPY src/ ./src/
+#12 DONE 0.0s
+
+#13 [builder 7/7] RUN npm run build
+#13 0.281 
+#13 0.281 > email-to-sql@0.1.0 build
+#13 0.281 > tsc
+#13 0.281 
+#13 DONE 1.4s
+
+#14 [stage-1 5/5] COPY --from=builder /app/dist ./dist
+#14 DONE 0.1s
+
+#15 exporting to image
+#15 exporting layers
+#15 exporting layers 1.4s done
+#15 exporting manifest sha256:3b4637c35ee6a57374dc3eab70f579bc9d878fb80e890e3a18342cb0b68fb7c1 done
+#15 exporting config sha256:c6bca0564fd38f40829e5cef1b16390402720aebe54fa621b44fc13885d4a559 done
+#15 exporting attestation manifest sha256:b18e02eb935ed52fc013ee288c71fc8172ae829847ddcf5dc3102566ec5ee2d8 0.0s done
+#15 exporting manifest list sha256:2bbdf41c76852431da438209fa89642368d6efe61733a02d30f4ed7e639df07f done
+#15 naming to docker.io/library/email-to-sql-email-to-sql:latest done
+#15 unpacking to docker.io/library/email-to-sql-email-to-sql:latest
+#15 unpacking to docker.io/library/email-to-sql-email-to-sql:latest 0.6s done
+#15 DONE 2.0s
+
+#16 resolving provenance for metadata file
+#16 DONE 0.0s
+ Image email-to-sql-email-to-sql Built
+```
+Full output: [`server-runs/2026-05-13T06-11-02-app-cd-email-to-sql-timeout-180-docker-compo-1.log`](server-runs/2026-05-13T06-11-02-app-cd-email-to-sql-timeout-180-docker-compo-1.log)
