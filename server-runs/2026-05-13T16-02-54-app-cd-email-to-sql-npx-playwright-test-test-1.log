@@ -1,0 +1,15 @@
+# Command 1 on app as tester
+# Run at: 2026-05-13T16:02:54.254Z
+# Exit code: 1
+# Duration: 4046ms
+
+## Command
+cd ~/email-to-sql && npx playwright test tests/web/fixtures.spec.ts::50 --reporter=list 2>&1
+
+## STDOUT (full)
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+
+## STDERR (full)
+(empty)

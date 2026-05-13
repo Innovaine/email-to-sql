@@ -2023,3 +2023,19 @@ STDOUT:
   12 passed (2.2s)
 ```
 Full output: [`server-runs/2026-05-13T16-01-41-app-cd-email-to-sql-npx-playwright-test-test-1.log`](server-runs/2026-05-13T16-01-41-app-cd-email-to-sql-npx-playwright-test-test-1.log)
+
+## 2026-05-13T16:02:54.266Z — Mehdi ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7b92810` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 1, 4057ms)
+```
+cd ~/email-to-sql && npx playwright test tests/web/fixtures.spec.ts::50 --reporter=list 2>&1
+```
+STDOUT:
+```
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-13T16-02-54-app-cd-email-to-sql-npx-playwright-test-test-1.log`](server-runs/2026-05-13T16-02-54-app-cd-email-to-sql-npx-playwright-test-test-1.log)
