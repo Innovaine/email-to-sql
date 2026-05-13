@@ -2039,3 +2039,22 @@ You may need to escape symbols like "$" or "*" and quote the arguments.
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-13T16-02-54-app-cd-email-to-sql-npx-playwright-test-test-1.log`](server-runs/2026-05-13T16-02-54-app-cd-email-to-sql-npx-playwright-test-test-1.log)
+
+## 2026-05-13T16:03:51.209Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6ec206e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2219ms)
+```
+cd ~/email-to-sql && git status && git log --oneline -3
+```
+STDOUT:
+```
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+99b754c Yuki (reviewer, week 8) — pre-SSH sync
+0b26146 Mehdi (engineer, week 8) — pre-SSH sync
+59af30f Mehdi (engineer, week 8) — pre-SSH sync
+```
+Full output: [`server-runs/2026-05-13T16-03-51-app-cd-email-to-sql-git-status-git-log---one-1.log`](server-runs/2026-05-13T16-03-51-app-cd-email-to-sql-git-status-git-log---one-1.log)
