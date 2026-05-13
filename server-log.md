@@ -3961,3 +3961,27 @@ Fast-forward
  create mode 100644 week-12/review.md
 ```
 Full output: [`server-runs/2026-05-13T17-22-59-app-cd-email-to-sql-git-pull---ff-only-1.log`](server-runs/2026-05-13T17-22-59-app-cd-email-to-sql-git-pull---ff-only-1.log)
+
+## 2026-05-13T17:23:24.242Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6e30e68` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 7761ms)
+```
+cd ~/email-to-sql && docker compose down && docker compose up -d && sleep 3 && docker compose logs --tail=30
+```
+STDOUT:
+```
+email-to-sql-webhook  | 
+email-to-sql-webhook  | > email-to-sql@0.1.0 start
+email-to-sql-webhook  | > node dist/server.js
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ⚠️  PIPEDRIVE_API_TOKEN not set; Pipedrive sync will fail
+email-to-sql-webhook  | ✓ Config loaded: PORT=5000, API_KEY=dev-key-...
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ✅ Email-to-SQL webhook listening on http://localhost:5000
+email-to-sql-webhook  |    POST /webhook/email  — submit forwarded email
+email-to-sql-webhook  |    GET  /dashboard      — view extraction status
+email-to-sql-webhook  |    GET  /health         — health check
+email-to-sql-webhook  |
+```
+Full output: [`server-runs/2026-05-13T17-23-24-app-cd-email-to-sql-docker-compose-down-dock-1.log`](server-runs/2026-05-13T17-23-24-app-cd-email-to-sql-docker-compose-down-dock-1.log)
