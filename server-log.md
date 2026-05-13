@@ -3345,3 +3345,38 @@ Fast-forward
  week-10/review.md                                  | 128 +++++
 ```
 Full output: [`server-runs/2026-05-13T16-57-49-app-cd-email-to-sql-git-pull---ff-only-2-1-h-1.log`](server-runs/2026-05-13T16-57-49-app-cd-email-to-sql-git-pull---ff-only-2-1-h-1.log)
+
+## 2026-05-13T16:59:18.961Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a042181` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3203ms)
+```
+cd ~/email-to-sql && git pull --ff-only 2>&1 | head -20 && echo "---" && docker ps --filter name=email-to-sql --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+```
+STDOUT:
+```
+From https://github.com/Innovaine/email-to-sql
+   547dc05..a042181  main       -> origin/main
+Updating 547dc05..a042181
+Fast-forward
+ Dockerfile                                         |   4 +-
+ server-log.md                                      | 235 +++++++++++++++++++++
+ ...-cd-email-to-sql-docker-ps---filter-name--1.log |  13 ++
+ ...-cd-email-to-sql-git-pull---ff-only-docke-1.log | 118 +++++++++++
+ ...-cd-email-to-sql-PLAYWRIGHT_BROWSERS_PATH-1.log | 133 ++++++++++++
+ src/extraction.ts                                  |  39 ++--
+ test-results/week-10/report.md                     | 158 ++++++++++++++
+ test-results/week-10/test-output.txt               |  96 +++++++++
+ week-10/_index.md                                  |  16 ++
+ week-10/pm-status.md                               |  94 +++++++++
+ week-10/review.md                                  | 128 +++++++++++
+ week-10/test.md                                    | 218 +++++++++++++++++++
+ week-11/_plan.md                                   |  38 ++++
+ week-11/engineering.md                             |  74 +++++++
+ week-11/review.md                                  |  30 +++
+ 15 files changed, 1377 insertions(+), 17 deletions(-)
+---
+NAMES                  STATUS                    PORTS
+email-to-sql-webhook   Up 24 minutes (healthy)   0.0.0.0:5000->5000/tcp, [::]:5000->5000/tcp
+```
+Full output: [`server-runs/2026-05-13T16-59-18-app-cd-email-to-sql-git-pull---ff-only-2-1-h-1.log`](server-runs/2026-05-13T16-59-18-app-cd-email-to-sql-git-pull---ff-only-2-1-h-1.log)
