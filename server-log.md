@@ -135,3 +135,50 @@ _Pre-SSH: warehouse pushed to GitHub as commit `5a46696` so the server's `git pu
 cd ~/email-to-sql 2>/dev/null && git pull --ff-only && echo "=== REPO STATE ===" && find . -type f -not -path './.git/*' | head -30
 ```
 ERROR: command exited 1
+
+## 2026-05-13T05:29:49.137Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `94764e4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2869ms)
+```
+cd ~ && rm -rf email-to-sql && git clone https://github.com/Innovaine/email-to-sql.git email-to-sql && cd email-to-sql && echo "=== REPO STATE ===" && find . -type f -not -path './.git/*' -not -path './.qadar*' | sort
+```
+STDOUT:
+```
+=== REPO STATE ===
+./README.md
+./_meta.json
+./decisions/ceo-amara.md
+./decisions/chairman-rajesh.md
+./decisions/manager-shortlist-dmitri.md
+./execution/outreach-oluwaseun.md
+./execution/staffing-zara.md
+./idea.md
+./reviews/cfo-hiroshi.md
+./reviews/cto-viktor.md
+./reviews/designer-lucia.md
+./reviews/devil-advocate-priya.md
+./reviews/engineer-diego.md
+./reviews/engineer-mehdi.md
+./reviews/research-leila.md
+./server-log.md
+./server-runs/2026-05-13T05-18-04-app-ls--la-grep-email-to-sql-ls--la-tmp-emai-1.log
+./server-runs/2026-05-13T05-18-32-app-cd-git-clone-https-github.com-Innovaine--1.log
+./server-runs/2026-05-13T05-18-51-app-cd-email-to-sql-review-find-.--type-f--n-1.log
+./server-runs/2026-05-13T05-19-44-app-ls--la-email-to-sql-2-dev-null-echo-Repo-1.log
+./server-runs/2026-05-13T05-20-25-app-cd-git-clone-https-github.com-Innovaine--1.log
+./tests/fixtures.ts
+./tests/pipedrive-sync.spec.ts
+./tests/webhook.spec.ts
+./week-01/_index.md
+./week-01/_plan.md
+./week-01/engineering.md
+./week-01/files/week-01-risks.md
+./week-01/pm-status.md
+./week-01/review.md
+./week-01/risks.md
+./week-01/test.md
+./week-02/_plan.md
+./week-02/engineering.md
+```
+Full output: [`server-runs/2026-05-13T05-29-49-app-cd-rm--rf-email-to-sql-git-clone-https-g-1.log`](server-runs/2026-05-13T05-29-49-app-cd-rm--rf-email-to-sql-git-clone-https-g-1.log)
