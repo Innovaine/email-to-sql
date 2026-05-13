@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  email-to-sql:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: email-to-sql-webhook
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - NODE_ENV=development
+      - EMAIL_TO_SQL_API_KEY=dev-key-12345
+      - PIPEDRIVE_API_TOKEN=${PIPEDRIVE_API_TOKEN:-}
+    volumes:
+      - ./src:/app/src
+      - ./dist:/app/dist
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:5000/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s

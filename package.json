@@ -1,0 +1,28 @@
+{
+  "name": "email-to-sql",
+  "version": "0.1.0",
+  "description": "Automated customer data extraction for SaaS sales teams",
+  "main": "dist/src/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/server.js",
+    "dev": "tsc && node dist/src/server.js",
+    "test": "playwright test",
+    "test:headless": "playwright test --headed=false"
+  },
+  "keywords": ["email", "crm", "pipedrive", "webhook", "extraction"],
+  "author": "Innovaine",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mailparser": "^3.6.5",
+    "dotenv": "^16.0.3",
+    "axios": "^1.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.0.0",
+    "@playwright/test": "^1.35.0"
+  }
+}
