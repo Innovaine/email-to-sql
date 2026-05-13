@@ -3927,3 +3927,37 @@ Running 28 tests using 4 workers
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-13T17-21-18-app-cd-email-to-sql-docker-compose-up--d-sle-1.log`](server-runs/2026-05-13T17-21-18-app-cd-email-to-sql-docker-compose-up--d-sle-1.log)
+
+## 2026-05-13T17:22:59.649Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6da9e8f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 4213ms)
+```
+cd ~/email-to-sql && git pull --ff-only
+```
+STDOUT:
+```
+Updating a042181..6da9e8f
+Fast-forward
+ server-log.md                        | 582 +++++++++++++++++++++++++++++++++++
+ src/extraction.ts                    |  74 ++++-
+ test-results/week-11/report.md       | 114 +++++++
+ test-results/week-11/test-output.txt |  98 ++++++
+ tests/pipedrive-sync.spec.ts         |   2 +-
+ week-11/_index.md                    |  16 +
+ week-11/pm-status.md                 |  68 ++++
+ week-11/test.md                      | 262 ++++++++++++++++
+ week-12/_plan.md                     |  38 +++
+ week-12/engineering.md               | 196 ++++++++++++
+ week-12/review.md                    | 205 ++++++++++++
+ 11 files changed, 1639 insertions(+), 16 deletions(-)
+ create mode 100644 test-results/week-11/report.md
+ create mode 100644 test-results/week-11/test-output.txt
+ create mode 100644 week-11/_index.md
+ create mode 100644 week-11/pm-status.md
+ create mode 100644 week-11/test.md
+ create mode 100644 week-12/_plan.md
+ create mode 100644 week-12/engineering.md
+ create mode 100644 week-12/review.md
+```
+Full output: [`server-runs/2026-05-13T17-22-59-app-cd-email-to-sql-git-pull---ff-only-1.log`](server-runs/2026-05-13T17-22-59-app-cd-email-to-sql-git-pull---ff-only-1.log)
