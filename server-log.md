@@ -540,3 +540,27 @@ Dockerfile:17
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 2
 ```
 Full output: [`server-runs/2026-05-13T06-04-43-app-cd-home-tester-email-to-sql-timeout-120--1.log`](server-runs/2026-05-13T06-04-43-app-cd-home-tester-email-to-sql-timeout-120--1.log)
+
+## 2026-05-13T06:06:07.642Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `bea1c22` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 3049ms)
+```
+cd /home/tester/email-to-sql && git pull --ff-only 2>&1 | tail -20
+```
+STDOUT:
+```
+From https://github.com/Innovaine/email-to-sql
+   a9025b5..bea1c22  main       -> origin/main
+Updating a9025b5..bea1c22
+Fast-forward
+ server-log.md                                      | 74 ++++++++++++++++++++++
+ ...-cd-home-tester-rm--rf-email-to-sql-git-c-1.log | 16 +++++
+ ...-cd-home-tester-email-to-sql-timeout-120--1.log | 61 ++++++++++++++++++
+ src/pipedrive.ts                                   |  2 +-
+ src/server.ts                                      |  2 +-
+ 5 files changed, 153 insertions(+), 2 deletions(-)
+ create mode 100644 server-runs/2026-05-13T06-04-04-app-cd-home-tester-rm--rf-email-to-sql-git-c-1.log
+ create mode 100644 server-runs/2026-05-13T06-04-43-app-cd-home-tester-email-to-sql-timeout-120--1.log
+```
+Full output: [`server-runs/2026-05-13T06-06-07-app-cd-home-tester-email-to-sql-git-pull---f-1.log`](server-runs/2026-05-13T06-06-07-app-cd-home-tester-email-to-sql-git-pull---f-1.log)
