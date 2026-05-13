@@ -2058,3 +2058,44 @@ nothing to commit, working tree clean
 59af30f Mehdi (engineer, week 8) — pre-SSH sync
 ```
 Full output: [`server-runs/2026-05-13T16-03-51-app-cd-email-to-sql-git-status-git-log---one-1.log`](server-runs/2026-05-13T16-03-51-app-cd-email-to-sql-git-status-git-log---one-1.log)
+
+## 2026-05-13T16:04:19.382Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `64f438d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3131ms) _(showing tail — full 5,178B stdout + 0B stderr)_
+```
+cd ~/email-to-sql && git pull --ff-only && git log --oneline -5
+```
+STDOUT:
+```
+…pull-npm-install--D--1.log
+ create mode 100644 server-runs/2026-05-13T06-42-45-app-cd-email-to-sql-npx-playwright-test-test-1.log
+ create mode 100644 server-runs/2026-05-13T06-43-14-app-cd-email-to-sql-npx-playwright-install---1.log
+ create mode 100644 server-runs/2026-05-13T06-44-06-app-ls--la-usr-local-share-playwright-browse-1.log
+ create mode 100644 server-runs/2026-05-13T15-52-29-app-cd-email-to-sql-git-pull---ff-only-1.log
+ create mode 100644 server-runs/2026-05-13T15-53-07-app-cd-email-to-sql-tail--30-src-extraction.-1.log
+ create mode 100644 server-runs/2026-05-13T15-53-42-app-cd-email-to-sql-git-pull-1.log
+ create mode 100644 server-runs/2026-05-13T15-55-25-app-cd-email-to-sql-git-log---oneline--5-1.log
+ create mode 100644 server-runs/2026-05-13T15-56-00-app-cd-email-to-sql-git-show---stat-HEAD-hea-1.log
+ create mode 100644 server-runs/2026-05-13T15-59-29-app-cd-email-to-sql-ls--lh-src-wc--l-src-ext-1.log
+ create mode 100644 server-runs/2026-05-13T16-00-07-app-cd-email-to-sql-docker-compose-down-dock-1.log
+ create mode 100644 server-runs/2026-05-13T16-00-54-app-cd-email-to-sql-docker-compose-logs---ta-1.log
+ create mode 100644 server-runs/2026-05-13T16-01-41-app-cd-email-to-sql-npx-playwright-test-test-1.log
+ create mode 100644 server-runs/2026-05-13T16-02-54-app-cd-email-to-sql-npx-playwright-test-test-1.log
+ create mode 100644 server-runs/2026-05-13T16-03-51-app-cd-email-to-sql-git-status-git-log---one-1.log
+ create mode 100644 tests/web/fixtures.spec.ts
+ create mode 100644 week-08/_index.md
+ create mode 100644 week-08/files/week-08-risks.md
+ create mode 100644 week-08/pm-status.md
+ create mode 100644 week-08/review.md
+ create mode 100644 week-08/risks.md
+ create mode 100644 week-08/test.md
+ create mode 100644 week-09/_plan.md
+ create mode 100644 week-09/engineering.md
+64f438d Yuki (reviewer, week 9) — pre-SSH sync
+6ec206e Yuki (reviewer, week 9) — pre-SSH sync
+7b92810 Mehdi (engineer, week 9) — pre-SSH sync
+0a01bf3 Mehdi (engineer, week 9) — pre-SSH sync
+78d13f5 Mehdi (engineer, week 9) — pre-SSH sync
+```
+Full output: [`server-runs/2026-05-13T16-04-19-app-cd-email-to-sql-git-pull---ff-only-git-l-1.log`](server-runs/2026-05-13T16-04-19-app-cd-email-to-sql-git-pull---ff-only-git-l-1.log)
