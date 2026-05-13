@@ -3061,3 +3061,11 @@ _Pre-SSH: warehouse pushed to GitHub as commit `ed86307` so the server's `git pu
 cd ~/email-to-sql && git log --all --oneline | grep "Mehdi.*week 10"
 ```
 ERROR: command exited 1
+
+## 2026-05-13T16:31:19.350Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5c329a8` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3101ms)
+```
+cd ~/email-to-sql && git diff HEAD~6 HEAD -- src/ tests/ | head -200
+```
