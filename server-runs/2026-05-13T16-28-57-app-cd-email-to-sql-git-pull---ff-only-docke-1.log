@@ -1,0 +1,109 @@
+# Command 1 on app as engineer
+# Run at: 2026-05-13T16:28:57.752Z
+# Exit code: 1
+# Duration: 6729ms
+
+## Command
+cd ~/email-to-sql && git pull --ff-only && docker compose down && docker compose build && docker compose up -d && sleep 3
+
+## STDOUT (full)
+Updating 97f027f..24ba173
+Fast-forward
+ server-log.md                                      | 395 +++++++++++++++++++++
+ ...19-app-cd-email-to-sql-git-pull---ff-only-1.log |  60 ++++
+ ...-cd-email-to-sql-docker-compose-down-slee-1.log |  76 ++++
+ ...p-cd-email-to-sql-npx-playwright-test-2-1-1.log |  73 ++++
+ ...-cd-email-to-sql-npm-install-2-1-tail--20-1.log |  19 +
+ ...p-cd-email-to-sql-npx-playwright-test-2-1-1.log | 188 ++++++++++
+ src/extraction.ts                                  |  30 +-
+ tests/pipedrive-sync.spec.ts                       |   7 +-
+ tests/webhook.spec.ts                              |   4 +-
+ 9 files changed, 836 insertions(+), 16 deletions(-)
+ create mode 100644 server-runs/2026-05-13T16-24-19-app-cd-email-to-sql-git-pull---ff-only-1.log
+ create mode 100644 server-runs/2026-05-13T16-24-56-app-cd-email-to-sql-docker-compose-down-slee-1.log
+ create mode 100644 server-runs/2026-05-13T16-25-32-app-cd-email-to-sql-npx-playwright-test-2-1-1.log
+ create mode 100644 server-runs/2026-05-13T16-26-10-app-cd-email-to-sql-npm-install-2-1-tail--20-1.log
+ create mode 100644 server-runs/2026-05-13T16-26-53-app-cd-email-to-sql-npx-playwright-test-2-1-1.log
+#1 [internal] load local bake definitions
+#1 reading from stdin 540B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 947B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:18-alpine
+#3 DONE 0.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#5 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.0s done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 68.74kB 0.0s done
+#6 DONE 0.0s
+
+#7 [builder 2/7] WORKDIR /app
+#7 CACHED
+
+#8 [builder 3/7] COPY package.json package-lock.json* yarn.lock* pnpm-lock.yaml* ./
+#8 DONE 0.0s
+
+#9 [builder 4/7] RUN npm ci --omit=dev || npm install
+#9 1.720 
+#9 1.720 added 113 packages, and audited 114 packages in 1s
+#9 1.720 
+#9 1.720 30 packages are looking for funding
+#9 1.720   run `npm fund` for details
+#9 1.721 
+#9 1.721 found 0 vulnerabilities
+#9 1.722 npm notice
+#9 1.722 npm notice New major version of npm available! 10.8.2 -> 11.14.1
+#9 1.722 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+#9 1.722 npm notice To update run: npm install -g npm@11.14.1
+#9 1.722 npm notice
+#9 DONE 1.8s
+
+#10 [stage-1 4/5] RUN npm ci --omit=dev || npm install --only=production
+#10 1.641 
+#10 1.641 added 113 packages, and audited 114 packages in 1s
+#10 1.641 
+#10 1.641 30 packages are looking for funding
+#10 1.641   run `npm fund` for details
+#10 1.642 
+#10 1.642 found 0 vulnerabilities
+#10 1.643 npm notice
+#10 1.643 npm notice New major version of npm available! 10.8.2 -> 11.14.1
+#10 1.643 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+#10 1.643 npm notice To update run: npm install -g npm@11.14.1
+#10 1.643 npm notice
+#10 DONE 1.7s
+
+#11 [builder 5/7] COPY tsconfig.json ./
+#11 DONE 0.0s
+
+#12 [builder 6/7] COPY src/ ./src/
+#12 DONE 0.0s
+
+#13 [builder 7/7] RUN npm run build
+#13 0.298 
+#13 0.298 > email-to-sql@0.1.0 build
+#13 0.298 > tsc
+#13 0.298 
+#13 0.303 sh: tsc: not found
+#13 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 127
+------
+ > [builder 7/7] RUN npm run build:
+0.298 
+0.298 > email-to-sql@0.1.0 build
+0.298 > tsc
+0.298 
+0.303 sh: tsc: not found
+------
+
+## STDERR (full)
+(empty)
