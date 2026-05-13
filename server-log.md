@@ -41,3 +41,34 @@ drwxrwxr-x 2 reviewer reviewer 4096 May 13 05:18 server-runs
 drwxrwxr-x 2 reviewer reviewer 4096 May 13 05:18 week-01
 ```
 Full output: [`server-runs/2026-05-13T05-18-32-app-cd-git-clone-https-github.com-Innovaine--1.log`](server-runs/2026-05-13T05-18-32-app-cd-git-clone-https-github.com-Innovaine--1.log)
+
+## 2026-05-13T05:18:51.080Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `673c0ea` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2367ms)
+```
+cd ~/email-to-sql-review && find . -type f -not -path './.git/*' | sort
+```
+STDOUT:
+```
+./README.md
+./_meta.json
+./decisions/ceo-amara.md
+./decisions/chairman-rajesh.md
+./decisions/manager-shortlist-dmitri.md
+./execution/outreach-oluwaseun.md
+./execution/staffing-zara.md
+./idea.md
+./reviews/cfo-hiroshi.md
+./reviews/cto-viktor.md
+./reviews/designer-lucia.md
+./reviews/devil-advocate-priya.md
+./reviews/engineer-diego.md
+./reviews/engineer-mehdi.md
+./reviews/research-leila.md
+./server-log.md
+./server-runs/2026-05-13T05-18-04-app-ls--la-grep-email-to-sql-ls--la-tmp-emai-1.log
+./week-01/_plan.md
+./week-01/engineering.md
+```
+Full output: [`server-runs/2026-05-13T05-18-51-app-cd-email-to-sql-review-find-.--type-f--n-1.log`](server-runs/2026-05-13T05-18-51-app-cd-email-to-sql-review-find-.--type-f--n-1.log)
