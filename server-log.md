@@ -2099,3 +2099,45 @@ STDOUT:
 78d13f5 Mehdi (engineer, week 9) — pre-SSH sync
 ```
 Full output: [`server-runs/2026-05-13T16-04-19-app-cd-email-to-sql-git-pull---ff-only-git-l-1.log`](server-runs/2026-05-13T16-04-19-app-cd-email-to-sql-git-pull---ff-only-git-l-1.log)
+
+## 2026-05-13T16:04:51.871Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `c152c81` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3032ms)
+```
+cd ~/email-to-sql && docker compose build 2>&1 | tail -30
+```
+STDOUT:
+```
+#9 CACHED
+
+#10 [builder 3/7] COPY package.json package-lock.json* yarn.lock* pnpm-lock.yaml* ./
+#10 CACHED
+
+#11 [builder 5/7] COPY tsconfig.json ./
+#11 CACHED
+
+#12 [builder 7/7] RUN npm run build
+#12 CACHED
+
+#13 [builder 2/7] WORKDIR /app
+#13 CACHED
+
+#14 [stage-1 5/5] COPY --from=builder /app/dist ./dist
+#14 CACHED
+
+#15 exporting to image
+#15 exporting layers done
+#15 exporting manifest sha256:fcee641dffe5249bfa49684a83eeef613a49b50eb11d979728d89ed9c09f7daf done
+#15 exporting config sha256:728a4706dc99b4baac15e863794ac6b686d27fa0164fdc3c63e932284cb17cb9 done
+#15 exporting attestation manifest sha256:2704af572d685234d598ff85911b62a134fb86bb6bcc1e00d869bad5103b519c done
+#15 exporting manifest list sha256:1f51a9eaf6c84be6dd7a8ba0dc86df56df9bcaed71ead6bdc92fe6d450950768 done
+#15 naming to docker.io/library/email-to-sql-email-to-sql:latest done
+#15 unpacking to docker.io/library/email-to-sql-email-to-sql:latest done
+#15 DONE 0.0s
+
+#16 resolving provenance for metadata file
+#16 DONE 0.0s
+ Image email-to-sql-email-to-sql Built
+```
+Full output: [`server-runs/2026-05-13T16-04-51-app-cd-email-to-sql-docker-compose-build-2-1-1.log`](server-runs/2026-05-13T16-04-51-app-cd-email-to-sql-docker-compose-build-2-1-1.log)
