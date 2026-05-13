@@ -1283,3 +1283,47 @@ STDOUT:
 {"status":"ok","version":"0.1.0","uptime":328.749957025,"extractions":1}
 ```
 Full output: [`server-runs/2026-05-13T06-33-09-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log`](server-runs/2026-05-13T06-33-09-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log)
+
+## 2026-05-13T06:33:50.554Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9b26a09` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2671ms)
+```
+curl -s -X POST \
+  -H "X-API-Key: dev-key-12345" \
+  -H "Content-Type: text/plain" \
+  -d 'From: john.doe@acme.com
+To: sales@example.com
+Subject: Enterprise licensing inquiry
+Date: Mon, 13 May 2024 10:00:00 +0000
+
+Hi,
+
+We are ACME Corporation and we are interested in your SaaS platform for enterprise licensing. We have a budget of $500k and a 6-month timeline.
+
+Best regards,
+John Doe
+Sales Director
+ACME Corporation' \
+  http://localhost:5000/webhook/email | jq .
+```
+STDOUT:
+```
+{
+  "id": "ext_2",
+  "status": "success",
+  "extracted": {
+    "company_name": "John Doe",
+    "contact_email": "john.doe@acme.com",
+    "contact_name": "John Doe",
+    "budget": "$500k ",
+    "timeline": "May 2024",
+    "confidence": 0.9499999999999998
+  },
+  "pipedrive_sync": {
+    "success": false,
+    "error": "Failed to create/find contact"
+  }
+}
+```
+Full output: [`server-runs/2026-05-13T06-33-50-app-curl--s--X-POST-1.log`](server-runs/2026-05-13T06-33-50-app-curl--s--X-POST-1.log)
