@@ -1,0 +1,76 @@
+# Command 1 on app as engineer
+# Run at: 2026-05-13T16:24:56.245Z
+# Exit code: 0
+# Duration: 9942ms
+
+## Command
+cd ~/email-to-sql && docker compose down && sleep 1 && docker compose build && docker compose up -d && sleep 3
+
+## STDOUT (full)
+#1 [internal] load local bake definitions
+#1 reading from stdin 540B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 947B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:18-alpine
+#3 DONE 0.7s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [builder 1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#5 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.0s done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 20.42kB 0.0s done
+#6 DONE 0.0s
+
+#7 [builder 3/7] COPY package.json package-lock.json* yarn.lock* pnpm-lock.yaml* ./
+#7 CACHED
+
+#8 [builder 4/7] RUN npm ci --omit=dev || npm install
+#8 CACHED
+
+#9 [builder 2/7] WORKDIR /app
+#9 CACHED
+
+#10 [builder 5/7] COPY tsconfig.json ./
+#10 CACHED
+
+#11 [builder 6/7] COPY src/ ./src/
+#11 DONE 0.0s
+
+#12 [builder 7/7] RUN npm run build
+#12 0.292 
+#12 0.292 > email-to-sql@0.1.0 build
+#12 0.292 > tsc
+#12 0.292 
+#12 DONE 1.4s
+
+#13 [stage-1 4/5] RUN npm ci --omit=dev || npm install --only=production
+#13 CACHED
+
+#14 [stage-1 5/5] COPY --from=builder /app/dist ./dist
+#14 DONE 0.0s
+
+#15 exporting to image
+#15 exporting layers 0.0s done
+#15 exporting manifest sha256:8867fe7042ba28c140ed8bfa2768eede621cd605451d7d1b7d2acdfadb0049e0 done
+#15 exporting config sha256:e65bf81d6e05a8792bf1b4ee670d8e1b5fb5df6a7dd0288b85d4d23652944068 done
+#15 exporting attestation manifest sha256:6fdfa0fe9303be448a7f361e95900c923cb9619605365f9aa13a8d83a10b0611
+#15 exporting attestation manifest sha256:6fdfa0fe9303be448a7f361e95900c923cb9619605365f9aa13a8d83a10b0611 done
+#15 exporting manifest list sha256:b41e9016e5d3bd0e541ecd811305f4cc8bdd1379f43b4358949bdc3d1c89ef6f done
+#15 naming to docker.io/library/email-to-sql-email-to-sql:latest done
+#15 unpacking to docker.io/library/email-to-sql-email-to-sql:latest 0.0s done
+#15 DONE 0.1s
+
+#16 resolving provenance for metadata file
+#16 DONE 0.0s
+
+## STDERR (full)
+(empty)
