@@ -52,7 +52,7 @@ sarah@acmecorp.com
 
   // POST the forwarded email to the webhook endpoint
   // Expected: API key auth via X-API-Key header (per Mehdi's spec)
-  const apiKey = process.env.EMAIL_TO_SQL_API_KEY || 'test-key-12345';
+  const apiKey = process.env.EMAIL_TO_SQL_API_KEY || 'dev-key-12345';
   
   const response = await request.post('http://localhost:5000/webhook/email', {
     headers: {
@@ -124,7 +124,7 @@ test('webhook rejects request without API key', async ({ request }) => {
  * error response with helpful message.
  */
 test('webhook handles malformed email with error response', async ({ request }) => {
-  const apiKey = process.env.EMAIL_TO_SQL_API_KEY || 'test-key-12345';
+  const apiKey = process.env.EMAIL_TO_SQL_API_KEY || 'dev-key-12345';
   
   // Intentionally malformed: no From/To headers
   const malformedEmail = 'This is not a valid email format at all.';

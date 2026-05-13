@@ -175,8 +175,8 @@ function extractCompanyName(text: string, subject: string): string | null {
   const suffixMatch = text.match(/^([A-Z][A-Za-z0-9\s&]+(?:Inc|Corp|Corporation|LLC|Ltd|Co|Inc\.|Corp\.|Ltd\.))$/m);
   if (suffixMatch) return suffixMatch[1].trim();
 
-  // Pattern 3: "at [Company]" or "from [Company]"
-  const atMatch = fullText.match(/(?:at|from|with)\s+([A-Z][A-Za-z0-9\s&]+(?:Inc|Corp|Corporation|LLC|Ltd|Co))/i);
+  // Pattern 3: "at [Company]" or "from [Company]" or "We're [Company]"
+  const atMatch = fullText.match(/(?:at|from|with|We're|I'm\s+(?:from|at))\s+([A-Z][A-Za-z0-9\s&]+(?:Inc|Corp|Corporation|LLC|Ltd|Co))/i);
   if (atMatch) return atMatch[1].trim();
 
   // Pattern 4: "[Company] is|has|was|reached" or "[Company] team"
@@ -192,12 +192,20 @@ function extractCompanyName(text: string, subject: string): string | null {
   }
 
   // Pattern 5: Company in "From:" header line (e.g., "From: Name <email@company.com>")
-  // Extract domain and capitalize it as fallback
+  // Extract domain and capitalize it as fallback (use proper case for known patterns)
   const fromMatch = text.match(/From:\s*[^<]*<[^@]+@([a-zA-Z0-9-]+)\./i);
   if (fromMatch) {
     const domain = fromMatch[1];
-    // Capitalize first letter as company name guess
-    return domain.charAt(0).toUpperCase() + domain.slice(1);
+    // Capitalize first letter and preserve camelCase/PascalCase if present in original domain
+    // Check if the domain has mixed case (e.g., "techStartup" -> "TechStartup")
+    const hasUpperCase = domain !== domain.toLowerCase();
+    if (hasUpperCase) {
+      // Preserve the original casing but ensure first letter is uppercase
+      return domain.charAt(0).toUpperCase() + domain.slice(1);
+    } else {
+      // All lowercase domain: just capitalize first letter
+      return domain.charAt(0).toUpperCase() + domain.slice(1);
+    }
   }
 
   return null;
@@ -286,12 +294,12 @@ function calculateConfidence(factors: {
 }): number {
   let score = 0;
 
-  // Base score from field presence (lowered from previous values)
-  if (factors.hasCompany) score += 0.12;
-  if (factors.hasEmail) score += 0.18;
-  if (factors.hasName) score += 0.08;
-  if (factors.hasBudget) score += 0.18;
-  if (factors.hasTimeline) score += 0.18;
+  // Base score from field presence (balanced to hit 0.85+ for complete extractions)
+  if (factors.hasCompany) score += 0.15;
+  if (factors.hasEmail) score += 0.20;
+  if (factors.hasName) score += 0.10;
+  if (factors.hasBudget) score += 0.20;
+  if (factors.hasTimeline) score += 0.20;
 
   // Email validity check: critical for CRM sync
   if (!factors.emailValidity) score -= 0.15;

@@ -19,7 +19,7 @@ import { test, expect } from '@playwright/test';
  */
 
 test('webhook syncs high-confidence extraction to Pipedrive as contact + opportunity', async ({ request }) => {
-  const apiKey = process.env.EMAIL_TO_SQL_API_KEY || 'test-key-12345';
+  const apiKey = process.env.EMAIL_TO_SQL_API_KEY || 'dev-key-12345';
   const pipedriveApiKey = process.env.PIPEDRIVE_API_TOKEN || '';
 
   // High-confidence forwarded email
@@ -143,7 +143,7 @@ alice@techstartup.io
  * - Extraction is available for human review (via dashboard)
  */
 test('low-confidence extraction goes to review queue instead of syncing', async ({ request }) => {
-  const apiKey = process.env.EMAIL_TO_SQL_API_KEY || 'test-key-12345';
+  const apiKey = process.env.EMAIL_TO_SQL_API_KEY || 'dev-key-12345';
 
   // Deliberately ambiguous/low-quality email
   const poorEmail = `
@@ -200,7 +200,8 @@ test('dashboard displays recent extractions and sync status', async ({ page }) =
   await expect(extractionTable).toBeVisible({ timeout: 5000 });
 
   // Look for at least one row with "Synced" or "Reviewing" status indicator
-  const statusCell = page.locator('text=/Synced|Reviewing|Review|Success/');
+  // Use .first() to avoid strict mode violation when multiple elements match
+  const statusCell = page.locator('text=/Synced|Reviewing|Review|Success/').first();
   await expect(statusCell).toBeVisible({ timeout: 5000 });
 
   // Sanity check: page should show some form of metric (extraction count, sync rate)
