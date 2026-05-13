@@ -726,3 +726,25 @@ STDOUT:
  Image email-to-sql-email-to-sql Built
 ```
 Full output: [`server-runs/2026-05-13T06-11-02-app-cd-email-to-sql-timeout-180-docker-compo-1.log`](server-runs/2026-05-13T06-11-02-app-cd-email-to-sql-timeout-180-docker-compo-1.log)
+
+## 2026-05-13T06:11:58.214Z — Mehdi ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `118d4f6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 8206ms)
+```
+cd ~/email-to-sql && docker compose down 2>&1 && sleep 2 && docker compose up -d 2>&1 && sleep 3 && docker compose ps
+```
+STDOUT:
+```
+time="2026-05-13T06:11:52Z" level=warning msg="/home/engineer/email-to-sql/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+time="2026-05-13T06:11:54Z" level=warning msg="/home/engineer/email-to-sql/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ Network email-to-sql_default Creating 
+ Network email-to-sql_default Created 
+ Container email-to-sql-webhook Creating 
+ Container email-to-sql-webhook Created 
+ Container email-to-sql-webhook Starting 
+ Container email-to-sql-webhook Started 
+NAME                   IMAGE                       COMMAND                  SERVICE        CREATED         STATUS                                     PORTS
+email-to-sql-webhook   email-to-sql-email-to-sql   "docker-entrypoint.s…"   email-to-sql   4 seconds ago   Up Less than a second (health: starting)   0.0.0.0:5000->5000/tcp, [::]:5000->5000/tcp
+```
+Full output: [`server-runs/2026-05-13T06-11-58-app-cd-email-to-sql-docker-compose-down-2-1--1.log`](server-runs/2026-05-13T06-11-58-app-cd-email-to-sql-docker-compose-down-2-1--1.log)
