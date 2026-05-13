@@ -362,3 +362,56 @@ Dockerfile:17
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 2
 ```
 Full output: [`server-runs/2026-05-13T06-01-41-app-cd-email-to-sql-timeout-180-docker-compo-1.log`](server-runs/2026-05-13T06-01-41-app-cd-email-to-sql-timeout-180-docker-compo-1.log)
+
+## 2026-05-13T06:02:38.720Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0cb9537` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2989ms) _(showing tail — full 3,936B stdout + 0B stderr)_
+```
+cd ~/email-to-sql && git pull --ff-only
+```
+STDOUT:
+```
+… | 319 +++++++++++++++++++++
+ week-05/test.md                                    |  53 ++++
+ week-06/_index.md                                  |  15 +
+ week-06/_plan.md                                   |  34 +++
+ week-06/engineering.md                             | 101 +++++++
+ week-06/review.md                                  |  43 +++
+ week-06/test.md                                    |  32 +++
+ 35 files changed, 2649 insertions(+), 63 deletions(-)
+ create mode 100644 Dockerfile
+ create mode 100644 docker-compose.yml
+ create mode 100644 package.json
+ create mode 100644 server-runs/2026-05-13T05-32-10-app-cd-rm--rf-email-to-sql-git-clone-https-g-1.log
+ create mode 100644 server-runs/2026-05-13T05-34-59-app-cd-rm--rf-email-to-sql-fresh-git-clone-h-1.log
+ create mode 100644 server-runs/2026-05-13T05-39-42-app-cd-email-to-sql-git-pull-2-1-tail--3-ech-1.log
+ create mode 100644 server-runs/2026-05-13T06-01-41-app-cd-email-to-sql-timeout-180-docker-compo-1.log
+ create mode 100644 src/config.ts
+ create mode 100644 src/extraction.ts
+ create mode 100644 src/pipedrive.ts
+ create mode 100644 src/server.ts
+ create mode 100644 test-results/week-05/report.md
+ create mode 100644 tsconfig.json
+ create mode 100644 week-03/_index.md
+ create mode 100644 week-04/_index.md
+ create mode 100644 week-04/_plan.md
+ create mode 100644 week-04/engineering.md
+ create mode 100644 week-04/review.md
+ create mode 100644 week-05/_index.md
+ create mode 100644 week-05/_plan.md
+ create mode 100644 week-05/engineering.md
+ create mode 100644 week-05/files/decisions/week-05-priya-conviction.md
+ create mode 100644 week-05/files/execution/week-05-unblock-plan.md
+ create mode 100644 week-05/files/week-05-risks.md
+ create mode 100644 week-05/pm-status.md
+ create mode 100644 week-05/review.md
+ create mode 100644 week-05/risks.md
+ create mode 100644 week-05/test.md
+ create mode 100644 week-06/_index.md
+ create mode 100644 week-06/_plan.md
+ create mode 100644 week-06/engineering.md
+ create mode 100644 week-06/review.md
+ create mode 100644 week-06/test.md
+```
+Full output: [`server-runs/2026-05-13T06-02-38-app-cd-email-to-sql-git-pull---ff-only-1.log`](server-runs/2026-05-13T06-02-38-app-cd-email-to-sql-git-pull---ff-only-1.log)
