@@ -994,3 +994,28 @@ time="2026-05-13T06:18:27Z" level=warning msg="/home/tester/email-to-sql/docker-
 no such service: email-to-sql-webhook
 ```
 Full output: [`server-runs/2026-05-13T06-18-27-app-cd-email-to-sql-docker-compose-logs-emai-1.log`](server-runs/2026-05-13T06-18-27-app-cd-email-to-sql-docker-compose-logs-emai-1.log)
+
+## 2026-05-13T06:19:12.633Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d90d3cb` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2628ms)
+```
+cd ~/email-to-sql && docker compose logs 2>&1 | tail -50
+```
+STDOUT:
+```
+time="2026-05-13T06:19:12Z" level=warning msg="/home/tester/email-to-sql/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+email-to-sql-webhook  | 
+email-to-sql-webhook  | > email-to-sql@0.1.0 start
+email-to-sql-webhook  | > node dist/src/server.js
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ⚠️  PIPEDRIVE_API_TOKEN not set; Pipedrive sync will fail
+email-to-sql-webhook  | ✓ Config loaded: PORT=5000, API_KEY=dev-key-...
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ✅ Email-to-SQL webhook listening on http://localhost:5000
+email-to-sql-webhook  |    POST /webhook/email  — submit forwarded email
+email-to-sql-webhook  |    GET  /dashboard      — view extraction status
+email-to-sql-webhook  |    GET  /health         — health check
+email-to-sql-webhook  |
+```
+Full output: [`server-runs/2026-05-13T06-19-12-app-cd-email-to-sql-docker-compose-logs-2-1--1.log`](server-runs/2026-05-13T06-19-12-app-cd-email-to-sql-docker-compose-logs-2-1--1.log)
