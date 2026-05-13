@@ -1741,3 +1741,19 @@ _Pre-SSH: warehouse pushed to GitHub as commit `4d0c829` so the server's `git pu
 cd ~/email-to-sql && git pull --ff-only && docker compose down && sleep 2 && docker compose build --no-cache && docker compose up -d && sleep 5 && docker compose logs --tail=20
 ```
 ERROR: Connection timed out
+
+## 2026-05-13T15:52:29.321Z — Mehdi ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3b3451f` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 2657ms)
+```
+cd ~/email-to-sql && git pull --ff-only
+```
+STDOUT:
+```
+Updating 4d0c829..3b3451f
+Fast-forward
+ server-log.md | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+```
+Full output: [`server-runs/2026-05-13T15-52-29-app-cd-email-to-sql-git-pull---ff-only-1.log`](server-runs/2026-05-13T15-52-29-app-cd-email-to-sql-git-pull---ff-only-1.log)
