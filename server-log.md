@@ -3744,3 +3744,51 @@ Running 28 tests using 4 workers
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-13T17-19-14-app-cd-email-to-sql-PLAYWRIGHT_BROWSERS_PATH-3.log`](server-runs/2026-05-13T17-19-14-app-cd-email-to-sql-PLAYWRIGHT_BROWSERS_PATH-3.log)
+
+## 2026-05-13T17:20:12.765Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `f36f96c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 5169ms) _(showing tail — full 2,883B stdout + 0B stderr)_
+```
+cd ~/email-to-sql && git pull --ff-only && git log --oneline -3
+```
+STDOUT:
+```
+…                  |  16 +
+ week-10/pm-status.md                               |  94 +++
+ week-10/review.md                                  | 128 ++++
+ week-10/test.md                                    | 218 +++++++
+ week-11/_index.md                                  |  16 +
+ week-11/_plan.md                                   |  38 ++
+ week-11/engineering.md                             |  74 +++
+ week-11/pm-status.md                               |  68 +++
+ week-11/review.md                                  |  30 +
+ week-11/test.md                                    | 262 ++++++++
+ week-12/_plan.md                                   |  38 ++
+ week-12/engineering.md                             | 196 ++++++
+ 24 files changed, 2723 insertions(+), 22 deletions(-)
+ create mode 100644 server-runs/2026-05-13T16-31-50-app-cd-email-to-sql-git-pull---ff-only-npm-i-1.log
+ create mode 100644 server-runs/2026-05-13T16-34-50-app-cd-email-to-sql-docker-ps---filter-name--1.log
+ create mode 100644 server-runs/2026-05-13T16-35-08-app-cd-email-to-sql-git-pull---ff-only-docke-1.log
+ create mode 100644 server-runs/2026-05-13T16-35-31-app-cd-email-to-sql-PLAYWRIGHT_BROWSERS_PATH-1.log
+ create mode 100644 test-results/week-10/report.md
+ create mode 100644 test-results/week-10/test-output.txt
+ create mode 100644 test-results/week-11/report.md
+ create mode 100644 test-results/week-11/test-output.txt
+ create mode 100644 week-10/_index.md
+ create mode 100644 week-10/pm-status.md
+ create mode 100644 week-10/review.md
+ create mode 100644 week-10/test.md
+ create mode 100644 week-11/_index.md
+ create mode 100644 week-11/_plan.md
+ create mode 100644 week-11/engineering.md
+ create mode 100644 week-11/pm-status.md
+ create mode 100644 week-11/review.md
+ create mode 100644 week-11/test.md
+ create mode 100644 week-12/_plan.md
+ create mode 100644 week-12/engineering.md
+f36f96c Yuki (reviewer, week 12) — pre-SSH sync
+e829ee9 Mehdi (engineer, week 12) — pre-SSH sync
+c12d3e7 Week 11 — Email-to-SQL: Automated customer data extraction for SaaS sales teams
+```
+Full output: [`server-runs/2026-05-13T17-20-12-app-cd-email-to-sql-git-pull---ff-only-git-l-1.log`](server-runs/2026-05-13T17-20-12-app-cd-email-to-sql-git-pull---ff-only-git-l-1.log)
