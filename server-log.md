@@ -1224,3 +1224,12 @@ STDOUT:
     "dev": "tsc && node dist/server.js",
 ```
 Full output: [`server-runs/2026-05-13T06-26-25-app-cd-email-to-sql-git-pull---ff-only-cat-p-1.log`](server-runs/2026-05-13T06-26-25-app-cd-email-to-sql-git-pull---ff-only-cat-p-1.log)
+
+## 2026-05-13T06:27:13.918Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `18f50cd` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exec-error: Connection timed out, 14836ms)
+```
+cd ~/email-to-sql && docker compose down && sleep 2 && timeout 180 docker compose build --progress=plain 2>&1 | tail -30
+```
+ERROR: Connection timed out
