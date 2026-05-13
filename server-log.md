@@ -957,3 +957,26 @@ email-to-sql-webhook  |    GET  /health         — health check
 email-to-sql-webhook  |
 ```
 Full output: [`server-runs/2026-05-13T06-16-51-app-cd-email-to-sql-git-pull---ff-only-docke-1.log`](server-runs/2026-05-13T06-16-51-app-cd-email-to-sql-git-pull---ff-only-docke-1.log)
+
+## 2026-05-13T06:17:57.897Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9ddab16` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2926ms)
+```
+cd ~/email-to-sql && git status && docker ps && df -h | head -5
+```
+STDOUT:
+```
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+CONTAINER ID   IMAGE                       COMMAND                  CREATED              STATUS                          PORTS                                         NAMES
+7b167fd56434   email-to-sql-email-to-sql   "docker-entrypoint.s…"   About a minute ago   Up About a minute (unhealthy)   0.0.0.0:5000->5000/tcp, [::]:5000->5000/tcp   email-to-sql-webhook
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           3.2G  1.2M  3.2G   1% /run
+/dev/sda1       387G  6.0G  381G   2% /
+tmpfs            16G     0   16G   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+```
+Full output: [`server-runs/2026-05-13T06-17-57-app-cd-email-to-sql-git-status-docker-ps-df--1.log`](server-runs/2026-05-13T06-17-57-app-cd-email-to-sql-git-status-docker-ps-df--1.log)
