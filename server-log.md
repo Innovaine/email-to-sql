@@ -3031,3 +3031,24 @@ e25480e Mehdi (engineer, week 9) — pre-SSH sync
 fdaae9c Mehdi (engineer, week 9) — pre-SSH sync
 ```
 Full output: [`server-runs/2026-05-13T16-29-46-app-cd-email-to-sql-git-log---oneline--10-1.log`](server-runs/2026-05-13T16-29-46-app-cd-email-to-sql-git-log---oneline--10-1.log)
+
+## 2026-05-13T16:30:13.971Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `dd88b57` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2425ms)
+```
+cd ~/email-to-sql && git show HEAD --stat
+```
+STDOUT:
+```
+commit 64f438db397802d74fa234f5e7df9c797011fe76
+Author: Qadar <qadar@local>
+Date:   Wed May 13 16:04:14 2026 +0000
+
+    Yuki (reviewer, week 9) — pre-SSH sync
+
+ server-log.md                                         | 19 +++++++++++++++++++
+ ...app-cd-email-to-sql-git-status-git-log---one-1.log | 19 +++++++++++++++++++
+ 2 files changed, 38 insertions(+)
+```
+Full output: [`server-runs/2026-05-13T16-30-13-app-cd-email-to-sql-git-show-HEAD---stat-1.log`](server-runs/2026-05-13T16-30-13-app-cd-email-to-sql-git-show-HEAD---stat-1.log)
