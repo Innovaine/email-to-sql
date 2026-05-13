@@ -2174,3 +2174,87 @@ STDOUT:
 }
 ```
 Full output: [`server-runs/2026-05-13T16-06-08-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log`](server-runs/2026-05-13T16-06-08-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log)
+
+## 2026-05-13T16:06:42.972Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `4decdb9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exit 1, 3973ms)
+```
+cd ~/email-to-sql && npm test 2>&1
+```
+STDOUT:
+```
+
+> email-to-sql@0.1.0 test
+> playwright test
+
+Error: Cannot find module '@playwright/test'
+Require stack:
+- /home/reviewer/email-to-sql/tests/pipedrive-sync.spec.ts
+- /usr/lib/node_modules/playwright/lib/common/index.js
+- /usr/lib/node_modules/playwright/lib/program.js
+- /usr/lib/node_modules/@playwright/test/cli.js
+
+   at tests/pipedrive-sync.spec.ts:1
+
+> 1 | import { test, expect } from '@playwright/test';
+    | ^
+  2 |
+  3 | /**
+  4 |  * Test: High-confidence extraction auto-syncs to Pipedrive
+    at Object.<anonymous> (/home/reviewer/email-to-sql/tests/pipedrive-sync.spec.ts:1:1)
+Error: Cannot find module '@playwright/test'
+Require stack:
+- /home/reviewer/email-to-sql/tests/web/fixtures.spec.ts
+- /usr/lib/node_modules/playwright/lib/common/index.js
+- /usr/lib/node_modules/playwright/lib/program.js
+- /usr/lib/node_modules/@playwright/test/cli.js
+
+   at tests/web/fixtures.spec.ts:1
+
+> 1 | import { test, expect } from '@playwright/test';
+    | ^
+  2 | import { FIXTURES, EXPECTATIONS } from '../fixtures';
+  3 |
+  4 | /**
+    at Object.<anonymous> (/home/reviewer/email-to-sql/tests/web/fixtures.spec.ts:1:1)
+Error: Cannot find module '@playwright/test'
+Require stack:
+- /home/reviewer/email-to-sql/tests/web/integration.spec.ts
+- /usr/lib/node_modules/playwright/lib/common/index.js
+- /usr/lib/node_modules/playwright/lib/program.js
+- /usr/lib/node_modules/@playwright/test/cli.js
+
+   at tests/web/integration.spec.ts:1
+
+> 1 | import { test, expect } from '@playwright/test';
+    | ^
+  2 |
+  3 | /**
+  4 |  * Integration tests for Email-to-SQL webhook server
+    at Object.<anonymous> (/home/reviewer/email-to-sql/tests/web/integration.spec.ts:1:1)
+Error: Cannot find module '@playwright/test'
+Require stack:
+- /home/reviewer/email-to-sql/tests/webhook.spec.ts
+- /usr/lib/node_modules/playwright/lib/common/index.js
+- /usr/lib/node_modules/playwright/lib/program.js
+- /usr/lib/node_modules/@playwright/test/cli.js
+
+   at tests/webhook.spec.ts:1
+
+> 1 | import { test, expect } from '@playwright/test';
+    | ^
+  2 |
+  3 | /**
+  4 |  * Test: Webhook receives forwarded email and extracts structured data
+    at Object.<anonymous> (/home/reviewer/email-to-sql/tests/webhook.spec.ts:1:1)
+Error: No tests found
+
+npm notice
+npm notice New minor version of npm available! 11.12.1 -> 11.14.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+npm notice To update run: npm install -g npm@11.14.1
+npm notice
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-13T16-06-42-app-cd-email-to-sql-npm-test-2-1-1.log`](server-runs/2026-05-13T16-06-42-app-cd-email-to-sql-npm-test-2-1-1.log)
