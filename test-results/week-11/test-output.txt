@@ -1,0 +1,98 @@
+Week 11 Test Run - Email-to-SQL
+Executed: 2026-05-13T17:00:44Z
+Command: cd ~/email-to-sql && PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test --reporter=list
+
+================================
+SUMMARY
+================================
+Total tests: 28
+Passed: 23 (82%)
+Failed: 5 (18%)
+Duration: 4.2s
+
+================================
+FAILURES
+================================
+
+1. tests/pipedrive-sync.spec.ts:190
+   "dashboard displays recent extractions and sync status"
+   
+   Error: strict mode violation
+   Locator: text=/extractions|synced|confidence/i
+   Resolved to 4 elements:
+   - <div class="metric-label">Total Extractions</div>
+   - <div class="metric-label">Auto-Synced</div>
+   - <div class="metric-label">Avg Confidence</div>
+   - <th>Confidence</th>
+   
+   Status: CARRY-OVER from week 10 (task #4, #5)
+   
+2. tests/web/fixtures.spec.ts:50
+   "medium-confidence forward: extracts core fields, flags for review"
+   
+   Error: confidence too high
+   Expected: < 0.8
+   Received: 0.84
+   
+   Status: REGRESSION (passed in week 10)
+   
+3. tests/web/fixtures.spec.ts:79
+   "low-confidence forward: queues for review without extraction"
+   
+   Error: confidence too high
+   Expected: < 0.65
+   Received: 0.81
+   
+   Status: REGRESSION (passed in week 10)
+   
+4. tests/web/fixtures.spec.ts:152
+   "email with attachment mention: extracts despite references to attachments"
+   
+   Error: wrong company name extracted
+   Expected: "TechRX"
+   Received: "a healthcare tech co"
+   
+   Status: REGRESSION (passed in week 10)
+   
+5. tests/webhook.spec.ts:126
+   "webhook handles malformed email with error response"
+   
+   Error: wrong HTTP status code
+   Expected: 400 Bad Request
+   Received: 200 OK
+   
+   Status: CARRY-OVER from week 10 (task #8)
+
+================================
+WEEK-OVER-WEEK COMPARISON
+================================
+
+Week 10: 24 of 28 passing (86%)
+Week 11: 23 of 28 passing (82%)
+
+FIXED (week 10 → week 11):
+✓ high-confidence threshold (0.82 → 0.85+)
+✓ company name case sensitivity (Techstartup → TechStartup)
+
+STILL FAILING:
+✗ malformed email error handling
+✗ dashboard selector strict mode
+
+NEW REGRESSIONS:
+✗ medium-confidence scoring
+✗ low-confidence scoring  
+✗ attachment mention extraction
+
+NET RESULT: Week 11 is worse than week 10
+- Fixed: 2 bugs
+- Introduced: 3 new bugs
+- Pass rate dropped 4% (86% → 82%)
+
+================================
+TASKS CREATED
+================================
+#9:  Malformed email returns 200 OK instead of 400 Bad Request (HIGH)
+#10: Dashboard selector strict mode violation (MED)
+#11: REGRESSION: Medium-confidence scoring too high (HIGH)
+#12: REGRESSION: Low-confidence scoring too high (HIGH)
+#13: REGRESSION: Attachment mention extraction fails (HIGH)
