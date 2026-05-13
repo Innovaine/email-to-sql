@@ -1847,3 +1847,12 @@ Date:   Wed May 13 15:53:37 2026 +0000
  2 files changed, 64 insertions(+)
 ```
 Full output: [`server-runs/2026-05-13T15-56-00-app-cd-email-to-sql-git-show---stat-HEAD-hea-1.log`](server-runs/2026-05-13T15-56-00-app-cd-email-to-sql-git-show---stat-HEAD-hea-1.log)
+
+## 2026-05-13T15:56:34.859Z — Mehdi ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `77ece7c` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exit 1, 2440ms)
+```
+cd ~/email-to-sql && git show --name-only eb14208 | grep -E '\.ts$|\.js$'
+```
+ERROR: command exited 1
