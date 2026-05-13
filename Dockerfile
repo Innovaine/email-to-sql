@@ -6,8 +6,8 @@ WORKDIR /app
 # Copy package files
 COPY package.json package-lock.json* yarn.lock* pnpm-lock.yaml* ./
 
-# Install dependencies
-RUN npm ci --omit=dev || npm install
+# Install ALL dependencies (including devDependencies like typescript)
+RUN npm ci || npm install
 
 # Copy source code
 COPY tsconfig.json ./
