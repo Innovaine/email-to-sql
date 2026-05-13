@@ -3052,3 +3052,12 @@ Date:   Wed May 13 16:04:14 2026 +0000
  2 files changed, 38 insertions(+)
 ```
 Full output: [`server-runs/2026-05-13T16-30-13-app-cd-email-to-sql-git-show-HEAD---stat-1.log`](server-runs/2026-05-13T16-30-13-app-cd-email-to-sql-git-show-HEAD---stat-1.log)
+
+## 2026-05-13T16:30:49.041Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ed86307` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exit 1, 2187ms)
+```
+cd ~/email-to-sql && git log --all --oneline | grep "Mehdi.*week 10"
+```
+ERROR: command exited 1
