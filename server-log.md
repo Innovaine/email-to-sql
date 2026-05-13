@@ -1471,3 +1471,230 @@ npm notice To update run: npm install -g npm@11.14.1
 npm notice
 ```
 Full output: [`server-runs/2026-05-13T06-41-41-app-cd-email-to-sql-git-pull-npm-install--D--1.log`](server-runs/2026-05-13T06-41-41-app-cd-email-to-sql-git-pull-npm-install--D--1.log)
+
+## 2026-05-13T06:42:45.155Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6460a6d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exit 1, 7314ms)
+```
+cd ~/email-to-sql && npx playwright test tests/web/integration.spec.ts tests/web/fixtures.spec.ts --reporter=list 2>&1
+```
+STDOUT:
+```
+
+Running 22 tests using 2 workers
+
+  ✓   1 tests/web/integration.spec.ts:17:7 › Email-to-SQL webhook integration › health endpoint confirms server is running (36ms)
+  ✘   2 tests/web/fixtures.spec.ts:14:7 › Email-to-SQL fixture-driven extraction tests › high-confidence forward: extracts all fields with high confidence (31ms)
+  ✘   3 tests/web/integration.spec.ts:37:7 › Email-to-SQL webhook integration › dashboard loads without authentication (1ms)
+  ✘   4 tests/web/fixtures.spec.ts:50:7 › Email-to-SQL fixture-driven extraction tests › medium-confidence forward: extracts core fields, flags for review (28ms)
+  ✘   5 tests/web/integration.spec.ts:51:7 › Email-to-SQL webhook integration › webhook accepts forwarded email with high confidence (28ms)
+  ✓   6 tests/web/fixtures.spec.ts:79:7 › Email-to-SQL fixture-driven extraction tests › low-confidence forward: queues for review without extraction (28ms)
+  ✓   7 tests/web/integration.spec.ts:132:7 › Email-to-SQL webhook integration › webhook rejects request without API key (29ms)
+  ✓   9 tests/web/integration.spec.ts:150:7 › Email-to-SQL webhook integration › webhook rejects request with invalid API key (7ms)
+  ✘   8 tests/web/fixtures.spec.ts:100:7 › Email-to-SQL fixture-driven extraction tests › nested forward: extracts from innermost email correctly (14ms)
+  ✓  10 tests/web/integration.spec.ts:165:7 › Email-to-SQL webhook integration › webhook processes low-confidence email and queues for review (15ms)
+  ✘  11 tests/web/integration.spec.ts:198:7 › Email-to-SQL webhook integration › webhook returns different extraction for nested forwards (9ms)
+  ✓  12 tests/web/fixtures.spec.ts:128:7 › Email-to-SQL fixture-driven extraction tests › email with quoted text: extracts from new content, ignores quotes (28ms)
+  ✓  14 tests/web/fixtures.spec.ts:152:7 › Email-to-SQL fixture-driven extraction tests › email with attachment mention: extracts despite references to attachments (11ms)
+  ✘  13 tests/web/integration.spec.ts:251:7 › Email-to-SQL webhook integration › webhook stores extraction and makes it available on dashboard (7ms)
+  ✓  15 tests/web/fixtures.spec.ts:176:7 › Email-to-SQL fixture-driven extraction tests › malformed email: fails gracefully with error (17ms)
+  ✓  16 tests/web/fixtures.spec.ts:197:7 › Email-to-SQL fixture-driven extraction tests › long quoted history: extracts from new content at top (12ms)
+  ✓  17 tests/web/fixtures.spec.ts:220:7 › Email-to-SQL fixture-driven extraction tests › response includes all required fields (10ms)
+  ✘  18 tests/web/fixtures.spec.ts:254:7 › Email-to-SQL fixture-driven extraction tests › dashboard shows all submitted extractions (0ms)
+  ✘  19 tests/web/integration.spec.ts:293:7 › Email-to-SQL webhook integration › dashboard metrics show total extractions and sync status (2ms)
+  ✘  20 tests/web/fixtures.spec.ts:283:7 › Email-to-SQL fixture-driven extraction tests › dashboard displays confidence as visual bar (2ms)
+  ✓  21 tests/web/integration.spec.ts:313:7 › Email-to-SQL webhook integration › webhook response includes Pipedrive sync status (29ms)
+  ✘  22 tests/web/fixtures.spec.ts:299:7 › Email-to-SQL fixture-driven extraction tests › dashboard shows metrics correctly (2ms)
+
+
+  1) tests/web/fixtures.spec.ts:14:7 › Email-to-SQL fixture-driven extraction tests › high-confidence forward: extracts all fields with high confidence 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: [32m"Acme"[39m
+    Received string:    [31m"Budget for new"[39m
+
+      35 |     // Validate extracted fields
+      36 |     expect(extracted.company_name).toBeTruthy();
+    > 37 |     expect(extracted.company_name).toContain('Acme');
+         |                                    ^
+      38 |     
+      39 |     expect(extracted.contact_email).toBe('sarah@acmecorp.com');
+      40 |     expect(extracted.budget).toBeTruthy();
+        at /home/tester/email-to-sql/tests/web/fixtures.spec.ts:37:36
+
+    Error Context: test-results/tests-web-fixtures-Email-t-f2806-fields-with-high-confidence/error-context.md
+
+  2) tests/web/fixtures.spec.ts:50:7 › Email-to-SQL fixture-driven extraction tests › medium-confidence forward: extracts core fields, flags for review 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: [32m"TechStartup"[39m
+    Received string:    [31m"CRM"[39m
+
+      65 |     // Should extract company and email
+      66 |     expect(extracted.company_name).toBeTruthy();
+    > 67 |     expect(extracted.company_name).toContain('TechStartup');
+         |                                    ^
+      68 |     
+      69 |     expect(extracted.contact_email).toBe('bob@techstartup.io');
+      70 |     
+        at /home/tester/email-to-sql/tests/web/fixtures.spec.ts:67:36
+
+    Error Context: test-results/tests-web-fixtures-Email-t-c4519-ore-fields-flags-for-review/error-context.md
+
+  3) tests/web/fixtures.spec.ts:100:7 › Email-to-SQL fixture-driven extraction tests › nested forward: extracts from innermost email correctly 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"[7mdirector@bigcorp[27m.com"[39m
+    Received: [31m"[7msales-team-lead@oursaas[27m.com"[39m
+
+      115 |     // Should extract from innermost (original customer) email
+      116 |     expect(extracted.company_name).toContain('BigCorp');
+    > 117 |     expect(extracted.contact_email).toBe('director@bigcorp.com');
+          |                                     ^
+      118 |     
+      119 |     // Should find budget mentioned in original
+      120 |     expect(extracted.budget).toBeTruthy();
+        at /home/tester/email-to-sql/tests/web/fixtures.spec.ts:117:37
+
+    Error Context: test-results/tests-web-fixtures-Email-t-fba65-m-innermost-email-correctly/error-context.md
+
+  4) tests/web/fixtures.spec.ts:254:7 › Email-to-SQL fixture-driven extraction tests › dashboard shows all submitted extractions 
+
+    Error: browserType.launch: Executable doesn't exist at /home/tester/.cache/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/tests-web-fixtures-Email-t-8b4d0-s-all-submitted-extractions/error-context.md
+
+  5) tests/web/fixtures.spec.ts:283:7 › Email-to-SQL fixture-driven extraction tests › dashboard displays confidence as visual bar 
+
+    Error: browserType.launch: Executable doesn't exist at /home/tester/.cache/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/tests-web-fixtures-Email-t-fbbe8-ys-confidence-as-visual-bar/error-context.md
+
+  6) tests/web/fixtures.spec.ts:299:7 › Email-to-SQL fixture-driven extraction tests › dashboard shows metrics correctly 
+
+    Error: browserType.launch: Executable doesn't exist at /home/tester/.cache/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/tests-web-fixtures-Email-t-5d2bd-ard-shows-metrics-correctly/error-context.md
+
+  7) tests/web/integration.spec.ts:37:7 › Email-to-SQL webhook integration › dashboard loads without authentication 
+
+    Error: browserType.launch: Executable doesn't exist at /home/tester/.cache/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/tests-web-integration-Emai-a0f9e-oads-without-authentication/error-context.md
+
+  8) tests/web/integration.spec.ts:51:7 › Email-to-SQL webhook integration › webhook accepts forwarded email with high confidence 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: [32m"acme"[39m
+    Received string:    [31m"budget for new"[39m
+
+      112 |     // Verify extracted values match the email content
+      113 |     expect(extracted.company_name).toBeTruthy();
+    > 114 |     expect(extracted.company_name.toLowerCase()).toContain('acme');
+          |                                                  ^
+      115 |     
+      116 |     expect(extracted.contact_email).toBe('sarah@acmecorp.com');
+      117 |     expect(extracted.budget).toBeTruthy();
+        at /home/tester/email-to-sql/tests/web/integration.spec.ts:114:50
+
+    Error Context: test-results/tests-web-integration-Emai-01e4e--email-with-high-confidence/error-context.md
+
+  9) tests/web/integration.spec.ts:198:7 › Email-to-SQL webhook integration › webhook returns different extraction for nested forwards 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: [32m"bigcorp"[39m
+    Received string:    [31m"bob@sales.com"[39m
+
+      245 |
+      246 |     // Should extract from the innermost email
+    > 247 |     expect(body.extracted.contact_email).toContain('bigcorp');
+          |                                          ^
+      248 |     expect(body.extracted).toHaveProperty('confidence');
+      249 |   });
+      250 |
+        at /home/tester/email-to-sql/tests/web/integration.spec.ts:247:42
+
+    Error Context: test-results/tests-web-integration-Emai-69a66-raction-for-nested-forwards/error-context.md
+
+  10) tests/web/integration.spec.ts:251:7 › Email-to-SQL webhook integration › webhook stores extraction and makes it available on dashboard 
+
+    Error: browserType.launch: Executable doesn't exist at /home/tester/.cache/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/tests-web-integration-Emai-ced13-s-it-available-on-dashboard/error-context.md
+
+  11) tests/web/integration.spec.ts:293:7 › Email-to-SQL webhook integration › dashboard metrics show total extractions and sync status 
+
+    Error: browserType.launch: Executable doesn't exist at /home/tester/.cache/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-linux64/chrome-headless-shell
+    ╔════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright was just installed or updated.       ║
+    ║ Please run the following command to download new browsers: ║
+    ║                                                            ║
+    ║     npx playwright install                                 ║
+    ║                                                            ║
+    ║ <3 Playwright Team                                         ║
+    ╚════════════════════════════════════════════════════════════╝
+
+    Error Context: test-results/tests-web-integration-Emai-7a81f-extractions-and-sync-status/error-context.md
+
+  11 failed
+    tests/web/fixtures.spec.ts:14:7 › Email-to-SQL fixture-driven extraction tests › high-confidence forward: extracts all fields with high confidence 
+    tests/web/fixtures.spec.ts:50:7 › Email-to-SQL fixture-driven extraction tests › medium-confidence forward: extracts core fields, flags for review 
+    tests/web/fixtures.spec.ts:100:7 › Email-to-SQL fixture-driven extraction tests › nested forward: extracts from innermost email correctly 
+    tests/web/fixtures.spec.ts:254:7 › Email-to-SQL fixture-driven extraction tests › dashboard shows all submitted extractions 
+    tests/web/fixtures.spec.ts:283:7 › Email-to-SQL fixture-driven extraction tests › dashboard displays confidence as visual bar 
+    tests/web/fixtures.spec.ts:299:7 › Email-to-SQL fixture-driven extraction tests › dashboard shows metrics correctly 
+    tests/web/integration.spec.ts:37:7 › Email-to-SQL webhook integration › dashboard loads without authentication 
+    tests/web/integration.spec.ts:51:7 › Email-to-SQL webhook integration › webhook accepts forwarded email with high confidence 
+    tests/web/integration.spec.ts:198:7 › Email-to-SQL webhook integration › webhook returns different extraction for nested forwards 
+    tests/web/integration.spec.ts:251:7 › Email-to-SQL webhook integration › webhook stores extraction and makes it available on dashboard 
+    tests/web/integration.spec.ts:293:7 › Email-to-SQL webhook integration › dashboard metrics show total extractions and sync status 
+  11 passed (3.5s)
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-13T06-42-45-app-cd-email-to-sql-npx-playwright-test-test-1.log`](server-runs/2026-05-13T06-42-45-app-cd-email-to-sql-npx-playwright-test-test-1.log)
