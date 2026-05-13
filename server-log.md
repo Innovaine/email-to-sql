@@ -815,3 +815,23 @@ STDOUT:
  create mode 100644 week-07/engineering.md
 ```
 Full output: [`server-runs/2026-05-13T06-14-09-app-cd-email-to-sql-git-pull---ff-only-2-1-t-1.log`](server-runs/2026-05-13T06-14-09-app-cd-email-to-sql-git-pull---ff-only-2-1-t-1.log)
+
+## 2026-05-13T06:14:42.161Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d639d66` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 5886ms)
+```
+cd ~/email-to-sql && docker compose down && sleep 2 && timeout 120 docker compose build --progress=plain 2>&1 | grep -E "RUN npm run build|COPY --from|exporting" | head -10
+```
+STDOUT:
+```
+#9 [builder 7/7] RUN npm run build
+#14 [stage-1 5/5] COPY --from=builder /app/dist ./dist
+#15 exporting to image
+#15 exporting layers done
+#15 exporting manifest sha256:3b4637c35ee6a57374dc3eab70f579bc9d878fb80e890e3a18342cb0b68fb7c1 done
+#15 exporting config sha256:c6bca0564fd38f40829e5cef1b16390402720aebe54fa621b44fc13885d4a559 done
+#15 exporting attestation manifest sha256:97c8b48699a5b0ee8cc26f121acf24cecd9c58c257153777d7aa2e9e343bc31d done
+#15 exporting manifest list sha256:2aa22b89352109607f167b7693a3160a1483db4a62e6dd6eb0dc9e1992458b5e done
+```
+Full output: [`server-runs/2026-05-13T06-14-42-app-cd-email-to-sql-docker-compose-down-slee-1.log`](server-runs/2026-05-13T06-14-42-app-cd-email-to-sql-docker-compose-down-slee-1.log)
