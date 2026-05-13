@@ -1,0 +1,17 @@
+# Command 1 on app as tester
+# Run at: 2026-05-13T06:44:06.269Z
+# Exit code: 0
+# Duration: 2799ms
+
+## Command
+ls -la /usr/local/share/playwright-browsers/chromium* 2>&1 | head -5
+
+## STDOUT (full)
+/usr/local/share/playwright-browsers/chromium-1223:
+total 12
+drwxr-xr-x 3 root root 4096 May 13 04:31 .
+drwxr-xr-x 6 root root 4096 May 13 05:11 ..
+-rw-r--r-- 1 root root    0 May 13 04:31 DEPENDENCIES_VALIDATED
+
+## STDERR (full)
+(empty)

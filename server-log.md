@@ -1715,3 +1715,20 @@ Failed to install browsers
 Error: Installation process exited with code: 1
 ```
 Full output: [`server-runs/2026-05-13T06-43-14-app-cd-email-to-sql-npx-playwright-install---1.log`](server-runs/2026-05-13T06-43-14-app-cd-email-to-sql-npx-playwright-install---1.log)
+
+## 2026-05-13T06:44:06.290Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6974310` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2820ms)
+```
+ls -la /usr/local/share/playwright-browsers/chromium* 2>&1 | head -5
+```
+STDOUT:
+```
+/usr/local/share/playwright-browsers/chromium-1223:
+total 12
+drwxr-xr-x 3 root root 4096 May 13 04:31 .
+drwxr-xr-x 6 root root 4096 May 13 05:11 ..
+-rw-r--r-- 1 root root    0 May 13 04:31 DEPENDENCIES_VALIDATED
+```
+Full output: [`server-runs/2026-05-13T06-44-06-app-ls--la-usr-local-share-playwright-browse-1.log`](server-runs/2026-05-13T06-44-06-app-ls--la-usr-local-share-playwright-browse-1.log)
