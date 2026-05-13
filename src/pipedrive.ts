@@ -191,7 +191,7 @@ export async function createDeal(
   try {
     // Parse budget from string like "$50K" -> 50000
     let dealValue = 0;
-    if (budgetString) {
+    if (budgetString && typeof budgetString === 'string') {
       dealValue = parseBudgetToValue(budgetString);
     }
 

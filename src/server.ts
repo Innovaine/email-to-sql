@@ -18,7 +18,7 @@ app.use(express.text({ type: 'text/plain', limit: '10mb' }));
 app.use(express.json());
 
 // Middleware: API key authentication
-const apiKeyAuth = (req: Request, res: Response, next: NextFunction): void => {
+const apiKeyAuth = (req: Request, res: Response, next: NextFunction) => {
   const providedKey = req.headers['x-api-key'] as string;
 
   // Allow dashboard without auth (GET /dashboard)
@@ -28,12 +28,13 @@ const apiKeyAuth = (req: Request, res: Response, next: NextFunction): void => {
 
   // Require API key for webhook and other endpoints
   if (!providedKey || providedKey !== API_KEY) {
-    return res.status(401).json({
+    res.status(401).json({
       error: 'Unauthorized: missing or invalid X-API-Key header',
     });
+    return;
   }
 
-  return next();
+  next();
 };
 
 app.use(apiKeyAuth);
