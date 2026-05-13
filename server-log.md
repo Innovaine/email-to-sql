@@ -1428,3 +1428,46 @@ STDOUT:
 }
 ```
 Full output: [`server-runs/2026-05-13T06-40-39-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log`](server-runs/2026-05-13T06-40-39-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log)
+
+## 2026-05-13T06:41:41.887Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `7a5fa39` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 7247ms) _(showing tail — full 6,710B stdout + 0B stderr)_
+```
+cd ~/email-to-sql && git pull && npm install -D @playwright/test 2>&1 | tail -3
+```
+STDOUT:
+```
+…mail-to-sql-docker-compose-logs-2-1--1.log
+ create mode 100644 server-runs/2026-05-13T06-23-23-app-cd-email-to-sql-git-status-1.log
+ create mode 100644 server-runs/2026-05-13T06-23-47-app-cd-email-to-sql-git-pull---ff-only-1.log
+ create mode 100644 server-runs/2026-05-13T06-24-17-app-cd-email-to-sql-cat-tsconfig.json-grep-r-1.log
+ create mode 100644 server-runs/2026-05-13T06-25-04-app-cd-email-to-sql-docker-compose-down-slee-1.log
+ create mode 100644 server-runs/2026-05-13T06-25-40-app-cd-email-to-sql-docker-compose-up--d-sle-1.log
+ create mode 100644 server-runs/2026-05-13T06-26-25-app-cd-email-to-sql-git-pull---ff-only-cat-p-1.log
+ create mode 100644 server-runs/2026-05-13T06-27-45-app-cd-email-to-sql-docker-compose-up--d-sle-1.log
+ create mode 100644 server-runs/2026-05-13T06-31-42-app-curl--s-http-localhost-5000-health-echo-1.log
+ create mode 100644 server-runs/2026-05-13T06-33-09-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log
+ create mode 100644 server-runs/2026-05-13T06-33-50-app-curl--s--X-POST-1.log
+ create mode 100644 server-runs/2026-05-13T06-34-39-app-curl--s-http-localhost-5000-dashboard-he-1.log
+ create mode 100644 server-runs/2026-05-13T06-40-13-app-cd-email-to-sql-git-status-docker-ps---f-1.log
+ create mode 100644 server-runs/2026-05-13T06-40-39-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log
+ create mode 100644 tests/web/fixtures.spec.ts
+ create mode 100644 tests/web/integration.spec.ts
+ create mode 100644 week-06/files/week-06-status.md
+ create mode 100644 week-06/pm-status.md
+ create mode 100644 week-06/risks.md
+ create mode 100644 week-07/_index.md
+ create mode 100644 week-07/_plan.md
+ create mode 100644 week-07/engineering.md
+ create mode 100644 week-07/pm-status.md
+ create mode 100644 week-07/review.md
+ create mode 100644 week-07/test.md
+ create mode 100644 week-08/_plan.md
+ create mode 100644 week-08/engineering.md
+ create mode 100644 week-08/review.md
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+npm notice To update run: npm install -g npm@11.14.1
+npm notice
+```
+Full output: [`server-runs/2026-05-13T06-41-41-app-cd-email-to-sql-git-pull-npm-install--D--1.log`](server-runs/2026-05-13T06-41-41-app-cd-email-to-sql-git-pull-npm-install--D--1.log)

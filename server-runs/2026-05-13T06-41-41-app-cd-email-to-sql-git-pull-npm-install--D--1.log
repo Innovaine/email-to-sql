@@ -1,0 +1,110 @@
+# Command 1 on app as tester
+# Run at: 2026-05-13T06:41:41.867Z
+# Exit code: 0
+# Duration: 7227ms
+
+## Command
+cd ~/email-to-sql && git pull && npm install -D @playwright/test 2>&1 | tail -3
+
+## STDOUT (full)
+Updating bea1c22..7a5fa39
+Fast-forward
+ docker-compose.yml                                 |   1 -
+ package.json                                       |   6 +-
+ server-log.md                                      | 888 +++++++++++++++++++++
+ ...-cd-home-tester-email-to-sql-git-pull---f-1.log |  24 +
+ ...-cd-home-tester-email-to-sql-timeout-120--1.log |  71 ++
+ ...-cd-email-to-sql-git-pull---ff-only-2-1-h-1.log |  32 +
+ ...-cd-email-to-sql-timeout-180-docker-compo-1.log |  72 ++
+ ...-cd-email-to-sql-docker-compose-down-2-1--1.log |  22 +
+ ...-cd-email-to-sql-docker-compose-logs---ta-1.log |  42 +
+ ...-cd-email-to-sql-git-pull---ff-only-2-1-t-1.log |  17 +
+ ...-cd-email-to-sql-docker-compose-down-slee-1.log |  20 +
+ ...-cd-email-to-sql-docker-run---rm-email-to-1.log |  16 +
+ ...-cd-email-to-sql-docker-compose-up--d-sle-1.log |  52 ++
+ ...-cd-email-to-sql-ls--la-dist-2-1-head--20-1.log |  15 +
+ ...-cd-email-to-sql-git-pull---ff-only-docke-1.log |  39 +
+ ...-cd-email-to-sql-git-status-docker-ps-df--1.log |  23 +
+ ...-cd-email-to-sql-docker-compose-logs-emai-1.log |  14 +
+ ...-cd-email-to-sql-docker-compose-logs-2-1--1.log |  25 +
+ ...3T06-23-23-app-cd-email-to-sql-git-status-1.log |  16 +
+ ...47-app-cd-email-to-sql-git-pull---ff-only-1.log |  18 +
+ ...-cd-email-to-sql-cat-tsconfig.json-grep-r-1.log |  14 +
+ ...-cd-email-to-sql-docker-compose-down-slee-1.log |  72 ++
+ ...-cd-email-to-sql-docker-compose-up--d-sle-1.log |  32 +
+ ...-cd-email-to-sql-git-pull---ff-only-cat-p-1.log |  54 ++
+ ...-cd-email-to-sql-docker-compose-up--d-sle-1.log |  24 +
+ ...p-curl--s-http-localhost-5000-health-echo-1.log |  13 +
+ ...-curl--s--H-X-API-Key-dev-key-12345-http--1.log |  13 +
+ .../2026-05-13T06-33-50-app-curl--s--X-POST-1.log  |  44 +
+ ...-curl--s-http-localhost-5000-dashboard-he-1.log |  62 ++
+ ...-cd-email-to-sql-git-status-docker-ps---f-1.log |  21 +
+ ...-curl--s--H-X-API-Key-dev-key-12345-http--1.log |  18 +
+ src/pipedrive.ts                                   |   2 +-
+ src/server.ts                                      |  21 +-
+ tests/web/fixtures.spec.ts                         | 312 ++++++++
+ tests/web/integration.spec.ts                      | 344 ++++++++
+ tsconfig.json                                      |   2 +-
+ week-06/_index.md                                  |   7 +-
+ week-06/files/week-06-status.md                    |  28 +
+ week-06/pm-status.md                               |  61 ++
+ week-06/risks.md                                   |  78 ++
+ week-06/test.md                                    | 173 +++-
+ week-07/_index.md                                  |  15 +
+ week-07/_plan.md                                   |  34 +
+ week-07/engineering.md                             | 183 +++++
+ week-07/pm-status.md                               |  71 ++
+ week-07/review.md                                  | 158 ++++
+ week-07/test.md                                    |  84 ++
+ week-08/_plan.md                                   |  36 +
+ week-08/engineering.md                             | 161 ++++
+ week-08/review.md                                  | 186 +++++
+ 50 files changed, 3698 insertions(+), 38 deletions(-)
+ create mode 100644 server-runs/2026-05-13T06-06-07-app-cd-home-tester-email-to-sql-git-pull---f-1.log
+ create mode 100644 server-runs/2026-05-13T06-06-33-app-cd-home-tester-email-to-sql-timeout-120--1.log
+ create mode 100644 server-runs/2026-05-13T06-10-05-app-cd-email-to-sql-git-pull---ff-only-2-1-h-1.log
+ create mode 100644 server-runs/2026-05-13T06-11-02-app-cd-email-to-sql-timeout-180-docker-compo-1.log
+ create mode 100644 server-runs/2026-05-13T06-11-58-app-cd-email-to-sql-docker-compose-down-2-1--1.log
+ create mode 100644 server-runs/2026-05-13T06-13-31-app-cd-email-to-sql-docker-compose-logs---ta-1.log
+ create mode 100644 server-runs/2026-05-13T06-14-09-app-cd-email-to-sql-git-pull---ff-only-2-1-t-1.log
+ create mode 100644 server-runs/2026-05-13T06-14-42-app-cd-email-to-sql-docker-compose-down-slee-1.log
+ create mode 100644 server-runs/2026-05-13T06-15-10-app-cd-email-to-sql-docker-run---rm-email-to-1.log
+ create mode 100644 server-runs/2026-05-13T06-15-38-app-cd-email-to-sql-docker-compose-up--d-sle-1.log
+ create mode 100644 server-runs/2026-05-13T06-16-15-app-cd-email-to-sql-ls--la-dist-2-1-head--20-1.log
+ create mode 100644 server-runs/2026-05-13T06-16-51-app-cd-email-to-sql-git-pull---ff-only-docke-1.log
+ create mode 100644 server-runs/2026-05-13T06-17-57-app-cd-email-to-sql-git-status-docker-ps-df--1.log
+ create mode 100644 server-runs/2026-05-13T06-18-27-app-cd-email-to-sql-docker-compose-logs-emai-1.log
+ create mode 100644 server-runs/2026-05-13T06-19-12-app-cd-email-to-sql-docker-compose-logs-2-1--1.log
+ create mode 100644 server-runs/2026-05-13T06-23-23-app-cd-email-to-sql-git-status-1.log
+ create mode 100644 server-runs/2026-05-13T06-23-47-app-cd-email-to-sql-git-pull---ff-only-1.log
+ create mode 100644 server-runs/2026-05-13T06-24-17-app-cd-email-to-sql-cat-tsconfig.json-grep-r-1.log
+ create mode 100644 server-runs/2026-05-13T06-25-04-app-cd-email-to-sql-docker-compose-down-slee-1.log
+ create mode 100644 server-runs/2026-05-13T06-25-40-app-cd-email-to-sql-docker-compose-up--d-sle-1.log
+ create mode 100644 server-runs/2026-05-13T06-26-25-app-cd-email-to-sql-git-pull---ff-only-cat-p-1.log
+ create mode 100644 server-runs/2026-05-13T06-27-45-app-cd-email-to-sql-docker-compose-up--d-sle-1.log
+ create mode 100644 server-runs/2026-05-13T06-31-42-app-curl--s-http-localhost-5000-health-echo-1.log
+ create mode 100644 server-runs/2026-05-13T06-33-09-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log
+ create mode 100644 server-runs/2026-05-13T06-33-50-app-curl--s--X-POST-1.log
+ create mode 100644 server-runs/2026-05-13T06-34-39-app-curl--s-http-localhost-5000-dashboard-he-1.log
+ create mode 100644 server-runs/2026-05-13T06-40-13-app-cd-email-to-sql-git-status-docker-ps---f-1.log
+ create mode 100644 server-runs/2026-05-13T06-40-39-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log
+ create mode 100644 tests/web/fixtures.spec.ts
+ create mode 100644 tests/web/integration.spec.ts
+ create mode 100644 week-06/files/week-06-status.md
+ create mode 100644 week-06/pm-status.md
+ create mode 100644 week-06/risks.md
+ create mode 100644 week-07/_index.md
+ create mode 100644 week-07/_plan.md
+ create mode 100644 week-07/engineering.md
+ create mode 100644 week-07/pm-status.md
+ create mode 100644 week-07/review.md
+ create mode 100644 week-07/test.md
+ create mode 100644 week-08/_plan.md
+ create mode 100644 week-08/engineering.md
+ create mode 100644 week-08/review.md
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.14.1
+npm notice To update run: npm install -g npm@11.14.1
+npm notice
+
+## STDERR (full)
+(empty)
