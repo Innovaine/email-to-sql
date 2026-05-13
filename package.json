@@ -2,7 +2,7 @@
   "name": "email-to-sql",
   "version": "0.1.0",
   "description": "Automated customer data extraction for SaaS sales teams",
-  "main": "dist/src/server.js",
+  "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
     "start": "node dist/src/server.js",
