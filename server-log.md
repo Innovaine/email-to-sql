@@ -1270,3 +1270,16 @@ STDOUT:
 {"error":"Unauthorized: missing or invalid X-API-Key header"}
 ```
 Full output: [`server-runs/2026-05-13T06-31-42-app-curl--s-http-localhost-5000-health-echo-1.log`](server-runs/2026-05-13T06-31-42-app-curl--s-http-localhost-5000-health-echo-1.log)
+
+## 2026-05-13T06:33:09.259Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `e61579d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2836ms)
+```
+curl -s -H "X-API-Key: dev-key-12345" http://localhost:5000/health && echo ""
+```
+STDOUT:
+```
+{"status":"ok","version":"0.1.0","uptime":328.749957025,"extractions":1}
+```
+Full output: [`server-runs/2026-05-13T06-33-09-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log`](server-runs/2026-05-13T06-33-09-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log)
