@@ -93,3 +93,28 @@ _Pre-SSH: warehouse pushed to GitHub as commit `d480fdf` so the server's `git pu
 ```
 find /tmp -name "*email*" -o -name "*.py" 2>/dev/null | head -20
 ```
+
+## 2026-05-13T05:20:25.967Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `120439d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2875ms)
+```
+cd ~ && git clone https://github.com/Innovaine/email-to-sql.git email-to-sql && cd email-to-sql && ls -la
+```
+STDOUT:
+```
+total 48
+drwxrwxr-x 8 tester tester 4096 May 13 05:20 .
+drwxr-x--- 5 tester tester 4096 May 13 05:20 ..
+drwxrwxr-x 8 tester tester 4096 May 13 05:20 .git
+-rw-rw-r-- 1 tester tester 1671 May 13 05:20 README.md
+-rw-rw-r-- 1 tester tester 1373 May 13 05:20 _meta.json
+drwxrwxr-x 2 tester tester 4096 May 13 05:20 decisions
+drwxrwxr-x 2 tester tester 4096 May 13 05:20 execution
+-rw-rw-r-- 1 tester tester 1054 May 13 05:20 idea.md
+drwxrwxr-x 2 tester tester 4096 May 13 05:20 reviews
+-rw-rw-r-- 1 tester tester 3749 May 13 05:20 server-log.md
+drwxrwxr-x 2 tester tester 4096 May 13 05:20 server-runs
+drwxrwxr-x 2 tester tester 4096 May 13 05:20 week-01
+```
+Full output: [`server-runs/2026-05-13T05-20-25-app-cd-git-clone-https-github.com-Innovaine--1.log`](server-runs/2026-05-13T05-20-25-app-cd-git-clone-https-github.com-Innovaine--1.log)
