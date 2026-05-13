@@ -3009,3 +3009,25 @@ Fast-forward
 ```
 ERROR: command exited 1
 Full output: [`server-runs/2026-05-13T16-28-57-app-cd-email-to-sql-git-pull---ff-only-docke-1.log`](server-runs/2026-05-13T16-28-57-app-cd-email-to-sql-git-pull---ff-only-docke-1.log)
+
+## 2026-05-13T16:29:46.498Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6cd74bd` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2224ms)
+```
+cd ~/email-to-sql && git log --oneline -10
+```
+STDOUT:
+```
+64f438d Yuki (reviewer, week 9) — pre-SSH sync
+6ec206e Yuki (reviewer, week 9) — pre-SSH sync
+7b92810 Mehdi (engineer, week 9) — pre-SSH sync
+0a01bf3 Mehdi (engineer, week 9) — pre-SSH sync
+78d13f5 Mehdi (engineer, week 9) — pre-SSH sync
+bbd5c5d Mehdi (engineer, week 9) — pre-SSH sync
+e25480e Mehdi (engineer, week 9) — pre-SSH sync
+77ece7c Mehdi (engineer, week 9) — pre-SSH sync
+1681006 Mehdi (engineer, week 9) — pre-SSH sync
+fdaae9c Mehdi (engineer, week 9) — pre-SSH sync
+```
+Full output: [`server-runs/2026-05-13T16-29-46-app-cd-email-to-sql-git-log---oneline--10-1.log`](server-runs/2026-05-13T16-29-46-app-cd-email-to-sql-git-log---oneline--10-1.log)
