@@ -3389,3 +3389,44 @@ _Pre-SSH: warehouse pushed to GitHub as commit `9321b44` so the server's `git pu
 cd ~/email-to-sql && docker compose down && sleep 2 && docker compose build 2>&1 | tail -20 && docker compose up -d && sleep 3 && docker compose logs --tail=30
 ```
 ERROR: Connection timed out
+
+## 2026-05-13T17:00:15.069Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `114987d` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 6508ms)
+```
+cd ~/email-to-sql && docker compose restart && sleep 3 && docker compose logs --tail=30
+```
+STDOUT:
+```
+email-to-sql-webhook  | 
+email-to-sql-webhook  | > email-to-sql@0.1.0 start
+email-to-sql-webhook  | > node dist/server.js
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ⚠️  PIPEDRIVE_API_TOKEN not set; Pipedrive sync will fail
+email-to-sql-webhook  | ✓ Config loaded: PORT=5000, API_KEY=dev-key-...
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ✅ Email-to-SQL webhook listening on http://localhost:5000
+email-to-sql-webhook  |    POST /webhook/email  — submit forwarded email
+email-to-sql-webhook  |    GET  /dashboard      — view extraction status
+email-to-sql-webhook  |    GET  /health         — health check
+email-to-sql-webhook  | 
+email-to-sql-webhook  | npm error path /app
+email-to-sql-webhook  | npm error command failed
+email-to-sql-webhook  | npm error signal SIGTERM
+email-to-sql-webhook  | npm error command sh -c node dist/server.js
+email-to-sql-webhook  | npm error A complete log of this run can be found in: /root/.npm/_logs/2026-05-13T16_59_48_966Z-debug-0.log
+email-to-sql-webhook  | 
+email-to-sql-webhook  | > email-to-sql@0.1.0 start
+email-to-sql-webhook  | > node dist/server.js
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ⚠️  PIPEDRIVE_API_TOKEN not set; Pipedrive sync will fail
+email-to-sql-webhook  | ✓ Config loaded: PORT=5000, API_KEY=dev-key-...
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ✅ Email-to-SQL webhook listening on http://localhost:5000
+email-to-sql-webhook  |    POST /webhook/email  — submit forwarded email
+email-to-sql-webhook  |    GET  /dashboard      — view extraction status
+email-to-sql-webhook  |    GET  /health         — health check
+email-to-sql-webhook  |
+```
+Full output: [`server-runs/2026-05-13T17-00-15-app-cd-email-to-sql-docker-compose-restart-s-1.log`](server-runs/2026-05-13T17-00-15-app-cd-email-to-sql-docker-compose-restart-s-1.log)
