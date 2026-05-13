@@ -286,3 +286,11 @@ STDOUT:
 ./tests/webhook.spec.ts
 ```
 Full output: [`server-runs/2026-05-13T05-39-42-app-cd-email-to-sql-git-pull-2-1-tail--3-ech-1.log`](server-runs/2026-05-13T05-39-42-app-cd-email-to-sql-git-pull-2-1-tail--3-ech-1.log)
+
+## 2026-05-13T06:00:26.339Z — Mehdi ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `8d36c58` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3160ms)
+```
+rm -rf ~/email-to-sql && git clone https://github.com/Innovaine/email-to-sql.git ~/email-to-sql
+```
