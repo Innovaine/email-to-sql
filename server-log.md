@@ -3840,3 +3840,90 @@ STDOUT:
  Image email-to-sql-email-to-sql Built
 ```
 Full output: [`server-runs/2026-05-13T17-20-51-app-cd-email-to-sql-docker-compose-down-dock-1.log`](server-runs/2026-05-13T17-20-51-app-cd-email-to-sql-docker-compose-down-dock-1.log)
+
+## 2026-05-13T17:21:18.132Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1300d43` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exit 1, 10992ms)
+```
+cd ~/email-to-sql && docker compose up -d && sleep 3 && PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test 2>&1
+```
+STDOUT:
+```
+
+Running 28 tests using 4 workers
+
+  ✓   2 tests/web/fixtures.spec.ts:14:7 › Email-to-SQL fixture-driven extraction tests › high-confidence forward: extracts all fields with high confidence (36ms)
+  ✓   4 tests/web/integration.spec.ts:17:7 › Email-to-SQL webhook integration › health endpoint confirms server is running (31ms)
+  ✓   3 tests/webhook.spec.ts:18:5 › webhook accepts forwarded email and extracts structured data (38ms)
+  ✓   5 tests/web/fixtures.spec.ts:50:7 › Email-to-SQL fixture-driven extraction tests › medium-confidence forward: extracts core fields, flags for review (13ms)
+  ✓   7 tests/webhook.spec.ts:105:5 › webhook rejects request without API key (9ms)
+  ✘   8 tests/web/fixtures.spec.ts:79:7 › Email-to-SQL fixture-driven extraction tests › low-confidence forward: queues for review without extraction (23ms)
+  ✓   9 tests/webhook.spec.ts:126:5 › webhook handles malformed email with error response (22ms)
+  ✓   6 tests/web/integration.spec.ts:37:7 › Email-to-SQL webhook integration › dashboard loads without authentication (123ms)
+  ✓  10 tests/web/integration.spec.ts:51:7 › Email-to-SQL webhook integration › webhook accepts forwarded email with high confidence (29ms)
+  ✓  11 tests/web/integration.spec.ts:132:7 › Email-to-SQL webhook integration › webhook rejects request without API key (24ms)
+  ✓  12 tests/web/integration.spec.ts:150:7 › Email-to-SQL webhook integration › webhook rejects request with invalid API key (4ms)
+  ✓  13 tests/web/integration.spec.ts:165:7 › Email-to-SQL webhook integration › webhook processes low-confidence email and queues for review (7ms)
+  ✓  14 tests/web/integration.spec.ts:198:7 › Email-to-SQL webhook integration › webhook returns different extraction for nested forwards (12ms)
+  ✓  16 tests/web/fixtures.spec.ts:100:7 › Email-to-SQL fixture-driven extraction tests › nested forward: extracts from innermost email correctly (27ms)
+  ✓  17 tests/web/fixtures.spec.ts:128:7 › Email-to-SQL fixture-driven extraction tests › email with quoted text: extracts from new content, ignores quotes (15ms)
+  ✓  18 tests/web/fixtures.spec.ts:152:7 › Email-to-SQL fixture-driven extraction tests › email with attachment mention: extracts despite references to attachments (24ms)
+  ✘  19 tests/web/fixtures.spec.ts:176:7 › Email-to-SQL fixture-driven extraction tests › malformed email: fails gracefully with error (10ms)
+  ✓  20 tests/web/fixtures.spec.ts:197:7 › Email-to-SQL fixture-driven extraction tests › long quoted history: extracts from new content at top (10ms)
+  ✓  21 tests/web/fixtures.spec.ts:220:7 › Email-to-SQL fixture-driven extraction tests › response includes all required fields (11ms)
+  ✓  15 tests/web/integration.spec.ts:251:7 › Email-to-SQL webhook integration › webhook stores extraction and makes it available on dashboard (1.1s)
+  ✓  22 tests/web/fixtures.spec.ts:254:7 › Email-to-SQL fixture-driven extraction tests › dashboard shows all submitted extractions (570ms)
+  ✓  23 tests/web/integration.spec.ts:293:7 › Email-to-SQL webhook integration › dashboard metrics show total extractions and sync status (110ms)
+  ✓  25 tests/web/integration.spec.ts:313:7 › Email-to-SQL webhook integration › webhook response includes Pipedrive sync status (8ms)
+⚠️  Pipedrive API token not configured; skipping Pipedrive verification
+  ✓   1 tests/pipedrive-sync.spec.ts:21:5 › webhook syncs high-confidence extraction to Pipedrive as contact + opportunity (2.1s)
+  ✓  24 tests/web/fixtures.spec.ts:283:7 › Email-to-SQL fixture-driven extraction tests › dashboard displays confidence as visual bar (586ms)
+  ✓  26 tests/pipedrive-sync.spec.ts:145:5 › low-confidence extraction goes to review queue instead of syncing (12ms)
+  ✓  28 tests/pipedrive-sync.spec.ts:190:5 › dashboard displays recent extractions and sync status (118ms)
+  ✓  27 tests/web/fixtures.spec.ts:299:7 › Email-to-SQL fixture-driven extraction tests › dashboard shows metrics correctly (580ms)
+
+
+  1) tests/web/fixtures.spec.ts:79:7 › Email-to-SQL fixture-driven extraction tests › low-confidence forward: queues for review without extraction 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: < [32m0.65[39m
+    Received:   [31m0.6549999999999999[39m
+
+      92 |     
+      93 |     // Confidence should be low
+    > 94 |     expect(extracted.confidence).toBeLessThan(0.65);
+         |                                  ^
+      95 |     
+      96 |     // Status should be 'review' due to low confidence
+      97 |     expect(body.status).toBe('review');
+        at /home/reviewer/email-to-sql/tests/web/fixtures.spec.ts:94:34
+
+    Error Context: test-results/tests-web-fixtures-Email-t-7ace5-r-review-without-extraction/error-context.md
+
+  2) tests/web/fixtures.spec.ts:176:7 › Email-to-SQL fixture-driven extraction tests › malformed email: fails gracefully with error 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m200[39m
+    Received: [31m400[39m
+
+      183 |     });
+      184 |
+    > 185 |     expect(response.status()).toBe(200);
+          |                               ^
+      186 |     const body = await response.json();
+      187 |
+      188 |     // Even malformed should return response structure
+        at /home/reviewer/email-to-sql/tests/web/fixtures.spec.ts:185:31
+
+    Error Context: test-results/tests-web-fixtures-Email-t-b6d89-fails-gracefully-with-error/error-context.md
+
+  2 failed
+    tests/web/fixtures.spec.ts:79:7 › Email-to-SQL fixture-driven extraction tests › low-confidence forward: queues for review without extraction 
+    tests/web/fixtures.spec.ts:176:7 › Email-to-SQL fixture-driven extraction tests › malformed email: fails gracefully with error 
+  26 passed (3.4s)
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-13T17-21-18-app-cd-email-to-sql-docker-compose-up--d-sle-1.log`](server-runs/2026-05-13T17-21-18-app-cd-email-to-sql-docker-compose-up--d-sle-1.log)
