@@ -294,3 +294,12 @@ _Pre-SSH: warehouse pushed to GitHub as commit `8d36c58` so the server's `git pu
 ```
 rm -rf ~/email-to-sql && git clone https://github.com/Innovaine/email-to-sql.git ~/email-to-sql
 ```
+
+## 2026-05-13T06:01:04.840Z — Mehdi ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `6d01f9e` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out, 13449ms)
+```
+cd ~/email-to-sql && docker compose build --progress=plain
+```
+ERROR: Connection timed out
