@@ -1,8 +1,8 @@
 # Week 6 — Email-to-SQL: Automated customer data extraction for SaaS sales teams
 
 **Status:** building
-**Cycle:** 7
-**Saved:** 13/05/2026, 8:55:00 AM
+**Cycle:** 8
+**Saved:** 13/05/2026, 9:07:33 AM
 
 Agent summaries:
 - [Engineering](engineering.md)
@@ -13,3 +13,6 @@ Agent summaries:
 - [PM weekly status](pm-status.md)
 - [Finance](finance.md)
 - [Risk watch](risks.md)
+
+Weekly memos (in `week-06/files/`):
+- [week-06-status.md](files/week-06-status.md)

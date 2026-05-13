@@ -564,3 +564,61 @@ Fast-forward
  create mode 100644 server-runs/2026-05-13T06-04-43-app-cd-home-tester-email-to-sql-timeout-120--1.log
 ```
 Full output: [`server-runs/2026-05-13T06-06-07-app-cd-home-tester-email-to-sql-git-pull---f-1.log`](server-runs/2026-05-13T06-06-07-app-cd-home-tester-email-to-sql-git-pull---f-1.log)
+
+## 2026-05-13T06:06:33.489Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `3bb93f9` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 4638ms) _(showing tail — full 2,318B stdout + 0B stderr)_
+```
+cd /home/tester/email-to-sql && timeout 120 docker compose build 2>&1 | tail -60
+```
+STDOUT:
+```
+…/ ./src/
+#12 DONE 0.0s
+
+#13 [builder 7/7] RUN npm run build
+#13 0.281 
+#13 0.281 > email-to-sql@0.1.0 build
+#13 0.281 > tsc
+#13 0.281 
+#13 1.398 src/pipedrive.ts(294,59): error TS2345: Argument of type 'string | null | undefined' is not assignable to parameter of type 'string | undefined'.
+#13 1.398   Type 'null' is not assignable to type 'string | undefined'.
+#13 1.398 src/server.ts(50,28): error TS7030: Not all code paths return a value.
+#13 1.398 src/server.ts(78,7): error TS2322: Type '{ success: boolean; contactId?: number | undefined; dealId?: number | undefined; error?: string | undefined; }' is not assignable to type '{ success: boolean; error: string; }'.
+#13 1.398   Types of property 'error' are incompatible.
+#13 1.398     Type 'string | undefined' is not assignable to type 'string'.
+#13 1.398       Type 'undefined' is not assignable to type 'string'.
+#13 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 2
+------
+ > [builder 7/7] RUN npm run build:
+0.281 > email-to-sql@0.1.0 build
+0.281 > tsc
+0.281 
+1.398 src/pipedrive.ts(294,59): error TS2345: Argument of type 'string | null | undefined' is not assignable to parameter of type 'string | undefined'.
+1.398   Type 'null' is not assignable to type 'string | undefined'.
+1.398 src/server.ts(50,28): error TS7030: Not all code paths return a value.
+1.398 src/server.ts(78,7): error TS2322: Type '{ success: boolean; contactId?: number | undefined; dealId?: number | undefined; error?: string | undefined; }' is not assignable to type '{ success: boolean; error: string; }'.
+1.398   Types of property 'error' are incompatible.
+1.398     Type 'string | undefined' is not assignable to type 'string'.
+1.398       Type 'undefined' is not assignable to type 'string'.
+------
+Dockerfile:17
+
+--------------------
+
+  15 |     
+
+  16 |     # Compile TypeScript
+
+  17 | >>> RUN npm run build
+
+  18 |     
+
+  19 |     # Runtime stage
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 2
+```
+Full output: [`server-runs/2026-05-13T06-06-33-app-cd-home-tester-email-to-sql-timeout-120--1.log`](server-runs/2026-05-13T06-06-33-app-cd-home-tester-email-to-sql-timeout-120--1.log)
