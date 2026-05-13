@@ -182,3 +182,37 @@ STDOUT:
 ./week-02/engineering.md
 ```
 Full output: [`server-runs/2026-05-13T05-29-49-app-cd-rm--rf-email-to-sql-git-clone-https-g-1.log`](server-runs/2026-05-13T05-29-49-app-cd-rm--rf-email-to-sql-git-clone-https-g-1.log)
+
+## 2026-05-13T05:32:10.219Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d082626` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3122ms)
+```
+cd ~ && rm -rf email-to-sql && git clone https://github.com/Innovaine/email-to-sql.git email-to-sql 2>&1 | tail -5 && cd email-to-sql && echo "=== REPO STATE ===" && find . -type f -not -path './.git/*' | head -20
+```
+STDOUT:
+```
+Cloning into 'email-to-sql'...
+=== REPO STATE ===
+./README.md
+./tests/webhook.spec.ts
+./tests/fixtures.ts
+./tests/pipedrive-sync.spec.ts
+./idea.md
+./week-02/engineering.md
+./week-02/review.md
+./week-02/_index.md
+./week-02/_plan.md
+./server-runs/2026-05-13T05-18-32-app-cd-git-clone-https-github.com-Innovaine--1.log
+./server-runs/2026-05-13T05-18-04-app-ls--la-grep-email-to-sql-ls--la-tmp-emai-1.log
+./server-runs/2026-05-13T05-19-44-app-ls--la-email-to-sql-2-dev-null-echo-Repo-1.log
+./server-runs/2026-05-13T05-29-49-app-cd-rm--rf-email-to-sql-git-clone-https-g-1.log
+./server-runs/2026-05-13T05-20-25-app-cd-git-clone-https-github.com-Innovaine--1.log
+./server-runs/2026-05-13T05-18-51-app-cd-email-to-sql-review-find-.--type-f--n-1.log
+./week-01/test.md
+./week-01/engineering.md
+./week-01/review.md
+./week-01/_index.md
+./week-01/pm-status.md
+```
+Full output: [`server-runs/2026-05-13T05-32-10-app-cd-rm--rf-email-to-sql-git-clone-https-g-1.log`](server-runs/2026-05-13T05-32-10-app-cd-rm--rf-email-to-sql-git-clone-https-g-1.log)
