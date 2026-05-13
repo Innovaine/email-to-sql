@@ -2156,3 +2156,21 @@ STDOUT:
 }
 ```
 Full output: [`server-runs/2026-05-13T16-05-38-app-cd-email-to-sql-docker-compose-down-slee-1.log`](server-runs/2026-05-13T16-05-38-app-cd-email-to-sql-docker-compose-down-slee-1.log)
+
+## 2026-05-13T16:06:08.699Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `d1d33a6` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2226ms)
+```
+curl -s -H "X-API-Key: dev-key-12345" http://localhost:5000/health | jq . 2>/dev/null || curl -s -H "X-API-Key: dev-key-12345" http://localhost:5000/health
+```
+STDOUT:
+```
+{
+  "status": "ok",
+  "version": "0.1.0",
+  "uptime": 33.132130611,
+  "extractions": 0
+}
+```
+Full output: [`server-runs/2026-05-13T16-06-08-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log`](server-runs/2026-05-13T16-06-08-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log)
