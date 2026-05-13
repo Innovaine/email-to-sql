@@ -918,3 +918,42 @@ drwxr-xr-x  2 root     root     4096 May 13 06:15 .
 drwxrwxr-x 18 reviewer reviewer 4096 May 13 06:15 ..
 ```
 Full output: [`server-runs/2026-05-13T06-16-15-app-cd-email-to-sql-ls--la-dist-2-1-head--20-1.log`](server-runs/2026-05-13T06-16-15-app-cd-email-to-sql-ls--la-dist-2-1-head--20-1.log)
+
+## 2026-05-13T06:16:51.396Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `ec2b96b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 10447ms)
+```
+cd ~/email-to-sql && git pull --ff-only && docker compose down && sleep 2 && docker compose up -d && sleep 5 && docker compose logs --tail=15
+```
+STDOUT:
+```
+Updating abc0f95..ec2b96b
+Fast-forward
+ docker-compose.yml                                 |   1 -
+ server-log.md                                      | 120 +++++++++++++++++++++
+ ...-cd-email-to-sql-git-pull---ff-only-2-1-t-1.log |  17 +++
+ ...-cd-email-to-sql-docker-compose-down-slee-1.log |  20 ++++
+ ...-cd-email-to-sql-docker-run---rm-email-to-1.log |  16 +++
+ ...-cd-email-to-sql-docker-compose-up--d-sle-1.log |  52 +++++++++
+ ...-cd-email-to-sql-ls--la-dist-2-1-head--20-1.log |  15 +++
+ 7 files changed, 240 insertions(+), 1 deletion(-)
+ create mode 100644 server-runs/2026-05-13T06-14-09-app-cd-email-to-sql-git-pull---ff-only-2-1-t-1.log
+ create mode 100644 server-runs/2026-05-13T06-14-42-app-cd-email-to-sql-docker-compose-down-slee-1.log
+ create mode 100644 server-runs/2026-05-13T06-15-10-app-cd-email-to-sql-docker-run---rm-email-to-1.log
+ create mode 100644 server-runs/2026-05-13T06-15-38-app-cd-email-to-sql-docker-compose-up--d-sle-1.log
+ create mode 100644 server-runs/2026-05-13T06-16-15-app-cd-email-to-sql-ls--la-dist-2-1-head--20-1.log
+email-to-sql-webhook  | 
+email-to-sql-webhook  | > email-to-sql@0.1.0 start
+email-to-sql-webhook  | > node dist/src/server.js
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ⚠️  PIPEDRIVE_API_TOKEN not set; Pipedrive sync will fail
+email-to-sql-webhook  | ✓ Config loaded: PORT=5000, API_KEY=dev-key-...
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ✅ Email-to-SQL webhook listening on http://localhost:5000
+email-to-sql-webhook  |    POST /webhook/email  — submit forwarded email
+email-to-sql-webhook  |    GET  /dashboard      — view extraction status
+email-to-sql-webhook  |    GET  /health         — health check
+email-to-sql-webhook  |
+```
+Full output: [`server-runs/2026-05-13T06-16-51-app-cd-email-to-sql-git-pull---ff-only-docke-1.log`](server-runs/2026-05-13T06-16-51-app-cd-email-to-sql-git-pull---ff-only-docke-1.log)
