@@ -1757,3 +1757,35 @@ Fast-forward
  1 file changed, 9 insertions(+)
 ```
 Full output: [`server-runs/2026-05-13T15-52-29-app-cd-email-to-sql-git-pull---ff-only-1.log`](server-runs/2026-05-13T15-52-29-app-cd-email-to-sql-git-pull---ff-only-1.log)
+
+## 2026-05-13T15:53:07.059Z — Mehdi ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `b590c95` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 3464ms)
+```
+cd ~/email-to-sql && tail -30 src/extraction.ts | head -20
+```
+STDOUT:
+```
+ * - Email validity is critical (0.1 penalty if invalid)
+ * - Content quality (longer = more context = higher confidence)
+ */
+function calculateConfidence(factors: {
+  hasCompany: boolean;
+  hasEmail: boolean;
+  hasName: boolean;
+  hasBudget: boolean;
+  hasTimeline: boolean;
+  emailValidity: boolean;
+  contentQuality: number; // 0–1 scale
+}): number {
+  let score = 0;
+
+  // Base score from field presence
+  if (factors.hasCompany) score += 0.15;
+  if (factors.hasEmail) score += 0.20;
+  if (factors.hasName) score += 0.10;
+  if (factors.hasBudget) score += 0.20;
+  if (factors.hasTimeline) score += 0.20;
+```
+Full output: [`server-runs/2026-05-13T15-53-07-app-cd-email-to-sql-tail--30-src-extraction.-1.log`](server-runs/2026-05-13T15-53-07-app-cd-email-to-sql-tail--30-src-extraction.-1.log)

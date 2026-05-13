@@ -1,0 +1,32 @@
+# Command 1 on app as engineer
+# Run at: 2026-05-13T15:53:07.039Z
+# Exit code: 0
+# Duration: 3444ms
+
+## Command
+cd ~/email-to-sql && tail -30 src/extraction.ts | head -20
+
+## STDOUT (full)
+ * - Email validity is critical (0.1 penalty if invalid)
+ * - Content quality (longer = more context = higher confidence)
+ */
+function calculateConfidence(factors: {
+  hasCompany: boolean;
+  hasEmail: boolean;
+  hasName: boolean;
+  hasBudget: boolean;
+  hasTimeline: boolean;
+  emailValidity: boolean;
+  contentQuality: number; // 0–1 scale
+}): number {
+  let score = 0;
+
+  // Base score from field presence
+  if (factors.hasCompany) score += 0.15;
+  if (factors.hasEmail) score += 0.20;
+  if (factors.hasName) score += 0.10;
+  if (factors.hasBudget) score += 0.20;
+  if (factors.hasTimeline) score += 0.20;
+
+## STDERR (full)
+(empty)
