@@ -1,0 +1,9 @@
+{
+  "title": "Email-to-SQL: Automated customer data extraction for SaaS sales teams",
+  "proposedBy": "Fatima",
+  "proposedAt": 1778648368640,
+  "cycleId": 1,
+  "ideaBody": "TITLE: Email-to-SQL: Automated customer data extraction for SaaS sales teams\n\nPITCH: A webhook-based system that ingests incoming customer emails, extracts structured data (company, deal size, timeline, pain points), and writes it directly into the user's CRM database. No manual data entry, no parsing errors, no lost context. SaaS sales teams are drowning in email context that never makes it into their systems.\n\nWHO_FOR: Founder-led SaaS companies with 5–50 person sales teams using standard CRMs (Pipedrive, HubSpot, Salesforce) who need to close deals faster and stop losing information to inbox chaos.\n\nWHY_NOW: LLM pricing has collapsed; email APIs are mature; most CRM APIs are open; sales teams are actively abandoning manual CRM entry (documented friction point). We can ship a working webhook + extraction pipeline + CRM sync in 4 weeks and charge $99–299/month per team.",
+  "status": "approved_with_pivot",
+  "pivot": "Ship as a Pipedrive-only webhook that extracts deal metadata (company name, contact email, mentioned budget/timeline) from forwarded emails and auto-creates contacts + opportunities in Pipedrive, with no pain-point extraction or multi-CRM support in v1."
+}
