@@ -21,8 +21,8 @@ app.use(express.json());
 const apiKeyAuth = (req: Request, res: Response, next: NextFunction): void => {
   const providedKey = req.headers['x-api-key'] as string;
 
-  // Allow dashboard without auth (GET /dashboard)
-  if (req.path === '/dashboard' && req.method === 'GET') {
+  // Allow dashboard and health check without auth
+  if ((req.path === '/dashboard' || req.path === '/health') && req.method === 'GET') {
     next();
     return;
   }
@@ -64,6 +64,15 @@ app.post('/webhook/email', async (req: Request, res: Response): Promise<void> =>
   const extraction = extractFromEmail(emailText);
   const extractionId = generateExtractionId();
   extraction.id = extractionId;
+
+  // If extraction failed (malformed email), return 400 error
+  if (extraction.status === 'failed') {
+    res.status(400).json({
+      error: extraction.error || 'Failed to extract data from email',
+      id: extractionId,
+    });
+    return;
+  }
 
   // Step 2: Store extraction in memory
   EXTRACTION_STORE.set(extractionId, extraction);

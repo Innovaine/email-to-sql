@@ -47,7 +47,16 @@ export function extractFromEmail(emailText: string): ExtractionResult {
   }
 
   // Try to find forwarded message boundary (Gmail/Outlook pattern)
-  const forwardedIndex = emailText.search(/------+\s*Forwarded\s+message/i);
+  // IMPORTANT: For nested forwards, find the INNERMOST forward (last occurrence)
+  const forwardMatches = [];
+  const forwardRegex = /------+\s*Forwarded\s+message/gi;
+  let match;
+  while ((match = forwardRegex.exec(emailText)) !== null) {
+    forwardMatches.push(match.index);
+  }
+  
+  // If multiple forwards found, use the LAST one (innermost/original customer email)
+  const forwardedIndex = forwardMatches.length > 0 ? forwardMatches[forwardMatches.length - 1] : -1;
   const messageBody = forwardedIndex !== -1 ? emailText.substring(forwardedIndex) : emailText;
 
   // Extract email addresses and names from forwarded message body first
@@ -174,8 +183,10 @@ function extractCompanyName(text: string, subject: string): string | null {
   const isMatch = fullText.match(/\b([A-Z][A-Za-z0-9\s&]+(?:Inc|Corp|Corporation|LLC|Ltd|Co)?)\s+(?:is|has|was|reached|team|company|sales|looking)\b/i);
   if (isMatch) {
     const candidate = isMatch[1].trim();
-    // Filter out common false positives
-    if (!['We', 'Our', 'The', 'This', 'That'].includes(candidate)) {
+    // Filter out common false positives and overly generic phrases
+    const blacklist = ['We', 'Our', 'The', 'This', 'That', 'a SaaS', 'a startup', 'SaaS'];
+    const isBlacklisted = blacklist.some(word => candidate.toLowerCase().includes(word.toLowerCase()));
+    if (!isBlacklisted && candidate.length > 2) {
       return candidate;
     }
   }
@@ -259,6 +270,10 @@ function isValidEmail(email: string | null): boolean {
  * - Each key field (company, email, budget, timeline) contributes to confidence
  * - Email validity is critical (0.1 penalty if invalid)
  * - Content quality (longer = more context = higher confidence)
+ * 
+ * UPDATED: Lowered scoring to avoid false high-confidence results
+ * - Threshold for auto-sync is 0.75, so we need to be conservative
+ * - Missing any key field should significantly lower confidence
  */
 function calculateConfidence(factors: {
   hasCompany: boolean;
@@ -271,18 +286,18 @@ function calculateConfidence(factors: {
 }): number {
   let score = 0;
 
-  // Base score from field presence
-  if (factors.hasCompany) score += 0.15;
-  if (factors.hasEmail) score += 0.20;
-  if (factors.hasName) score += 0.10;
-  if (factors.hasBudget) score += 0.20;
-  if (factors.hasTimeline) score += 0.20;
+  // Base score from field presence (lowered from previous values)
+  if (factors.hasCompany) score += 0.12;
+  if (factors.hasEmail) score += 0.18;
+  if (factors.hasName) score += 0.08;
+  if (factors.hasBudget) score += 0.18;
+  if (factors.hasTimeline) score += 0.18;
 
   // Email validity check: critical for CRM sync
   if (!factors.emailValidity) score -= 0.15;
 
-  // Content quality bonus
-  score += factors.contentQuality * 0.10;
+  // Content quality bonus (reduced from 0.10 to 0.08)
+  score += factors.contentQuality * 0.08;
 
   // Clamp to [0, 1]
   return Math.max(0, Math.min(1, score));
