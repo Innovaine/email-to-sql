@@ -46,19 +46,20 @@ export function extractFromEmail(emailText: string): ExtractionResult {
     };
   }
 
-  // Extract email headers and body
-  const fromMatch = emailText.match(/From:\s*(.+?)(?:\n|$)/i);
-  const fromEmail = extractEmailAddress(fromMatch ? fromMatch[1] : '');
-  const fromName = extractPersonName(fromMatch ? fromMatch[1] : '');
-  
-  const subjectMatch = emailText.match(/Subject:\s*(.+?)(?:\n|$)/i);
-  const subject = subjectMatch ? subjectMatch[1].trim() : '';
-
   // Try to find forwarded message boundary (Gmail/Outlook pattern)
   const forwardedIndex = emailText.search(/------+\s*Forwarded\s+message/i);
   const messageBody = forwardedIndex !== -1 ? emailText.substring(forwardedIndex) : emailText;
 
-  // Extract company name
+  // Extract email addresses and names from forwarded message body first
+  // (This is the customer's email, not the sales person forwarding)
+  const fromMatch = messageBody.match(/From:\s*(.+?)(?:\n|$)/i);
+  const fromEmail = extractEmailAddress(fromMatch ? fromMatch[1] : '');
+  const fromName = extractPersonName(fromMatch ? fromMatch[1] : '');
+  
+  const subjectMatch = messageBody.match(/Subject:\s*(.+?)(?:\n|$)/i);
+  const subject = subjectMatch ? subjectMatch[1].trim() : '';
+
+  // Extract company name (check signature + full body)
   const company = extractCompanyName(messageBody, subject);
 
   // Extract budget mention
@@ -67,9 +68,13 @@ export function extractFromEmail(emailText: string): ExtractionResult {
   // Extract timeline mention
   const timeline = extractTimeline(messageBody);
 
-  // Contact email: prefer extracted email, fall back to from address
-  const contactEmail = extractEmailAddress(messageBody) || fromEmail;
-  const contactName = extractPersonName(messageBody) || fromName;
+  // Contact email: prefer From header in forwarded message, scan body as fallback
+  const bodyEmail = extractEmailAddress(messageBody);
+  const contactEmail = fromEmail || bodyEmail;
+  
+  // Contact name: prefer From header, scan body/signature as fallback
+  const bodyName = extractPersonName(messageBody);
+  const contactName = fromName || bodyName;
 
   // Calculate confidence score
   const confidence = calculateConfidence({
@@ -117,42 +122,72 @@ function extractEmailAddress(text: string): string | null {
 function extractPersonName(text: string): string | null {
   if (!text) return null;
 
-  // Pattern 1: "Full Name <email@domain>"
-  const angleMatch = text.match(/^([A-Za-z\s]+)\s*<[^>]+>/);
+  // Pattern 1: "Full Name <email@domain>" (most reliable)
+  const angleMatch = text.match(/([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)+)\s*<[^>]+>/);
   if (angleMatch) return angleMatch[1].trim();
 
-  // Pattern 2: Line starting with capital letter at start of text (likely a name)
-  const lineMatch = text.match(/^([A-Z][A-Za-z]+ [A-Z][A-Za-z]+)/m);
-  if (lineMatch) return lineMatch[1].trim();
+  // Pattern 2: Name in signature block (before title or company)
+  // Looks for capitalized name followed by title or company on next line
+  const sigNameMatch = text.match(/\n([A-Z][a-z]+\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s*\n(?:Sales|Director|Manager|CEO|CTO|CFO|VP|President|Head|Lead|Officer|[A-Z][a-z]+\s+(?:Director|Manager))/);
+  if (sigNameMatch) return sigNameMatch[1].trim();
 
-  // Pattern 3: "Best,\nName" or "Thanks,\nName"
-  const signatureMatch = text.match(/(Best|Thanks|Regards|Sincerely)[,\n]\s*([A-Z][A-Za-z]+(?:\s+[A-Z][a-z]+)*)/);
-  if (signatureMatch) return signatureMatch[2].trim();
+  // Pattern 3: "Best,\nName" or "Thanks,\nName" (common email closing)
+  const closingMatch = text.match(/(Best|Thanks|Regards|Sincerely)[,\n]\s*([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)?)/i);
+  if (closingMatch) return closingMatch[2].trim();
+
+  // Pattern 4: Name alone on a line near end of email (likely signature)
+  const lines = text.split('\n').reverse(); // Start from bottom
+  for (let i = 0; i < Math.min(10, lines.length); i++) {
+    const line = lines[i].trim();
+    const nameOnlyMatch = line.match(/^([A-Z][a-z]+\s+[A-Z][a-z]+)$/);
+    if (nameOnlyMatch && line.length < 40) { // Avoid matching long sentences
+      return nameOnlyMatch[1];
+    }
+  }
 
   return null;
 }
 
 /**
  * Extract company name from email content
- * Heuristics: "Company Inc.", "at [Company]", "[Company] is...", capitalized proper nouns
+ * Heuristics: Signature blocks, "Company Inc.", "at [Company]", "[Company] is...", From header
  */
 function extractCompanyName(text: string, subject: string): string | null {
   if (!text) return null;
 
   const fullText = `${subject} ${text}`;
 
-  // Pattern 1: "at [Company]" or "from [Company]"
-  const atMatch = fullText.match(/(?:at|from|with)\s+([A-Z][A-Za-z0-9\s&]*(?:Inc|Corp|LLC|Ltd|Co|Inc\.|Corp\.|Ltd\.))/);
+  // Pattern 1: Company name in signature block (multi-line pattern)
+  // Looks for company name following a title or person name near end of email
+  const sigMatch = text.match(/(?:Director|Manager|CEO|CTO|CFO|VP|President|Head|Lead|Officer|Coordinator|Specialist)[^\n]*\n\s*([A-Z][A-Za-z0-9\s&]+(?:Inc|Corp|Corporation|LLC|Ltd|Co|Inc\.|Corp\.|Ltd\.))/i);
+  if (sigMatch) return sigMatch[1].trim();
+
+  // Pattern 2: Company name with suffix alone on line (typical signature format)
+  const suffixMatch = text.match(/^([A-Z][A-Za-z0-9\s&]+(?:Inc|Corp|Corporation|LLC|Ltd|Co|Inc\.|Corp\.|Ltd\.))$/m);
+  if (suffixMatch) return suffixMatch[1].trim();
+
+  // Pattern 3: "at [Company]" or "from [Company]"
+  const atMatch = fullText.match(/(?:at|from|with)\s+([A-Z][A-Za-z0-9\s&]+(?:Inc|Corp|Corporation|LLC|Ltd|Co))/i);
   if (atMatch) return atMatch[1].trim();
 
-  // Pattern 2: "[Company] is|has|was" or "[Company] team"
-  const isMatch = fullText.match(/\b([A-Z][A-Za-z0-9\s&]*(?:Inc|Corp|LLC|Ltd|Co)?)\s+(?:is|has|was|team|company|sales|CRM|solutions?)\b/);
-  if (isMatch) return isMatch[1].trim();
+  // Pattern 4: "[Company] is|has|was|reached" or "[Company] team"
+  const isMatch = fullText.match(/\b([A-Z][A-Za-z0-9\s&]+(?:Inc|Corp|Corporation|LLC|Ltd|Co)?)\s+(?:is|has|was|reached|team|company|sales|looking)\b/i);
+  if (isMatch) {
+    const candidate = isMatch[1].trim();
+    // Filter out common false positives
+    if (!['We', 'Our', 'The', 'This', 'That'].includes(candidate)) {
+      return candidate;
+    }
+  }
 
-  // Pattern 3: Look for capitalized phrases that might be company names (at least 2 words)
-  // This is more aggressive but helps with "TechStartup Inc" patterns
-  const capMatch = fullText.match(/\b([A-Z][a-z]+\s+[A-Z][a-z]+(?:\s+(?:Inc|Corp|LLC|Ltd|Co))?)\b/);
-  if (capMatch) return capMatch[1].trim();
+  // Pattern 5: Company in "From:" header line (e.g., "From: Name <email@company.com>")
+  // Extract domain and capitalize it as fallback
+  const fromMatch = text.match(/From:\s*[^<]*<[^@]+@([a-zA-Z0-9-]+)\./i);
+  if (fromMatch) {
+    const domain = fromMatch[1];
+    // Capitalize first letter as company name guess
+    return domain.charAt(0).toUpperCase() + domain.slice(1);
+  }
 
   return null;
 }
