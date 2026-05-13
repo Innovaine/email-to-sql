@@ -3380,3 +3380,12 @@ NAMES                  STATUS                    PORTS
 email-to-sql-webhook   Up 24 minutes (healthy)   0.0.0.0:5000->5000/tcp, [::]:5000->5000/tcp
 ```
 Full output: [`server-runs/2026-05-13T16-59-18-app-cd-email-to-sql-git-pull---ff-only-2-1-h-1.log`](server-runs/2026-05-13T16-59-18-app-cd-email-to-sql-git-pull---ff-only-2-1-h-1.log)
+
+## 2026-05-13T16:59:52.060Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `9321b44` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✗ exec-error: Connection timed out, 14302ms)
+```
+cd ~/email-to-sql && docker compose down && sleep 2 && docker compose build 2>&1 | tail -20 && docker compose up -d && sleep 3 && docker compose logs --tail=30
+```
+ERROR: Connection timed out
