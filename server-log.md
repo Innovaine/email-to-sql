@@ -3792,3 +3792,19 @@ e829ee9 Mehdi (engineer, week 12) — pre-SSH sync
 c12d3e7 Week 11 — Email-to-SQL: Automated customer data extraction for SaaS sales teams
 ```
 Full output: [`server-runs/2026-05-13T17-20-12-app-cd-email-to-sql-git-pull---ff-only-git-l-1.log`](server-runs/2026-05-13T17-20-12-app-cd-email-to-sql-git-pull---ff-only-git-l-1.log)
+
+## 2026-05-13T17:20:27.934Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `280127b` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 3366ms)
+```
+cd ~/email-to-sql && git diff e829ee9^..e829ee9 --stat
+```
+STDOUT:
+```
+ src/extraction.ts            | 74 +++++++++++++++++++++++++++++++++++---------
+ tests/pipedrive-sync.spec.ts |  2 +-
+ week-12/_plan.md             | 38 +++++++++++++++++++++++
+ 3 files changed, 98 insertions(+), 16 deletions(-)
+```
+Full output: [`server-runs/2026-05-13T17-20-27-app-cd-email-to-sql-git-diff-e829ee9-..e829e-1.log`](server-runs/2026-05-13T17-20-27-app-cd-email-to-sql-git-diff-e829ee9-..e829e-1.log)
