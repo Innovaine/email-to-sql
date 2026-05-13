@@ -1,0 +1,111 @@
+# Command 1 on app as tester
+# Run at: 2026-05-13T16:01:41.240Z
+# Exit code: 0
+# Duration: 5726ms
+
+## Command
+cd ~/email-to-sql && npx playwright test tests/web/fixtures.spec.ts tests/web/integration.spec.ts --grep-invert "dashboard" --reporter=list 2>&1 | head -100
+
+## STDOUT (full)
+
+Running 16 tests using 2 workers
+
+  ✓   1 tests/web/fixtures.spec.ts:14:7 › Email-to-SQL fixture-driven extraction tests › high-confidence forward: extracts all fields with high confidence (41ms)
+  ✓   2 tests/web/integration.spec.ts:17:7 › Email-to-SQL webhook integration › health endpoint confirms server is running (28ms)
+  ✘   3 tests/web/fixtures.spec.ts:50:7 › Email-to-SQL fixture-driven extraction tests › medium-confidence forward: extracts core fields, flags for review (17ms)
+  ✓   4 tests/web/integration.spec.ts:51:7 › Email-to-SQL webhook integration › webhook accepts forwarded email with high confidence (29ms)
+  ✓   5 tests/web/integration.spec.ts:132:7 › Email-to-SQL webhook integration › webhook rejects request without API key (11ms)
+  ✓   6 tests/web/integration.spec.ts:150:7 › Email-to-SQL webhook integration › webhook rejects request with invalid API key (6ms)
+  ✓   7 tests/web/integration.spec.ts:165:7 › Email-to-SQL webhook integration › webhook processes low-confidence email and queues for review (9ms)
+  ✘   8 tests/web/integration.spec.ts:198:7 › Email-to-SQL webhook integration › webhook returns different extraction for nested forwards (6ms)
+  ✘   9 tests/web/fixtures.spec.ts:79:7 › Email-to-SQL fixture-driven extraction tests › low-confidence forward: queues for review without extraction (29ms)
+  ✓  10 tests/web/integration.spec.ts:313:7 › Email-to-SQL webhook integration › webhook response includes Pipedrive sync status (29ms)
+  ✘  11 tests/web/fixtures.spec.ts:100:7 › Email-to-SQL fixture-driven extraction tests › nested forward: extracts from innermost email correctly (28ms)
+  ✓  12 tests/web/fixtures.spec.ts:128:7 › Email-to-SQL fixture-driven extraction tests › email with quoted text: extracts from new content, ignores quotes (28ms)
+  ✓  13 tests/web/fixtures.spec.ts:152:7 › Email-to-SQL fixture-driven extraction tests › email with attachment mention: extracts despite references to attachments (11ms)
+  ✓  14 tests/web/fixtures.spec.ts:176:7 › Email-to-SQL fixture-driven extraction tests › malformed email: fails gracefully with error (17ms)
+  ✓  15 tests/web/fixtures.spec.ts:197:7 › Email-to-SQL fixture-driven extraction tests › long quoted history: extracts from new content at top (10ms)
+  ✓  16 tests/web/fixtures.spec.ts:220:7 › Email-to-SQL fixture-driven extraction tests › response includes all required fields (10ms)
+
+
+  1) tests/web/fixtures.spec.ts:50:7 › Email-to-SQL fixture-driven extraction tests › medium-confidence forward: extracts core fields, flags for review 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: [32m"TechStartup"[39m
+    Received string:    [31m"a SaaS"[39m
+
+      65 |     // Should extract company and email
+      66 |     expect(extracted.company_name).toBeTruthy();
+    > 67 |     expect(extracted.company_name).toContain('TechStartup');
+         |                                    ^
+      68 |     
+      69 |     expect(extracted.contact_email).toBe('bob@techstartup.io');
+      70 |     
+        at /home/tester/email-to-sql/tests/web/fixtures.spec.ts:67:36
+
+    Error Context: test-results/tests-web-fixtures-Email-t-c4519-ore-fields-flags-for-review/error-context.md
+
+  2) tests/web/fixtures.spec.ts:79:7 › Email-to-SQL fixture-driven extraction tests › low-confidence forward: queues for review without extraction 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: < [32m0.65[39m
+    Received:   [31m0.7199999999999999[39m
+
+      92 |     
+      93 |     // Confidence should be low
+    > 94 |     expect(extracted.confidence).toBeLessThan(0.65);
+         |                                  ^
+      95 |     
+      96 |     // Status should be 'review' due to low confidence
+      97 |     expect(body.status).toBe('review');
+        at /home/tester/email-to-sql/tests/web/fixtures.spec.ts:94:34
+
+    Error Context: test-results/tests-web-fixtures-Email-t-7ace5-r-review-without-extraction/error-context.md
+
+  3) tests/web/fixtures.spec.ts:100:7 › Email-to-SQL fixture-driven extraction tests › nested forward: extracts from innermost email correctly 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"[7mdirector@bigcorp[27m.com"[39m
+    Received: [31m"[7msales-team-lead@oursaas[27m.com"[39m
+
+      115 |     // Should extract from innermost (original customer) email
+      116 |     expect(extracted.company_name).toContain('BigCorp');
+    > 117 |     expect(extracted.contact_email).toBe('director@bigcorp.com');
+          |                                     ^
+      118 |     
+      119 |     // Should find budget mentioned in original
+      120 |     expect(extracted.budget).toBeTruthy();
+        at /home/tester/email-to-sql/tests/web/fixtures.spec.ts:117:37
+
+    Error Context: test-results/tests-web-fixtures-Email-t-fba65-m-innermost-email-correctly/error-context.md
+
+  4) tests/web/integration.spec.ts:198:7 › Email-to-SQL webhook integration › webhook returns different extraction for nested forwards 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: [32m"bigcorp"[39m
+    Received string:    [31m"bob@sales.com"[39m
+
+      245 |
+      246 |     // Should extract from the innermost email
+    > 247 |     expect(body.extracted.contact_email).toContain('bigcorp');
+          |                                          ^
+      248 |     expect(body.extracted).toHaveProperty('confidence');
+      249 |   });
+      250 |
+        at /home/tester/email-to-sql/tests/web/integration.spec.ts:247:42
+
+    Error Context: test-results/tests-web-integration-Emai-69a66-raction-for-nested-forwards/error-context.md
+
+  4 failed
+    tests/web/fixtures.spec.ts:50:7 › Email-to-SQL fixture-driven extraction tests › medium-confidence forward: extracts core fields, flags for review 
+    tests/web/fixtures.spec.ts:79:7 › Email-to-SQL fixture-driven extraction tests › low-confidence forward: queues for review without extraction 
+    tests/web/fixtures.spec.ts:100:7 › Email-to-SQL fixture-driven extraction tests › nested forward: extracts from innermost email correctly 
+    tests/web/integration.spec.ts:198:7 › Email-to-SQL webhook integration › webhook returns different extraction for nested forwards 
+  12 passed (2.2s)
+
+## STDERR (full)
+(empty)

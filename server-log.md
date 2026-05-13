@@ -1974,3 +1974,52 @@ email-to-sql-webhook  |
 {"status":"ok","version":"0.1.0","uptime":46.322542209,"extractions":0}
 ```
 Full output: [`server-runs/2026-05-13T16-00-54-app-cd-email-to-sql-docker-compose-logs---ta-1.log`](server-runs/2026-05-13T16-00-54-app-cd-email-to-sql-docker-compose-logs---ta-1.log)
+
+## 2026-05-13T16:01:41.248Z — Mehdi ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0a01bf3` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 5734ms) _(showing tail — full 6,505B stdout + 0B stderr)_
+```
+cd ~/email-to-sql && npx playwright test tests/web/fixtures.spec.ts tests/web/integration.spec.ts --grep-invert "dashboard" --reporter=list 2>&1 | head -100
+```
+STDOUT:
+```
+…saas[27m.com"[39m
+
+      115 |     // Should extract from innermost (original customer) email
+      116 |     expect(extracted.company_name).toContain('BigCorp');
+    > 117 |     expect(extracted.contact_email).toBe('director@bigcorp.com');
+          |                                     ^
+      118 |     
+      119 |     // Should find budget mentioned in original
+      120 |     expect(extracted.budget).toBeTruthy();
+        at /home/tester/email-to-sql/tests/web/fixtures.spec.ts:117:37
+
+    Error Context: test-results/tests-web-fixtures-Email-t-fba65-m-innermost-email-correctly/error-context.md
+
+  4) tests/web/integration.spec.ts:198:7 › Email-to-SQL webhook integration › webhook returns different extraction for nested forwards 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: [32m"bigcorp"[39m
+    Received string:    [31m"bob@sales.com"[39m
+
+      245 |
+      246 |     // Should extract from the innermost email
+    > 247 |     expect(body.extracted.contact_email).toContain('bigcorp');
+          |                                          ^
+      248 |     expect(body.extracted).toHaveProperty('confidence');
+      249 |   });
+      250 |
+        at /home/tester/email-to-sql/tests/web/integration.spec.ts:247:42
+
+    Error Context: test-results/tests-web-integration-Emai-69a66-raction-for-nested-forwards/error-context.md
+
+  4 failed
+    tests/web/fixtures.spec.ts:50:7 › Email-to-SQL fixture-driven extraction tests › medium-confidence forward: extracts core fields, flags for review 
+    tests/web/fixtures.spec.ts:79:7 › Email-to-SQL fixture-driven extraction tests › low-confidence forward: queues for review without extraction 
+    tests/web/fixtures.spec.ts:100:7 › Email-to-SQL fixture-driven extraction tests › nested forward: extracts from innermost email correctly 
+    tests/web/integration.spec.ts:198:7 › Email-to-SQL webhook integration › webhook returns different extraction for nested forwards 
+  12 passed (2.2s)
+```
+Full output: [`server-runs/2026-05-13T16-01-41-app-cd-email-to-sql-npx-playwright-test-test-1.log`](server-runs/2026-05-13T16-01-41-app-cd-email-to-sql-npx-playwright-test-test-1.log)
