@@ -180,7 +180,7 @@ export async function findOrCreateOrganization(companyName: string): Promise<num
 export async function createDeal(
   title: string,
   personId: number,
-  budgetString?: string,
+  budgetString?: string | null,
   orgId?: number
 ): Promise<number | null> {
   if (!PIPEDRIVE_TOKEN) {

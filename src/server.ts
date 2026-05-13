@@ -18,12 +18,13 @@ app.use(express.text({ type: 'text/plain', limit: '10mb' }));
 app.use(express.json());
 
 // Middleware: API key authentication
-const apiKeyAuth = (req: Request, res: Response, next: NextFunction) => {
+const apiKeyAuth = (req: Request, res: Response, next: NextFunction): void => {
   const providedKey = req.headers['x-api-key'] as string;
 
   // Allow dashboard without auth (GET /dashboard)
   if (req.path === '/dashboard' && req.method === 'GET') {
-    return next();
+    next();
+    return;
   }
 
   // Require API key for webhook and other endpoints
@@ -34,7 +35,7 @@ const apiKeyAuth = (req: Request, res: Response, next: NextFunction) => {
     return;
   }
 
-  return next();
+  next();
 };
 
 app.use(apiKeyAuth);
@@ -47,13 +48,14 @@ app.use(apiKeyAuth);
  * Request: raw email text in body, Content-Type: text/plain
  * Response: JSON with extraction result + Pipedrive sync status
  */
-app.post('/webhook/email', async (req: Request, res: Response) => {
+app.post('/webhook/email', async (req: Request, res: Response): Promise<void> => {
   const emailText = req.body;
 
   if (!emailText || typeof emailText !== 'string') {
-    return res.status(400).json({
+    res.status(400).json({
       error: 'Request body must be raw email text (Content-Type: text/plain)',
     });
+    return;
   }
 
   console.log(`\n📩 Webhook received email (${emailText.length} bytes)`);
@@ -67,7 +69,7 @@ app.post('/webhook/email', async (req: Request, res: Response) => {
   EXTRACTION_STORE.set(extractionId, extraction);
 
   // Step 3: If high confidence, sync to Pipedrive
-  let pipedriveSync = { success: false, error: 'Not attempted' };
+  let pipedriveSync: { success: boolean; error?: string; contactId?: number; dealId?: number } = { success: false, error: 'Not attempted' };
   if (extraction.status === 'success') {
     console.log(`✅ Extraction confidence ${extraction.extracted.confidence.toFixed(2)} >= 0.75; attempting Pipedrive sync`);
 
@@ -88,12 +90,7 @@ app.post('/webhook/email', async (req: Request, res: Response) => {
   }
 
   // Step 4: Return result
-  const response: {
-    id: string;
-    status: string;
-    extracted: any;
-    pipedrive_sync: { success: boolean; error?: string; contactId?: number; dealId?: number };
-  } = {
+  const response = {
     id: extractionId,
     status: extraction.status,
     extracted: extraction.extracted,
