@@ -1389,3 +1389,24 @@ STDOUT:
       <thead>
 ```
 Full output: [`server-runs/2026-05-13T06-34-39-app-curl--s-http-localhost-5000-dashboard-he-1.log`](server-runs/2026-05-13T06-34-39-app-curl--s-http-localhost-5000-dashboard-he-1.log)
+
+## 2026-05-13T06:40:13.978Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `882a321` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2679ms)
+```
+cd ~/email-to-sql && git status && docker ps --filter "name=email-to-sql" --format "table {{.Names}}\t{{.Status}}" && curl -s http://localhost:5000/health | jq .
+```
+STDOUT:
+```
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+NAMES                  STATUS
+email-to-sql-webhook   Up 12 minutes (unhealthy)
+{
+  "error": "Unauthorized: missing or invalid X-API-Key header"
+}
+```
+Full output: [`server-runs/2026-05-13T06-40-13-app-cd-email-to-sql-git-status-docker-ps---f-1.log`](server-runs/2026-05-13T06-40-13-app-cd-email-to-sql-git-status-docker-ps---f-1.log)
