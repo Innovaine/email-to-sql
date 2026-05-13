@@ -1019,3 +1019,12 @@ email-to-sql-webhook  |    GET  /health         — health check
 email-to-sql-webhook  |
 ```
 Full output: [`server-runs/2026-05-13T06-19-12-app-cd-email-to-sql-docker-compose-logs-2-1--1.log`](server-runs/2026-05-13T06-19-12-app-cd-email-to-sql-docker-compose-logs-2-1--1.log)
+
+## 2026-05-13T06:22:03.263Z — Mehdi ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5071565` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✗ exec-error: Connection timed out, 16024ms)
+```
+cd ~/email-to-sql && git pull --ff-only && docker compose down 2>&1 | grep -v "time=" && sleep 2 && timeout 180 docker compose build --progress=plain 2>&1 | tail -50
+```
+ERROR: Connection timed out
