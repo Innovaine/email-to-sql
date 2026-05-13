@@ -1410,3 +1410,21 @@ email-to-sql-webhook   Up 12 minutes (unhealthy)
 }
 ```
 Full output: [`server-runs/2026-05-13T06-40-13-app-cd-email-to-sql-git-status-docker-ps---f-1.log`](server-runs/2026-05-13T06-40-13-app-cd-email-to-sql-git-status-docker-ps---f-1.log)
+
+## 2026-05-13T06:40:39.767Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `24638c3` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2403ms)
+```
+curl -s -H "X-API-Key: dev-key-12345" http://localhost:5000/health | jq .
+```
+STDOUT:
+```
+{
+  "status": "ok",
+  "version": "0.1.0",
+  "uptime": 779.357602503,
+  "extractions": 2
+}
+```
+Full output: [`server-runs/2026-05-13T06-40-39-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log`](server-runs/2026-05-13T06-40-39-app-curl--s--H-X-API-Key-dev-key-12345-http--1.log)

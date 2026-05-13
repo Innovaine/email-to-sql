@@ -15,7 +15,13 @@ import { test, expect } from '@playwright/test';
 test.describe('Email-to-SQL webhook integration', () => {
   
   test('health endpoint confirms server is running', async ({ request }) => {
-    const response = await request.get('http://localhost:5000/health');
+    const apiKey = process.env.EMAIL_TO_SQL_API_KEY || 'dev-key-12345';
+    
+    const response = await request.get('http://localhost:5000/health', {
+      headers: {
+        'X-API-Key': apiKey,
+      },
+    });
     
     expect(response.status()).toBe(200);
     const body = await response.json();
