@@ -18,7 +18,7 @@ app.use(express.text({ type: 'text/plain', limit: '10mb' }));
 app.use(express.json());
 
 // Middleware: API key authentication
-const apiKeyAuth = (req: Request, res: Response, next: NextFunction) => {
+const apiKeyAuth = (req: Request, res: Response, next: NextFunction): void => {
   const providedKey = req.headers['x-api-key'] as string;
 
   // Allow dashboard without auth (GET /dashboard)
@@ -33,7 +33,7 @@ const apiKeyAuth = (req: Request, res: Response, next: NextFunction) => {
     });
   }
 
-  next();
+  return next();
 };
 
 app.use(apiKeyAuth);
@@ -87,7 +87,12 @@ app.post('/webhook/email', async (req: Request, res: Response) => {
   }
 
   // Step 4: Return result
-  const response = {
+  const response: {
+    id: string;
+    status: string;
+    extracted: any;
+    pipedrive_sync: { success: boolean; error?: string; contactId?: number; dealId?: number };
+  } = {
     id: extractionId,
     status: extraction.status,
     extracted: extraction.extracted,

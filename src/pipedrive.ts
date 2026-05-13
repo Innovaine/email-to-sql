@@ -272,14 +272,14 @@ function parseBudgetToValue(budgetString: string): number {
 export async function syncToPipedrive(
   contactName: string,
   contactEmail: string,
-  companyName: string | null,
-  budget: string | null,
-  timeline: string | null
+  companyName: string | null | undefined,
+  budget: string | null | undefined,
+  timeline: string | null | undefined
 ): Promise<{ success: boolean; contactId?: number; dealId?: number; error?: string }> {
   try {
     // Step 1: Create organization
     let orgId: number | null = null;
-    if (companyName) {
+    if (companyName && typeof companyName === 'string') {
       orgId = await findOrCreateOrganization(companyName);
     }
 

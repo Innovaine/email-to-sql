@@ -303,3 +303,62 @@ _Pre-SSH: warehouse pushed to GitHub as commit `6d01f9e` so the server's `git pu
 cd ~/email-to-sql && docker compose build --progress=plain
 ```
 ERROR: Connection timed out
+
+## 2026-05-13T06:01:41.022Z — Mehdi ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `5dbeffb` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 4878ms) _(showing tail — full 3,327B stdout + 0B stderr)_
+```
+cd ~/email-to-sql && timeout 180 docker compose up -d --build 2>&1 | head -100
+```
+STDOUT:
+```
+…
+#12 [builder 6/7] COPY src/ ./src/
+#12 CACHED
+
+#13 [builder 7/7] RUN npm run build
+#13 0.278 
+#13 0.278 > email-to-sql@0.1.0 build
+#13 0.278 > tsc
+#13 0.278 
+#13 1.323 src/pipedrive.ts(294,59): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string | undefined'.
+#13 1.323   Type 'null' is not assignable to type 'string | undefined'.
+#13 1.324 src/server.ts(49,28): error TS7030: Not all code paths return a value.
+#13 1.324 src/server.ts(77,7): error TS2322: Type '{ success: boolean; contactId?: number | undefined; dealId?: number | undefined; error?: string | undefined; }' is not assignable to type '{ success: boolean; error: string; }'.
+#13 1.324   Types of property 'error' are incompatible.
+#13 1.324     Type 'string | undefined' is not assignable to type 'string'.
+#13 1.324       Type 'undefined' is not assignable to type 'string'.
+#13 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 2
+------
+ > [builder 7/7] RUN npm run build:
+0.278 > email-to-sql@0.1.0 build
+0.278 > tsc
+0.278 
+1.323 src/pipedrive.ts(294,59): error TS2345: Argument of type 'string | null' is not assignable to parameter of type 'string | undefined'.
+1.323   Type 'null' is not assignable to type 'string | undefined'.
+1.324 src/server.ts(49,28): error TS7030: Not all code paths return a value.
+1.324 src/server.ts(77,7): error TS2322: Type '{ success: boolean; contactId?: number | undefined; dealId?: number | undefined; error?: string | undefined; }' is not assignable to type '{ success: boolean; error: string; }'.
+1.324   Types of property 'error' are incompatible.
+1.324     Type 'string | undefined' is not assignable to type 'string'.
+1.324       Type 'undefined' is not assignable to type 'string'.
+------
+Dockerfile:17
+
+--------------------
+
+  15 |     
+
+  16 |     # Compile TypeScript
+
+  17 | >>> RUN npm run build
+
+  18 |     
+
+  19 |     # Runtime stage
+
+--------------------
+
+failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 2
+```
+Full output: [`server-runs/2026-05-13T06-01-41-app-cd-email-to-sql-timeout-180-docker-compo-1.log`](server-runs/2026-05-13T06-01-41-app-cd-email-to-sql-timeout-180-docker-compo-1.log)
