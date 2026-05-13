@@ -1,0 +1,13 @@
+# Command 1 on app as reviewer
+# Run at: 2026-05-13T05:18:04.701Z
+# Exit code: 0
+# Duration: 2626ms
+
+## Command
+ls -la ~/ | grep email-to-sql; ls -la /tmp/email-to-sql 2>/dev/null || echo "no tmp clone"
+
+## STDOUT (full)
+no tmp clone
+
+## STDERR (full)
+(empty)
