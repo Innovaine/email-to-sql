@@ -1,0 +1,96 @@
+Email-to-SQL Week 10 Test Execution Output
+==========================================
+
+Date: 13/05/2026
+Tester: Amil
+Cycle: 12
+Tool: Playwright (system-wide browser at /usr/local/share/playwright-browsers)
+
+Command executed:
+-----------------
+cd ~/email-to-sql
+PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test --reporter=list
+
+Server status before test:
+--------------------------
+Container: email-to-sql-webhook
+Status: Running
+Port: 5000
+Logs: ✅ Email-to-SQL webhook listening on http://localhost:5000
+Warning: ⚠️  PIPEDRIVE_API_TOKEN not set; Pipedrive sync will fail (expected in test env)
+
+Test execution results:
+-----------------------
+Running 28 tests using 4 workers
+
+PASSED (24 tests):
+✓ tests/webhook.spec.ts:18:5 › webhook accepts forwarded email and extracts structured data (47ms)
+✓ tests/web/integration.spec.ts:17:7 › health endpoint confirms server is running (30ms)
+✓ tests/web/integration.spec.ts:37:7 › dashboard loads without authentication (100ms)
+✓ tests/web/integration.spec.ts:51:7 › webhook accepts forwarded email with high confidence (18ms)
+✓ tests/webhook.spec.ts:105:5 › webhook rejects request without API key (9ms)
+✓ tests/web/integration.spec.ts:132:7 › webhook rejects request without API key (17ms)
+✓ tests/web/integration.spec.ts:150:7 › webhook rejects request with invalid API key (5ms)
+✓ tests/web/integration.spec.ts:165:7 › webhook processes low-confidence email and queues for review (8ms)
+✓ tests/web/integration.spec.ts:198:7 › webhook returns different extraction for nested forwards (9ms)
+✓ tests/web/integration.spec.ts:251:7 › webhook stores extraction and makes it available on dashboard (1.1s)
+✓ tests/web/fixtures.spec.ts:79:7 › low-confidence forward: queues for review without extraction (24ms)
+✓ tests/web/fixtures.spec.ts:100:7 › nested forward: extracts from innermost email correctly (12ms)
+✓ tests/web/fixtures.spec.ts:128:7 › email with quoted text: extracts from new content, ignores quotes (19ms)
+✓ tests/web/fixtures.spec.ts:152:7 › email with attachment mention: extracts despite references to attachments (14ms)
+✓ tests/web/fixtures.spec.ts:176:7 › malformed email: fails gracefully with error (8ms)
+✓ tests/web/fixtures.spec.ts:197:7 › long quoted history: extracts from new content at top (7ms)
+✓ tests/web/fixtures.spec.ts:220:7 › response includes all required fields (24ms)
+✓ tests/web/fixtures.spec.ts:254:7 › dashboard shows all submitted extractions (582ms)
+✓ tests/web/integration.spec.ts:293:7 › dashboard metrics show total extractions and sync status (103ms)
+✓ tests/web/integration.spec.ts:313:7 › webhook response includes Pipedrive sync status (8ms)
+✓ tests/web/fixtures.spec.ts:283:7 › dashboard displays confidence as visual bar (576ms)
+✓ tests/web/fixtures.spec.ts:299:7 › dashboard shows metrics correctly (570ms)
+✓ tests/pipedrive-sync.spec.ts:21:5 › webhook syncs high-confidence extraction to Pipedrive as contact + opportunity (2.1s)
+✓ tests/pipedrive-sync.spec.ts:145:5 › low-confidence extraction goes to review queue instead of syncing (10ms)
+
+FAILED (4 tests):
+✘ tests/pipedrive-sync.spec.ts:190:5 › dashboard displays recent extractions and sync status (132ms)
+  Error: strict mode violation: locator('text=/extractions|synced|confidence/i') resolved to 4 elements
+  Expected: 1 element visible
+  Actual: 4 elements matched (Total Extractions, Auto-Synced, Avg Confidence, Confidence table header)
+  
+✘ tests/web/fixtures.spec.ts:14:7 › high-confidence forward: extracts all fields with high confidence (39ms)
+  Error: confidence score below threshold
+  Expected: >= 0.85
+  Received: 0.82
+  Gap: 0.03
+  
+✘ tests/web/fixtures.spec.ts:50:7 › medium-confidence forward: extracts core fields, flags for review (25ms)
+  Error: company name case mismatch
+  Expected: "TechStartup"
+  Received: "Techstartup"
+  
+✘ tests/webhook.spec.ts:126:5 › webhook handles malformed email with error response (20ms)
+  Error: incorrect HTTP status code for error
+  Expected: 400 Bad Request
+  Received: 200 OK
+
+Total duration: 3.8 seconds
+Pass rate: 24/28 = 85.7%
+
+Server stability:
+-----------------
+No crashes during test execution
+No restarts required
+Container remained healthy throughout
+All 28 tests completed without infrastructure issues
+
+Evidence files:
+---------------
+Full log: server-runs/2026-05-13T16-35-31-app-cd-email-to-sql-PLAYWRIGHT_BROWSERS_PATH-1.log
+Failure screenshots: test-results/ (Playwright auto-saved)
+Error context files: test-results/tests-*/error-context.md (Playwright auto-generated)
+
+Next actions:
+-------------
+Tasks created for engineer:
+- Task #5: Fix Playwright selector (low priority)
+- Task #6: Tune confidence threshold (medium priority)
+- Task #7: Fix company name case sensitivity (medium priority)
+- Task #8: Fix malformed email error handling (HIGH priority - user-facing)

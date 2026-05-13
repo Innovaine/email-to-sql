@@ -3110,3 +3110,206 @@ STDOUT:
 found 0 vulnerabilities
 ```
 Full output: [`server-runs/2026-05-13T16-31-50-app-cd-email-to-sql-git-pull---ff-only-npm-i-1.log`](server-runs/2026-05-13T16-31-50-app-cd-email-to-sql-git-pull---ff-only-npm-i-1.log)
+
+## 2026-05-13T16:32:29.101Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `547dc05` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✗ exec-error: Connection timed out, 13323ms)
+```
+cd ~/email-to-sql && npx playwright test 2>&1 | tee test-output.txt
+```
+ERROR: Connection timed out
+
+## 2026-05-13T16:33:12.107Z — Yuki ran 1 command(s)
+### Command 1 on app as reviewer (✗ exec-error: Connection timed out, 18607ms)
+```
+cd ~/email-to-sql && timeout 120 npx playwright test 2>&1 | tail -100
+```
+ERROR: Connection timed out
+
+## 2026-05-13T16:34:50.715Z — Amil ran 1 command(s)
+### Command 1 on app as tester (✓ exit 0, 2535ms)
+```
+cd ~/email-to-sql && docker ps --filter name=email-to-sql --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+```
+STDOUT:
+```
+NAMES     STATUS    PORTS
+```
+Full output: [`server-runs/2026-05-13T16-34-50-app-cd-email-to-sql-docker-ps---filter-name--1.log`](server-runs/2026-05-13T16-34-50-app-cd-email-to-sql-docker-ps---filter-name--1.log)
+
+## 2026-05-13T16:35:08.177Z — Amil ran 1 command(s)
+### Command 1 on app as tester (✓ exit 0, 6185ms) _(showing tail — full 7,329B stdout + 0B stderr)_
+```
+cd ~/email-to-sql && git pull --ff-only && docker compose up -d && sleep 3 && docker compose logs --tail=30
+```
+STDOUT:
+```
+…-test-2-1-1.log
+ create mode 100644 server-runs/2026-05-13T16-24-19-app-cd-email-to-sql-git-pull---ff-only-1.log
+ create mode 100644 server-runs/2026-05-13T16-24-56-app-cd-email-to-sql-docker-compose-down-slee-1.log
+ create mode 100644 server-runs/2026-05-13T16-25-32-app-cd-email-to-sql-npx-playwright-test-2-1-1.log
+ create mode 100644 server-runs/2026-05-13T16-26-10-app-cd-email-to-sql-npm-install-2-1-tail--20-1.log
+ create mode 100644 server-runs/2026-05-13T16-26-53-app-cd-email-to-sql-npx-playwright-test-2-1-1.log
+ create mode 100644 server-runs/2026-05-13T16-28-57-app-cd-email-to-sql-git-pull---ff-only-docke-1.log
+ create mode 100644 server-runs/2026-05-13T16-29-46-app-cd-email-to-sql-git-log---oneline--10-1.log
+ create mode 100644 server-runs/2026-05-13T16-30-13-app-cd-email-to-sql-git-show-HEAD---stat-1.log
+ create mode 100644 server-runs/2026-05-13T16-31-50-app-cd-email-to-sql-git-pull---ff-only-npm-i-1.log
+ create mode 100644 week-08/_index.md
+ create mode 100644 week-08/files/week-08-risks.md
+ create mode 100644 week-08/pm-status.md
+ create mode 100644 week-08/risks.md
+ create mode 100644 week-08/test.md
+ create mode 100644 week-09/_index.md
+ create mode 100644 week-09/_plan.md
+ create mode 100644 week-09/engineering.md
+ create mode 100644 week-09/pm-status.md
+ create mode 100644 week-09/review.md
+ create mode 100644 week-10/_plan.md
+ create mode 100644 week-10/engineering.md
+email-to-sql-webhook  | 
+email-to-sql-webhook  | > email-to-sql@0.1.0 start
+email-to-sql-webhook  | > node dist/server.js
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ⚠️  PIPEDRIVE_API_TOKEN not set; Pipedrive sync will fail
+email-to-sql-webhook  | ✓ Config loaded: PORT=5000, API_KEY=dev-key-...
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ✅ Email-to-SQL webhook listening on http://localhost:5000
+email-to-sql-webhook  |    POST /webhook/email  — submit forwarded email
+email-to-sql-webhook  |    GET  /dashboard      — view extraction status
+email-to-sql-webhook  |    GET  /health         — health check
+email-to-sql-webhook  |
+```
+Full output: [`server-runs/2026-05-13T16-35-08-app-cd-email-to-sql-git-pull---ff-only-docke-1.log`](server-runs/2026-05-13T16-35-08-app-cd-email-to-sql-git-pull---ff-only-docke-1.log)
+
+## 2026-05-13T16:35:31.430Z — Amil ran 1 command(s)
+### Command 1 on app as tester (✗ exit 1, 6950ms)
+```
+cd ~/email-to-sql && PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test --reporter=list 2>&1
+```
+STDOUT:
+```
+
+Running 28 tests using 4 workers
+
+  ✓   2 tests/web/integration.spec.ts:17:7 › Email-to-SQL webhook integration › health endpoint confirms server is running (30ms)
+  ✓   1 tests/webhook.spec.ts:18:5 › webhook accepts forwarded email and extracts structured data (47ms)
+  ✘   4 tests/web/fixtures.spec.ts:14:7 › Email-to-SQL fixture-driven extraction tests › high-confidence forward: extracts all fields with high confidence (39ms)
+  ✓   6 tests/webhook.spec.ts:105:5 › webhook rejects request without API key (9ms)
+  ✘   7 tests/webhook.spec.ts:126:5 › webhook handles malformed email with error response (20ms)
+  ✓   5 tests/web/integration.spec.ts:37:7 › Email-to-SQL webhook integration › dashboard loads without authentication (100ms)
+  ✓   8 tests/web/integration.spec.ts:51:7 › Email-to-SQL webhook integration › webhook accepts forwarded email with high confidence (18ms)
+  ✓   9 tests/web/integration.spec.ts:132:7 › Email-to-SQL webhook integration › webhook rejects request without API key (17ms)
+  ✓  10 tests/web/integration.spec.ts:150:7 › Email-to-SQL webhook integration › webhook rejects request with invalid API key (5ms)
+  ✓  11 tests/web/integration.spec.ts:165:7 › Email-to-SQL webhook integration › webhook processes low-confidence email and queues for review (8ms)
+  ✓  12 tests/web/integration.spec.ts:198:7 › Email-to-SQL webhook integration › webhook returns different extraction for nested forwards (9ms)
+  ✘  14 tests/web/fixtures.spec.ts:50:7 › Email-to-SQL fixture-driven extraction tests › medium-confidence forward: extracts core fields, flags for review (25ms)
+  ✓  15 tests/web/fixtures.spec.ts:79:7 › Email-to-SQL fixture-driven extraction tests › low-confidence forward: queues for review without extraction (24ms)
+  ✓  16 tests/web/fixtures.spec.ts:100:7 › Email-to-SQL fixture-driven extraction tests › nested forward: extracts from innermost email correctly (12ms)
+  ✓  17 tests/web/fixtures.spec.ts:128:7 › Email-to-SQL fixture-driven extraction tests › email with quoted text: extracts from new content, ignores quotes (19ms)
+  ✓  18 tests/web/fixtures.spec.ts:152:7 › Email-to-SQL fixture-driven extraction tests › email with attachment mention: extracts despite references to attachments (14ms)
+  ✓  19 tests/web/fixtures.spec.ts:176:7 › Email-to-SQL fixture-driven extraction tests › malformed email: fails gracefully with error (8ms)
+  ✓  20 tests/web/fixtures.spec.ts:197:7 › Email-to-SQL fixture-driven extraction tests › long quoted history: extracts from new content at top (7ms)
+  ✓  21 tests/web/fixtures.spec.ts:220:7 › Email-to-SQL fixture-driven extraction tests › response includes all required fields (24ms)
+  ✓  13 tests/web/integration.spec.ts:251:7 › Email-to-SQL webhook integration › webhook stores extraction and makes it available on dashboard (1.1s)
+  ✓  23 tests/web/integration.spec.ts:293:7 › Email-to-SQL webhook integration › dashboard metrics show total extractions and sync status (103ms)
+  ✓  24 tests/web/integration.spec.ts:313:7 › Email-to-SQL webhook integration › webhook response includes Pipedrive sync status (8ms)
+  ✓  22 tests/web/fixtures.spec.ts:254:7 › Email-to-SQL fixture-driven extraction tests › dashboard shows all submitted extractions (582ms)
+⚠️  Pipedrive API token not configured; skipping Pipedrive verification
+  ✓   3 tests/pipedrive-sync.spec.ts:21:5 › webhook syncs high-confidence extraction to Pipedrive as contact + opportunity (2.1s)
+  ✓  26 tests/pipedrive-sync.spec.ts:145:5 › low-confidence extraction goes to review queue instead of syncing (10ms)
+  ✘  27 tests/pipedrive-sync.spec.ts:190:5 › dashboard displays recent extractions and sync status (132ms)
+  ✓  25 tests/web/fixtures.spec.ts:283:7 › Email-to-SQL fixture-driven extraction tests › dashboard displays confidence as visual bar (576ms)
+  ✓  28 tests/web/fixtures.spec.ts:299:7 › Email-to-SQL fixture-driven extraction tests › dashboard shows metrics correctly (570ms)
+
+
+  1) tests/pipedrive-sync.spec.ts:190:5 › dashboard displays recent extractions and sync status ────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=/extractions|synced|confidence/i')
+    Expected: visible
+    Error: strict mode violation: locator('text=/extractions|synced|confidence/i') resolved to 4 elements:
+        1) <div class="metric-label">Total Extractions</div> aka getByText('Total Extractions')
+        2) <div class="metric-label">Auto-Synced</div> aka getByText('Auto-Synced')
+        3) <div class="metric-label">Avg Confidence</div> aka getByText('Avg Confidence')
+        4) <th>Confidence</th> aka getByRole('columnheader', { name: 'Confidence' })
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=/extractions|synced|confidence/i')[22m
+
+
+      207 |   // Sanity check: page should show some form of metric (extraction count, sync rate)
+      208 |   const metric = page.locator('text=/extractions|synced|confidence/i');
+    > 209 |   await expect(metric).toBeVisible({ timeout: 5000 });
+          |                        ^
+      210 | });
+      211 |
+        at /home/tester/email-to-sql/tests/pipedrive-sync.spec.ts:209:24
+
+    Error Context: test-results/tests-pipedrive-sync-dashb-6bd3c-extractions-and-sync-status/error-context.md
+
+  2) tests/web/fixtures.spec.ts:14:7 › Email-to-SQL fixture-driven extraction tests › high-confidence forward: extracts all fields with high confidence 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThanOrEqual[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: >= [32m0.85[39m
+    Received:    [31m0.82[39m
+
+      42 |     
+      43 |     // Confidence should meet or exceed expectations
+    > 44 |     expect(extracted.confidence).toBeGreaterThanOrEqual(exp.minConfidence);
+         |                                  ^
+      45 |     
+      46 |     // High confidence should trigger auto-sync (success status)
+      47 |     expect(body.status).toBe('success');
+        at /home/tester/email-to-sql/tests/web/fixtures.spec.ts:44:34
+
+    Error Context: test-results/tests-web-fixtures-Email-t-f2806-fields-with-high-confidence/error-context.md
+
+  3) tests/web/fixtures.spec.ts:50:7 › Email-to-SQL fixture-driven extraction tests › medium-confidence forward: extracts core fields, flags for review 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: [32m"TechStartup"[39m
+    Received string:    [31m"Techstartup"[39m
+
+      65 |     // Should extract company and email
+      66 |     expect(extracted.company_name).toBeTruthy();
+    > 67 |     expect(extracted.company_name).toContain('TechStartup');
+         |                                    ^
+      68 |     
+      69 |     expect(extracted.contact_email).toBe('bob@techstartup.io');
+      70 |     
+        at /home/tester/email-to-sql/tests/web/fixtures.spec.ts:67:36
+
+    Error Context: test-results/tests-web-fixtures-Email-t-c4519-ore-fields-flags-for-review/error-context.md
+
+  4) tests/webhook.spec.ts:126:5 › webhook handles malformed email with error response ─────────────
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m400[39m
+    Received: [31m200[39m
+
+      139 |
+      140 |   // Should return 400 Bad Request, not 500 Internal Server Error
+    > 141 |   expect(response.status()).toBe(400);
+          |                             ^
+      142 |
+      143 |   const body = await response.json();
+      144 |   expect(body).toHaveProperty('error'); // Error message for debugging
+        at /home/tester/email-to-sql/tests/webhook.spec.ts:141:29
+
+    Error Context: test-results/tests-webhook-webhook-hand-08050-d-email-with-error-response/error-context.md
+
+  4 failed
+    tests/pipedrive-sync.spec.ts:190:5 › dashboard displays recent extractions and sync status ─────
+    tests/web/fixtures.spec.ts:14:7 › Email-to-SQL fixture-driven extraction tests › high-confidence forward: extracts all fields with high confidence 
+    tests/web/fixtures.spec.ts:50:7 › Email-to-SQL fixture-driven extraction tests › medium-confidence forward: extracts core fields, flags for review 
+    tests/webhook.spec.ts:126:5 › webhook handles malformed email with error response ──────────────
+  24 passed (3.8s)
+```
+ERROR: command exited 1
+Full output: [`server-runs/2026-05-13T16-35-31-app-cd-email-to-sql-PLAYWRIGHT_BROWSERS_PATH-1.log`](server-runs/2026-05-13T16-35-31-app-cd-email-to-sql-PLAYWRIGHT_BROWSERS_PATH-1.log)
