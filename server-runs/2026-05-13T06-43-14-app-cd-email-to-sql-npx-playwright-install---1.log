@@ -1,0 +1,17 @@
+# Command 1 on app as tester
+# Run at: 2026-05-13T06:43:14.624Z
+# Exit code: 0
+# Duration: 3385ms
+
+## Command
+cd ~/email-to-sql && npx playwright install --with-deps 2>&1 | tail -5
+
+## STDOUT (full)
+Switching to root user to install dependencies...
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+sudo: a password is required
+Failed to install browsers
+Error: Installation process exited with code: 1
+
+## STDERR (full)
+(empty)
