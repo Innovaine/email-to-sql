@@ -205,6 +205,6 @@ test('dashboard displays recent extractions and sync status', async ({ page }) =
   await expect(statusCell).toBeVisible({ timeout: 5000 });
 
   // Sanity check: page should show some form of metric (extraction count, sync rate)
-  const metric = page.locator('text=/extractions|synced|confidence/i');
+  const metric = page.locator('text=/extractions|synced|confidence/i').first();
   await expect(metric).toBeVisible({ timeout: 5000 });
 });

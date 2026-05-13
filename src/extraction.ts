@@ -46,6 +46,27 @@ export function extractFromEmail(emailText: string): ExtractionResult {
     };
   }
 
+  // Validate email structure: must have From or Subject header
+  // Real emails (even forwarded) always have these
+  const hasFromHeader = /^From:/mi.test(emailText);
+  const hasSubjectHeader = /^Subject:/mi.test(emailText);
+  
+  if (!hasFromHeader && !hasSubjectHeader) {
+    return {
+      id: 'unknown',
+      status: 'failed',
+      extracted: {
+        company_name: null,
+        contact_email: null,
+        contact_name: null,
+        budget: null,
+        timeline: null,
+        confidence: 0,
+      },
+      error: 'Invalid email format: missing From and Subject headers',
+    };
+  }
+
   // Try to find forwarded message boundary (Gmail/Outlook pattern)
   // IMPORTANT: For nested forwards, find the INNERMOST forward (last occurrence)
   const forwardMatches = [];
@@ -160,6 +181,8 @@ function extractPersonName(text: string): string | null {
 /**
  * Extract company name from email content
  * Heuristics: Signature blocks, "Company Inc.", "at [Company]", "[Company] is...", From header
+ * 
+ * PRIORITY ORDER: proper nouns with caps/suffixes > descriptive phrases
  */
 function extractCompanyName(text: string, subject: string): string | null {
   if (!text) return null;
@@ -175,23 +198,38 @@ function extractCompanyName(text: string, subject: string): string | null {
   const suffixMatch = text.match(/^([A-Z][A-Za-z0-9\s&]+(?:Inc|Corp|Corporation|LLC|Ltd|Co|Inc\.|Corp\.|Ltd\.))$/m);
   if (suffixMatch) return suffixMatch[1].trim();
 
-  // Pattern 3: "at [Company]" or "from [Company]" or "We're [Company]"
+  // Pattern 3: Proper noun without suffix but clearly a company name
+  // e.g., "TechRX Corp is evaluating..." or "TechRX is a healthcare tech..."
+  // Look for capitalized words (1-2 words max) followed by context clues
+  const properNounMatch = fullText.match(/\b([A-Z][A-Za-z0-9]{2,}(?:\s+[A-Z][A-Za-z0-9]{2,})?)\s+(?:Corp|Inc|is\s+(?:evaluating|looking|a|an)|Industries)\b/i);
+  if (properNounMatch) {
+    const candidate = properNounMatch[1].trim();
+    // Ensure it's not a common English word or pronoun
+    const blacklist = ['We', 'Our', 'The', 'This', 'That', 'They', 'There', 'Their'];
+    const isBlacklisted = blacklist.includes(candidate);
+    if (!isBlacklisted) {
+      return candidate;
+    }
+  }
+
+  // Pattern 4: "at [Company]" or "from [Company]" or "We're [Company]"
   const atMatch = fullText.match(/(?:at|from|with|We're|I'm\s+(?:from|at))\s+([A-Z][A-Za-z0-9\s&]+(?:Inc|Corp|Corporation|LLC|Ltd|Co))/i);
   if (atMatch) return atMatch[1].trim();
 
-  // Pattern 4: "[Company] is|has|was|reached" or "[Company] team"
+  // Pattern 5: "[Company] is|has|was|reached" or "[Company] team"
+  // LOWER PRIORITY - only use if no proper noun found above
   const isMatch = fullText.match(/\b([A-Z][A-Za-z0-9\s&]+(?:Inc|Corp|Corporation|LLC|Ltd|Co)?)\s+(?:is|has|was|reached|team|company|sales|looking)\b/i);
   if (isMatch) {
     const candidate = isMatch[1].trim();
     // Filter out common false positives and overly generic phrases
-    const blacklist = ['We', 'Our', 'The', 'This', 'That', 'a SaaS', 'a startup', 'SaaS'];
+    const blacklist = ['We', 'Our', 'The', 'This', 'That', 'a SaaS', 'a startup', 'SaaS', 'a healthcare', 'a tech'];
     const isBlacklisted = blacklist.some(word => candidate.toLowerCase().includes(word.toLowerCase()));
     if (!isBlacklisted && candidate.length > 2) {
       return candidate;
     }
   }
 
-  // Pattern 5: Company in "From:" header line (e.g., "From: Name <email@company.com>")
+  // Pattern 6: Company in "From:" header line (e.g., "From: Name <email@company.com>")
   // Extract domain and format properly (preserve mixed case like TechStartup)
   const fromMatch = text.match(/From:\s*[^<]*<[^@]+@([a-zA-Z0-9-]+)\./i);
   if (fromMatch) {
@@ -288,9 +326,12 @@ function isValidEmail(email: string | null): boolean {
  * - Email validity is critical (0.1 penalty if invalid)
  * - Content quality (longer = more context = higher confidence)
  * 
- * UPDATED: Lowered scoring to avoid false high-confidence results
- * - Threshold for auto-sync is 0.75, so we need to be conservative
+ * UPDATED: Conservative scoring to prevent false high-confidence results
+ * - Threshold for auto-sync is 0.75, so we need to be very conservative
  * - Missing any key field should significantly lower confidence
+ * - All fields present + valid email = 0.85+
+ * - Some fields missing = 0.50-0.75 (review queue)
+ * - Most fields missing = <0.50 (low confidence)
  */
 function calculateConfidence(factors: {
   hasCompany: boolean;
@@ -303,18 +344,21 @@ function calculateConfidence(factors: {
 }): number {
   let score = 0;
 
-  // Base score from field presence (tuned to hit 0.85+ for complete extractions)
-  if (factors.hasCompany) score += 0.18;
-  if (factors.hasEmail) score += 0.22;
-  if (factors.hasName) score += 0.12;
-  if (factors.hasBudget) score += 0.22;
-  if (factors.hasTimeline) score += 0.22;
+  // Base score from field presence - LOWERED to prevent over-scoring
+  // Complete extraction (all 5 fields) = 0.70 base, plus bonuses = 0.85+
+  // Partial extraction (3-4 fields) = 0.40-0.55 base = 0.50-0.70 final
+  // Minimal extraction (1-2 fields) = 0.10-0.25 base = 0.20-0.40 final
+  if (factors.hasCompany) score += 0.15;
+  if (factors.hasEmail) score += 0.20;
+  if (factors.hasName) score += 0.10;
+  if (factors.hasBudget) score += 0.15;
+  if (factors.hasTimeline) score += 0.10;
 
   // Email validity check: critical for CRM sync
-  if (!factors.emailValidity) score -= 0.15;
+  if (!factors.emailValidity) score -= 0.20;
 
-  // Content quality bonus
-  score += factors.contentQuality * 0.10;
+  // Content quality bonus (longer emails = more context = higher confidence)
+  score += factors.contentQuality * 0.15;
 
   // Clamp to [0, 1]
   return Math.max(0, Math.min(1, score));
