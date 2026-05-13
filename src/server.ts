@@ -34,7 +34,7 @@ const apiKeyAuth = (req: Request, res: Response, next: NextFunction) => {
     return;
   }
 
-  next();
+  return next();
 };
 
 app.use(apiKeyAuth);

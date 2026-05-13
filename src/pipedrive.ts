@@ -279,7 +279,7 @@ export async function syncToPipedrive(
   try {
     // Step 1: Create organization
     let orgId: number | null = null;
-    if (companyName && typeof companyName === 'string') {
+    if (companyName) {
       orgId = await findOrCreateOrganization(companyName);
     }
 
