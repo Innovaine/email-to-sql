@@ -1951,3 +1951,26 @@ STDOUT:
 #16 DONE 0.0s
 ```
 Full output: [`server-runs/2026-05-13T16-00-07-app-cd-email-to-sql-docker-compose-down-dock-1.log`](server-runs/2026-05-13T16-00-07-app-cd-email-to-sql-docker-compose-down-dock-1.log)
+
+## 2026-05-13T16:00:54.226Z — Mehdi ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `78d13f5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 4560ms)
+```
+cd ~/email-to-sql && docker compose logs --tail=10 && sleep 2 && curl -s -H "X-API-Key: dev-key-12345" http://localhost:5000/health | head -5
+```
+STDOUT:
+```
+email-to-sql-webhook  | > node dist/server.js
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ⚠️  PIPEDRIVE_API_TOKEN not set; Pipedrive sync will fail
+email-to-sql-webhook  | ✓ Config loaded: PORT=5000, API_KEY=dev-key-...
+email-to-sql-webhook  | 
+email-to-sql-webhook  | ✅ Email-to-SQL webhook listening on http://localhost:5000
+email-to-sql-webhook  |    POST /webhook/email  — submit forwarded email
+email-to-sql-webhook  |    GET  /dashboard      — view extraction status
+email-to-sql-webhook  |    GET  /health         — health check
+email-to-sql-webhook  | 
+{"status":"ok","version":"0.1.0","uptime":46.322542209,"extractions":0}
+```
+Full output: [`server-runs/2026-05-13T16-00-54-app-cd-email-to-sql-docker-compose-logs---ta-1.log`](server-runs/2026-05-13T16-00-54-app-cd-email-to-sql-docker-compose-logs---ta-1.log)
