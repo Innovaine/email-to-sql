@@ -748,3 +748,11 @@ NAME                   IMAGE                       COMMAND                  SERV
 email-to-sql-webhook   email-to-sql-email-to-sql   "docker-entrypoint.s…"   email-to-sql   4 seconds ago   Up Less than a second (health: starting)   0.0.0.0:5000->5000/tcp, [::]:5000->5000/tcp
 ```
 Full output: [`server-runs/2026-05-13T06-11-58-app-cd-email-to-sql-docker-compose-down-2-1--1.log`](server-runs/2026-05-13T06-11-58-app-cd-email-to-sql-docker-compose-down-2-1--1.log)
+
+## 2026-05-13T06:12:30.467Z — Mehdi ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `1bd9619` so the server's `git pull` will pick it up._
+
+### Command 1 on app as engineer (✓ exit 0, 7482ms)
+```
+sleep 5 && curl -s http://localhost:5000/health | head -20
+```
