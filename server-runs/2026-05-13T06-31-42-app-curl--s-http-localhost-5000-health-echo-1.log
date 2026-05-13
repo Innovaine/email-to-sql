@@ -1,0 +1,13 @@
+# Command 1 on app as reviewer
+# Run at: 2026-05-13T06:31:42.766Z
+# Exit code: 0
+# Duration: 2736ms
+
+## Command
+curl -s http://localhost:5000/health && echo ""
+
+## STDOUT (full)
+{"error":"Unauthorized: missing or invalid X-API-Key header"}
+
+## STDERR (full)
+(empty)

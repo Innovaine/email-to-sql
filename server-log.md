@@ -1257,3 +1257,16 @@ email-to-sql-webhook  |    GET  /health         — health check
 email-to-sql-webhook  |
 ```
 Full output: [`server-runs/2026-05-13T06-27-45-app-cd-email-to-sql-docker-compose-up--d-sle-1.log`](server-runs/2026-05-13T06-27-45-app-cd-email-to-sql-docker-compose-up--d-sle-1.log)
+
+## 2026-05-13T06:31:42.787Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `268dd17` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2757ms)
+```
+curl -s http://localhost:5000/health && echo ""
+```
+STDOUT:
+```
+{"error":"Unauthorized: missing or invalid X-API-Key header"}
+```
+Full output: [`server-runs/2026-05-13T06-31-42-app-curl--s-http-localhost-5000-health-echo-1.log`](server-runs/2026-05-13T06-31-42-app-curl--s-http-localhost-5000-health-echo-1.log)
