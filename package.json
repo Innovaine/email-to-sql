@@ -5,8 +5,8 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/src/server.js",
-    "dev": "tsc && node dist/src/server.js",
+    "start": "node dist/server.js",
+    "dev": "tsc && node dist/server.js",
     "test": "playwright test",
     "test:headless": "playwright test --headed=false"
   },
