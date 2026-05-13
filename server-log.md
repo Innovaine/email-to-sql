@@ -466,3 +466,19 @@ Dockerfile:17
 failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 2
 ```
 Full output: [`server-runs/2026-05-13T06-03-11-app-cd-email-to-sql-timeout-180-docker-compo-1.log`](server-runs/2026-05-13T06-03-11-app-cd-email-to-sql-timeout-180-docker-compo-1.log)
+
+## 2026-05-13T06:04:04.738Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `a9025b5` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 2841ms)
+```
+cd /home/tester && rm -rf email-to-sql && git clone https://github.com/Innovaine/email-to-sql.git email-to-sql && cd email-to-sql && find src -type f -name "*.ts" | head -20
+```
+STDOUT:
+```
+src/extraction.ts
+src/config.ts
+src/server.ts
+src/pipedrive.ts
+```
+Full output: [`server-runs/2026-05-13T06-04-04-app-cd-home-tester-rm--rf-email-to-sql-git-c-1.log`](server-runs/2026-05-13T06-04-04-app-cd-home-tester-rm--rf-email-to-sql-git-c-1.log)
