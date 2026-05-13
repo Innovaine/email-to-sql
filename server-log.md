@@ -3985,3 +3985,59 @@ email-to-sql-webhook  |    GET  /health         — health check
 email-to-sql-webhook  |
 ```
 Full output: [`server-runs/2026-05-13T17-23-24-app-cd-email-to-sql-docker-compose-down-dock-1.log`](server-runs/2026-05-13T17-23-24-app-cd-email-to-sql-docker-compose-down-dock-1.log)
+
+## 2026-05-13T17:23:46.215Z — Amil ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `09f81fe` so the server's `git pull` will pick it up._
+
+### Command 1 on app as tester (✓ exit 0, 7880ms) _(showing tail — full 5,824B stdout + 0B stderr)_
+```
+cd ~/email-to-sql && PLAYWRIGHT_BROWSERS_PATH=/usr/local/share/playwright-browsers npx playwright test --reporter=list 2>&1 | tee test-results/week-12-test-output.txt
+```
+STDOUT:
+```
+…actions and sync status (130ms)
+  ✓  28 tests/web/fixtures.spec.ts:299:7 › Email-to-SQL fixture-driven extraction tests › dashboard shows metrics correctly (585ms)
+
+
+  1) tests/web/fixtures.spec.ts:79:7 › Email-to-SQL fixture-driven extraction tests › low-confidence forward: queues for review without extraction 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeLessThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: < [32m0.65[39m
+    Received:   [31m0.6549999999999999[39m
+
+      92 |     
+      93 |     // Confidence should be low
+    > 94 |     expect(extracted.confidence).toBeLessThan(0.65);
+         |                                  ^
+      95 |     
+      96 |     // Status should be 'review' due to low confidence
+      97 |     expect(body.status).toBe('review');
+        at /home/tester/email-to-sql/tests/web/fixtures.spec.ts:94:34
+
+    Error Context: test-results/tests-web-fixtures-Email-t-7ace5-r-review-without-extraction/error-context.md
+
+  2) tests/web/fixtures.spec.ts:176:7 › Email-to-SQL fixture-driven extraction tests › malformed email: fails gracefully with error 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m200[39m
+    Received: [31m400[39m
+
+      183 |     });
+      184 |
+    > 185 |     expect(response.status()).toBe(200);
+          |                               ^
+      186 |     const body = await response.json();
+      187 |
+      188 |     // Even malformed should return response structure
+        at /home/tester/email-to-sql/tests/web/fixtures.spec.ts:185:31
+
+    Error Context: test-results/tests-web-fixtures-Email-t-b6d89-fails-gracefully-with-error/error-context.md
+
+  2 failed
+    tests/web/fixtures.spec.ts:79:7 › Email-to-SQL fixture-driven extraction tests › low-confidence forward: queues for review without extraction 
+    tests/web/fixtures.spec.ts:176:7 › Email-to-SQL fixture-driven extraction tests › malformed email: fails gracefully with error 
+  26 passed (3.5s)
+```
+Full output: [`server-runs/2026-05-13T17-23-46-app-cd-email-to-sql-PLAYWRIGHT_BROWSERS_PATH-1.log`](server-runs/2026-05-13T17-23-46-app-cd-email-to-sql-PLAYWRIGHT_BROWSERS_PATH-1.log)
