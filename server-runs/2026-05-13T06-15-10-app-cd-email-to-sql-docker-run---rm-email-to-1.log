@@ -1,0 +1,16 @@
+# Command 1 on app as reviewer
+# Run at: 2026-05-13T06:15:10.650Z
+# Exit code: 0
+# Duration: 2681ms
+
+## Command
+cd ~/email-to-sql && docker run --rm email-to-sql-email-to-sql:latest find /app/dist -type f -name "*.js" 2>&1
+
+## STDOUT (full)
+/app/dist/src/server.js
+/app/dist/src/extraction.js
+/app/dist/src/config.js
+/app/dist/src/pipedrive.js
+
+## STDERR (full)
+(empty)

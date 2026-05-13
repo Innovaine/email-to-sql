@@ -835,3 +835,19 @@ STDOUT:
 #15 exporting manifest list sha256:2aa22b89352109607f167b7693a3160a1483db4a62e6dd6eb0dc9e1992458b5e done
 ```
 Full output: [`server-runs/2026-05-13T06-14-42-app-cd-email-to-sql-docker-compose-down-slee-1.log`](server-runs/2026-05-13T06-14-42-app-cd-email-to-sql-docker-compose-down-slee-1.log)
+
+## 2026-05-13T06:15:10.671Z — Yuki ran 1 command(s)
+_Pre-SSH: warehouse pushed to GitHub as commit `0d343e4` so the server's `git pull` will pick it up._
+
+### Command 1 on app as reviewer (✓ exit 0, 2701ms)
+```
+cd ~/email-to-sql && docker run --rm email-to-sql-email-to-sql:latest find /app/dist -type f -name "*.js" 2>&1
+```
+STDOUT:
+```
+/app/dist/src/server.js
+/app/dist/src/extraction.js
+/app/dist/src/config.js
+/app/dist/src/pipedrive.js
+```
+Full output: [`server-runs/2026-05-13T06-15-10-app-cd-email-to-sql-docker-run---rm-email-to-1.log`](server-runs/2026-05-13T06-15-10-app-cd-email-to-sql-docker-run---rm-email-to-1.log)
